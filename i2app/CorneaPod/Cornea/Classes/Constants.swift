@@ -31,10 +31,10 @@ extension Constants {
     public static let httpScheme: String = "https"
     public static let wsScheme: String = "wss"
 
-    public static let host: String = ""
-    public static let devHost: String = ""
+    public static let host: String = "ios.arcus.wl-net.net"
+    public static let devHost: String = "ios.arcus.wl-net.net"
 
-    public static let port: Int = 0
+    public static let port: Int = 443
 
     public static let retryAttempts: Int = 0
     public static let retryDelay: Double = 5.0
