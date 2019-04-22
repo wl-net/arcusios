@@ -152,14 +152,14 @@ open class ZWaveHealProgressViewController: UIViewController {
 
     titleLabel.attributedText =
       NSAttributedString(string: title,
-                         attributes: [NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 18.0)!,
-                                      NSKernAttributeName: 0.0,
-                                      NSForegroundColorAttributeName: UIColor.white])
+                         attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-Medium", size: 18.0)!,
+                                      convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 0.0,
+                                      convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.white]))
 
     descriptionLabel.attributedText =
       NSAttributedString(string: description,
-                         attributes: [NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 14.0)!,
-                                      NSKernAttributeName: 0.0])
+                         attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-Medium", size: 14.0)!,
+                                      convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 0.0]))
 
     // Configure buttons
     if isInProgress {
@@ -245,11 +245,11 @@ open class ZWaveHealProgressViewController: UIViewController {
     return nil
   }
 
-  func onHubDeviceListChange (_ notification: Notification) {
+  @objc func onHubDeviceListChange (_ notification: Notification) {
     refreshHubAttributes()
   }
 
-  func onHealStateChange (_ notification: Notification) {
+  @objc func onHealStateChange (_ notification: Notification) {
 
     // Clear the isRebuildStarting flag once rebuild state reflects rebuild in progress
     if isRebuilding() {
@@ -261,16 +261,16 @@ open class ZWaveHealProgressViewController: UIViewController {
     })
   }
 
-  func onUserDidNotCancelRebuild (_ sender: AnyObject!) {
+  @objc func onUserDidNotCancelRebuild (_ sender: AnyObject!) {
     popupWindow.close()
   }
 
-  func onUserCancelledRebuild (_ sender: AnyObject!) {
+  @objc func onUserCancelledRebuild (_ sender: AnyObject!) {
     cancelRebuilding()
     _ = self.navigationController?.popToRootViewController(animated: true)
   }
 
-  func onContinueToDashboardPopupClosed (_ sender: AnyObject!) {
+  @objc func onContinueToDashboardPopupClosed (_ sender: AnyObject!) {
     _ = self.navigationController?.popToRootViewController(animated: true)
   }
 
@@ -316,4 +316,15 @@ open class ZWaveHealProgressViewController: UIViewController {
       _ = self.navigationController?.popToRootViewController(animated: true)
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

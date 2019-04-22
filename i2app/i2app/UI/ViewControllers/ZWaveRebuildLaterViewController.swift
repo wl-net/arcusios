@@ -50,12 +50,23 @@ open class ZWaveRebuildLaterViewController: UIViewController {
 
     rebuildLaterLabel
       .attributedText = NSAttributedString(string:  rebuildLater,
-                                           attributes:[NSFontAttributeName: UIFont(name: "AvenirNext-Medium",
+                                           attributes:convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-Medium",
                                                                                    size: 14.0)!,
-                                                       NSKernAttributeName: 0.0])
+                                                       convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 0.0]))
   }
 
   fileprivate func configureNavBar() {
     self.navBar(withTitle: "REBUILD LATER")
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

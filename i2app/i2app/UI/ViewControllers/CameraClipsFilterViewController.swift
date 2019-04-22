@@ -104,7 +104,7 @@ class CameraClipsFilterViewController: UIViewController {
                                  close: #selector(CameraClipsFilterViewController.closeCameraFilter(_:)))
   }
 
-  func closeCameraFilter(_ sender: Any) {
+  @objc func closeCameraFilter(_ sender: Any) {
     guard let camerasFilters = CameraClipsFilterPresenter.camerasFilters,
       let selectedString = sender as? String,
       let selectedFilter = camerasFilters.filter({$0.address == selectedString}).first
@@ -134,7 +134,7 @@ class CameraClipsFilterViewController: UIViewController {
 
   }
 
-  func closeTimeFilter(_ sender: Any) {
+  @objc func closeTimeFilter(_ sender: Any) {
     let camerasFilters = ClipTimeFilter.allClipTimeFilters
     guard let selectedString = sender as? String,
       let selectedFilter = camerasFilters

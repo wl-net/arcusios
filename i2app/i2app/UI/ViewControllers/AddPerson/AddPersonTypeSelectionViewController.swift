@@ -67,7 +67,7 @@ UITableViewDelegate {
 
     self.typeTableView.backgroundColor = UIColor.clear
     self.typeTableView.estimatedRowHeight = 180
-    self.typeTableView.rowHeight = UITableViewAutomaticDimension
+    self.typeTableView.rowHeight = UITableView.automaticDimension
 
     self.setBackgroundColorToDashboardColor()
     self.addWhiteOverlay(BackgroupOverlayMiddleLevel)
@@ -101,7 +101,7 @@ UITableViewDelegate {
 
     cell?.descriptionLabel.text = optionInfo[AddPersonTypeConstants.kDescription]
 
-    cell?.selectionStyle = UITableViewCellSelectionStyle.none
+    cell?.selectionStyle = UITableViewCell.SelectionStyle.none
 
     cell?.accessoryImage.isHidden = true
 

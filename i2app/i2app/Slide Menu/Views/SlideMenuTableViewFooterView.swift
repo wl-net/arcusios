@@ -54,8 +54,14 @@ class SlideMenuTableViewFooterView: UIView, NibConfigurable {
   func setupLogoutButton() {
     if let attributes: [String: Any] = FontData.getFontWithSize(9.0, bold: true, kerning: 2.0, color: UIColor.black) as? [String: Any] {
       let logoutString = NSLocalizedString("Log Out", comment: "").uppercased()
-      let logoutTitle: NSAttributedString = NSAttributedString(string: logoutString, attributes: attributes)
+      let logoutTitle: NSAttributedString = NSAttributedString(string: logoutString, attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
       logoutButton.setAttributedTitle(logoutTitle, for: .normal)
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

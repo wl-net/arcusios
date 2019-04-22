@@ -76,9 +76,9 @@ extension CameraPlaybackViewController where Self: UIViewController {
     }
     if keyPath == #keyPath(AVPlayer.status){
       
-      var status: AVPlayerItemStatus
+      var status: AVPlayerItem.Status
       if let statusNumber = change?[.newKey] as? NSNumber {
-        status = AVPlayerItemStatus(rawValue: statusNumber.intValue)!
+        status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
       } else {
         status = .unknown
       }

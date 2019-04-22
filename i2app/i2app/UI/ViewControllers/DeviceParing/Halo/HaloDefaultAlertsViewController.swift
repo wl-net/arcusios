@@ -65,7 +65,7 @@ HaloEasCodesPresenterDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell? =
-            UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+            UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
         cell?.backgroundColor = UIColor.clear
 
         // cell?.textLabel?.text = self.alerts[indexPath.row]

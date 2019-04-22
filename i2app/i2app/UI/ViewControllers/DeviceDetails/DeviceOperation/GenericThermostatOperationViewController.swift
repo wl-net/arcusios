@@ -96,7 +96,7 @@ class GenericThermostatOperationViewController: DeviceOperationBaseController {
   
   // MARK: Event Handlers
 
-  func handleModePressed(_ selectedValue: Any) {
+  @objc func handleModePressed(_ selectedValue: Any) {
     if let mode = selectedValue as? ThermostatMode {
       presenter.update(selectedMode: mode)
     }

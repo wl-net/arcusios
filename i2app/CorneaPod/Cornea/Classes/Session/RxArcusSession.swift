@@ -682,7 +682,7 @@ public class RxArcusSession: ArcusSession, RxSwiftSession, UrlBuilder, ArcusSess
         onSuccess: { [weak self] keychain in
           self?.token = keychain
           self?.socketConfig = self?.tokenBasedSocketConfig()
-          single(.success())
+          single(.success(()))
         }, onError: { error in
           self?.socketConfig = SocketConfig.emptyConfig()
           single(.error(error))

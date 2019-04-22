@@ -103,21 +103,21 @@ class NestThermostatOperationViewController: DeviceOperationBaseController {
   
   // MARK: Event Handlers
 
-  func handleModePressed(_ selectedValue: Any) {
+  @objc func handleModePressed(_ selectedValue: Any) {
     if let mode = selectedValue as? ThermostatMode {
       presenter.update(selectedMode: mode)
     }
   }
 
-  func handleCredentialsRevokedBanner() {
+  @objc func handleCredentialsRevokedBanner() {
     performSegue(withIdentifier: "PresentNestCredentialsRevoked", sender: self)
   }
 
-  func handleDeviceRemovedBanner() {
+  @objc func handleDeviceRemovedBanner() {
     performSegue(withIdentifier: "NestDeviceRemoved", sender: self)
   }
   
-  func handleTimeoutBanner() {
+  @objc func handleTimeoutBanner() {
     UIApplication.shared.openURL(NSURL.SupportNest)
   }
 }

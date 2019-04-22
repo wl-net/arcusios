@@ -97,7 +97,7 @@ class PairingStepsParentViewController: UIViewController,
     }
 
     if let pageController = pagerController {
-      addChildViewController(pageController)
+      addChild(pageController)
     }
 
     // Configure Video
@@ -219,19 +219,19 @@ class PairingStepsParentViewController: UIViewController,
     let isVoiceAssistant = viewModel?.isVoiceAssistant ?? false
     
     if !isLastPage || (isLastPage && isC2C) {
-      nextButton.setTitle("NEXT", for: UIControlState.normal)
+      nextButton.setTitle("NEXT", for: UIControl.State.normal)
     } else if isLastPage && isVoiceAssistant {
-       nextButton.setTitle("I'M DONE PAIRING", for: UIControlState.normal)
+       nextButton.setTitle("I'M DONE PAIRING", for: UIControl.State.normal)
     } else if isLastPage && isBLE {
-      nextButton.setTitle("CONNECT", for: UIControlState.normal)
+      nextButton.setTitle("CONNECT", for: UIControl.State.normal)
     } else {
-      nextButton.setTitle("START SEARCHING", for: UIControlState.normal)
+      nextButton.setTitle("START SEARCHING", for: UIControl.State.normal)
     }
     
     if let step = stepViewModel as? PairingStepsStepViewModel,
       let secondaryText = step.secondaryActionText {
       secondaryActionContainer.isHidden = false
-      secondaryActionButton.setTitle(secondaryText, for: UIControlState.normal)
+      secondaryActionButton.setTitle(secondaryText, for: UIControl.State.normal)
       secondaryAction = { [step] in
         if let url = step.secondaryActionURL {
           UIApplication.shared.open(url)
@@ -248,14 +248,14 @@ class PairingStepsParentViewController: UIViewController,
     }
   }
   
-  func pageDidChange(_ index: Int, direction: UIPageViewControllerNavigationDirection) {
+  func pageDidChange(_ index: Int, direction: UIPageViewController.NavigationDirection) {
     let isCustom = viewModel?.isWiFiPairing ?? false || viewModel?.isBLEPairing ?? false
 
     if isCustom == true && direction == .reverse {
       stepsMovedBackSubject.onNext(index)
 
       // Ensure correct the Next button title.
-      nextButton.setTitle("NEXT", for: UIControlState.normal)
+      nextButton.setTitle("NEXT", for: UIControl.State.normal)
     }
   }
   

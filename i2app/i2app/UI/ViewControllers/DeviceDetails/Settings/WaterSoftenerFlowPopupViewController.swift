@@ -29,7 +29,7 @@ class WaterSoftenerFlowPopupViewController: PopupSelectionBaseContainer {
 
   var presenter: WaterFlowPopupPresenter?
 
-  private var closeHandler: () -> Void = { _ in }
+  private var closeHandler: () -> Void = {  }
 
   override func getHeight() -> CGFloat {
     return 440.0

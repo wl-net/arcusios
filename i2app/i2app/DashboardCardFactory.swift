@@ -154,24 +154,24 @@ class DashboardCardFactory {
         cell.timeOne.text = viewModel.historyEntries[0].time
         cell.entryOne.text = viewModel.historyEntries[0].entry
         cell.deviceOne.text = viewModel.historyEntries[0].name
-        cell.heightCollapseTwo.priority = DashboardConstants.constraintPriorityHigh
-        cell.heightCollapseThree.priority = DashboardConstants.constraintPriorityHigh
+        cell.heightCollapseTwo.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
+        cell.heightCollapseThree.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
       }
 
       if entryCount > 1 {
         cell.timeTwo.text = viewModel.historyEntries[1].time
         cell.entryTwo.text = viewModel.historyEntries[1].entry
         cell.deviceTwo.text = viewModel.historyEntries[1].name
-        cell.heightCollapseTwo.priority = DashboardConstants.constraintPriorityLow
-        cell.heightCollapseThree.priority = DashboardConstants.constraintPriorityHigh
+        cell.heightCollapseTwo.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
+        cell.heightCollapseThree.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
       }
 
       if entryCount > 2 {
         cell.timeThree.text = viewModel.historyEntries[2].time
         cell.entryThree.text = viewModel.historyEntries[2].entry
         cell.deviceThree.text = viewModel.historyEntries[2].name
-        cell.heightCollapseTwo.priority = DashboardConstants.constraintPriorityLow
-        cell.heightCollapseThree.priority = DashboardConstants.constraintPriorityLow
+        cell.heightCollapseTwo.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
+        cell.heightCollapseThree.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
       }
       cell.backgroundColor = UIColor.clear
       return cell
@@ -203,21 +203,21 @@ class DashboardCardFactory {
       cell.dimmerCount.text = String(viewModel.dimmersOnCount)
 
       if viewModel.lightsOnCount > 0 {
-        cell.lightsContainerWidth.priority = DashboardConstants.constraintPriorityLow
+        cell.lightsContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
       } else {
-        cell.lightsContainerWidth.priority = DashboardConstants.constraintPriorityHigh
+        cell.lightsContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
       }
 
       if viewModel.switchesOnCount > 0 {
-        cell.switchesContainerWidth.priority = DashboardConstants.constraintPriorityLow
+        cell.switchesContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
       } else {
-        cell.switchesContainerWidth.priority = DashboardConstants.constraintPriorityHigh
+        cell.switchesContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
       }
 
       if viewModel.dimmersOnCount > 0 {
-        cell.dimmersContainerWidth.priority = DashboardConstants.constraintPriorityLow
+        cell.dimmersContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
       } else {
-        cell.dimmersContainerWidth.priority = DashboardConstants.constraintPriorityHigh
+        cell.dimmersContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
       }
 
       cell.backgroundColor = UIColor.clear
@@ -251,10 +251,10 @@ class DashboardCardFactory {
       cell.humidity.attributedText = stringWithUpperText(viewModel.humidity, upperText: "%", extraSmall: true)
 
       // Shrink the containers with empty data
-      cell.humidityContainerWidth.priority = viewModel.humidity.isEmpty
-        ? DashboardConstants.constraintPriorityHigh : DashboardConstants.constraintPriorityLow
-      cell.temperatureContainerWidth.priority = viewModel.temperature.isEmpty
-        ? DashboardConstants.constraintPriorityHigh : DashboardConstants.constraintPriorityLow
+      cell.humidityContainerWidth.priority = UILayoutPriority(rawValue: viewModel.humidity.isEmpty
+        ? DashboardConstants.constraintPriorityHigh : DashboardConstants.constraintPriorityLow)
+      cell.temperatureContainerWidth.priority = UILayoutPriority(rawValue: viewModel.temperature.isEmpty
+        ? DashboardConstants.constraintPriorityHigh : DashboardConstants.constraintPriorityLow)
       cell.backgroundColor = UIColor.clear
       return cell
     }
@@ -275,12 +275,12 @@ class DashboardCardFactory {
       cell.doorLabel.text = "\(viewModel.openedDoorCount)"
       cell.garageLabel.text = "\(viewModel.openedGarageCount)"
 
-      cell.garageContainerWidth.priority = viewModel.openedGarageCount > 0
-        ? DashboardConstants.constraintPriorityLow : DashboardConstants.constraintPriorityHigh
-      cell.locksContainerWidth.priority = viewModel.openedLockCount > 0
-        ? DashboardConstants.constraintPriorityLow : DashboardConstants.constraintPriorityHigh
-      cell.doorsContainerWidth.priority = viewModel.openedDoorCount > 0
-        ? DashboardConstants.constraintPriorityLow : DashboardConstants.constraintPriorityHigh
+      cell.garageContainerWidth.priority = UILayoutPriority(rawValue: viewModel.openedGarageCount > 0
+        ? DashboardConstants.constraintPriorityLow : DashboardConstants.constraintPriorityHigh)
+      cell.locksContainerWidth.priority = UILayoutPriority(rawValue: viewModel.openedLockCount > 0
+        ? DashboardConstants.constraintPriorityLow : DashboardConstants.constraintPriorityHigh)
+      cell.doorsContainerWidth.priority = UILayoutPriority(rawValue: viewModel.openedDoorCount > 0
+        ? DashboardConstants.constraintPriorityLow : DashboardConstants.constraintPriorityHigh)
       cell.backgroundColor = UIColor.clear
       return cell
     }
@@ -298,13 +298,13 @@ class DashboardCardFactory {
       }
 
       if viewModel.onIndicator {
-        cell.onContainerWidth.priority = DashboardConstants.constraintPriorityLow
+        cell.onContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
         cell.infoText.text = ""
         if viewModel.activeCount > 1 {
           cell.infoText.text = "\(viewModel.activeCount)"
         }
       } else {
-        cell.onContainerWidth.priority = DashboardConstants.constraintPriorityHigh
+        cell.onContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
         let time = " " + viewModel.scheduleTime
         cell.infoText.attributedText = stringWithUpperText(viewModel.scheduleDay, upperText: time)
       }
@@ -336,10 +336,10 @@ class DashboardCardFactory {
       cell.dateTime.attributedText = stringWithUpperText(viewModel.relativeTime, upperText: amPM)
 
       if viewModel.status.isEmpty {
-        cell.onContainerWidth.priority = DashboardConstants.constraintPriorityHigh
+        cell.onContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
       } else {
         cell.onLabel.text = viewModel.status
-        cell.onContainerWidth.priority = DashboardConstants.constraintPriorityLow
+        cell.onContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
       }
 
       return cell
@@ -361,26 +361,26 @@ class DashboardCardFactory {
 
       if viewModel.firstImage != nil {
         cell.firstPerson.isHidden = false
-        cell.firstPerson.setImage(viewModel.firstImage, for: UIControlState())
-        cell.firstImageContainerWidth.priority = DashboardConstants.constraintPriorityLow
+        cell.firstPerson.setImage(viewModel.firstImage, for: UIControl.State())
+        cell.firstImageContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
       } else {
         cell.firstPerson.isHidden = true
-        cell.firstImageContainerWidth.priority = DashboardConstants.constraintPriorityHigh
+        cell.firstImageContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
       }
 
       if viewModel.secondImage != nil {
         cell.secondPerson.isHidden = false
-        cell.secondPerson.setImage(viewModel.secondImage, for: UIControlState())
-        cell.secondImageContainerWidth.priority = DashboardConstants.constraintPriorityLow
+        cell.secondPerson.setImage(viewModel.secondImage, for: UIControl.State())
+        cell.secondImageContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
       } else {
         cell.secondPerson.isHidden = true
-        cell.secondImageContainerWidth.priority = DashboardConstants.constraintPriorityHigh
+        cell.secondImageContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
       }
 
       if viewModel.additionalCount.isEmpty {
-        cell.countContainerWidth.priority = DashboardConstants.constraintPriorityHigh
+        cell.countContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityHigh)
       } else {
-        cell.countContainerWidth.priority = DashboardConstants.constraintPriorityLow
+        cell.countContainerWidth.priority = UILayoutPriority(rawValue: DashboardConstants.constraintPriorityLow)
 
         // Only show the plus before the count when there people at home
         if viewModel.firstImage == nil && viewModel.secondImage == nil {
@@ -552,13 +552,13 @@ class DashboardCardFactory {
     }
 
     let upperTextAttributes: [String: AnyObject] = [
-      NSFontAttributeName: UIFont(name: "Avenir Next", size: upperTextSize)!,
-      NSForegroundColorAttributeName: UIColor(red: 255, green: 255, blue: 255, alpha: alpha),
-      NSBaselineOffsetAttributeName: upperTextOffset as AnyObject
+      convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "Avenir Next", size: upperTextSize)!,
+      convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor(red: 255, green: 255, blue: 255, alpha: alpha),
+      convertFromNSAttributedStringKey(NSAttributedString.Key.baselineOffset): upperTextOffset as AnyObject
     ]
 
     let mainText = NSMutableAttributedString(string: mainText)
-    let upperText = NSMutableAttributedString(string: upperText, attributes: upperTextAttributes)
+    let upperText = NSMutableAttributedString(string: upperText, attributes: convertToOptionalNSAttributedStringKeyDictionary(upperTextAttributes))
 
     if invert {
       upperText.append(mainText)
@@ -569,4 +569,15 @@ class DashboardCardFactory {
     }
   }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

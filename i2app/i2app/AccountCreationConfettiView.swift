@@ -71,7 +71,7 @@ class AccountCreationConfettiView: UIView {
   private func createEmitterLayer() -> CAEmitterLayer {
     let emitter = CAEmitterLayer()
     emitter.emitterPosition = CGPoint(x: frame.size.width / 2, y: -10)
-    emitter.emitterShape = kCAEmitterLayerLine
+    emitter.emitterShape = CAEmitterLayerEmitterShape.line
     emitter.emitterSize = CGSize(width: frame.size.width, height: 2.0)
     emitter.emitterCells = generateEmitterCells()
     emitter.birthRate = 0.0

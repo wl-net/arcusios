@@ -133,7 +133,7 @@ class HubPairingNamingViewController: UIViewController, HubPairingNamingPresente
     removeScleraBackButton()
     addScleraStyleToNavigationTitle()
     deviceImageView.layer.cornerRadius = self.deviceImageView.frame.size.width/2.0
-    deviceImageView.contentMode = UIViewContentMode.scaleAspectFill
+    deviceImageView.contentMode = UIView.ContentMode.scaleAspectFill
     deviceImageView.clipsToBounds = true
 
     nameTextField.inlineValidation = {
@@ -176,7 +176,10 @@ extension HubPairingNamingViewController: ScrollViewKeyboardAnimatable {
 extension HubPairingNamingViewController: ImagePickerViewable {
 
   func imagePickerController(_ picker: UIImagePickerController,
-                             didFinishPickingMediaWithInfo info: [String : Any]) {
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
     nameHubViewModel.deviceImage = getPickedMedia(withInfo: info)
     // Save the current device name before updating the view
     if let name = nameTextField.text,
@@ -210,4 +213,9 @@ extension HubPairingNamingViewController: UITextFieldDelegate {
     }
     updateViews()
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }

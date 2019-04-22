@@ -105,7 +105,7 @@ ProMonResponderSettingsDelegate {
     displayGenericErrorMessage()
   }
 
-  func onHideKeyboard() {
+  @objc func onHideKeyboard() {
     self.instructionsField.resignFirstResponder()
   }
 

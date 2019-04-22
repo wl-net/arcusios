@@ -31,7 +31,7 @@ class CancelTrackerPopupViewController: PopupSelectionBaseContainer, UITextViewD
     return descriptionTextHeight.constant - 141.0 + 265.0
   }
 
-  private var closeHandler: () -> Void = { _ in }
+  private var closeHandler: () -> Void = {  }
 
   static func create() -> CancelTrackerPopupViewController? {
     let storyboard = UIStoryboard(name: "AlarmTracker", bundle: nil)

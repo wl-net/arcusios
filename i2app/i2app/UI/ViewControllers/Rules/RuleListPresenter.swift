@@ -105,7 +105,7 @@ class RuleListPresenter: NSObject {
     NotificationCenter.default.removeObserver(self)
   }
 
-  func ruleAddedNotificationReceived(_ notification: Notification) {
+  @objc func ruleAddedNotificationReceived(_ notification: Notification) {
     if notification.object is RuleModel {
       if let ruleModel = notification.object as? RuleModel {
         self.updateRulesListForAdded(ruleModel)
@@ -114,14 +114,14 @@ class RuleListPresenter: NSObject {
     }
   }
 
-  func ruleDeletedNotificationReceived(_ notification: Notification) {
+  @objc func ruleDeletedNotificationReceived(_ notification: Notification) {
     if let rule = notification.object as? RuleModel {
       self.updateRulesListForDeletion(rule.address)
       self.delegate?.ruleGroupsListUpdated(self.ruleGroupsList, presenter: self)
     }
   }
 
-  func ruleUpdatedNotificationReceived(_ notification: Notification) {
+  @objc func ruleUpdatedNotificationReceived(_ notification: Notification) {
     let ruleInfo = notification.userInfo! as NSDictionary
     if let ruleModel = ruleInfo["Model"] as? RuleModel {
       self.updateRulesForRule(ruleModel)

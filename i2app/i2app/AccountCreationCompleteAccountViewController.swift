@@ -49,7 +49,7 @@ class AccountCreationCompleteAccountViewController: UIViewController {
     super.viewDidLoad()
 
     if let titleFont = UIFont(name: "AvenirNext-Regular", size: 18) {
-      navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: titleFont]
+      navigationController?.navigationBar.titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.font.rawValue: titleFont])
     }
 
     presenter = AccountCreationCompleteAccountPresenter(delegate: self)
@@ -91,14 +91,14 @@ class AccountCreationCompleteAccountViewController: UIViewController {
           normalFont = UIFont()
         }
         let attributesBold: [String : Any] = [
-          NSFontAttributeName: boldFont
+          convertFromNSAttributedStringKey(NSAttributedString.Key.font): boldFont
         ]
         let attributesNormal: [String : Any] = [
-          NSFontAttributeName: normalFont
+          convertFromNSAttributedStringKey(NSAttributedString.Key.font): normalFont
         ]
         let personNameFormatted = name + ","
-        let personNameAttributed = NSAttributedString(string: personNameFormatted, attributes: attributesBold)
-        let loggedInText = NSAttributedString(string: "Logged in as ", attributes: attributesNormal)
+        let personNameAttributed = NSAttributedString(string: personNameFormatted, attributes: convertToOptionalNSAttributedStringKeyDictionary(attributesBold))
+        let loggedInText = NSAttributedString(string: "Logged in as ", attributes: convertToOptionalNSAttributedStringKeyDictionary(attributesNormal))
         let combinedText = NSMutableAttributedString()
 
         combinedText.append(loggedInText)
@@ -117,4 +117,15 @@ extension AccountCreationCompleteAccountViewController: AccountCreationCompleteA
       self.updateViews()
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

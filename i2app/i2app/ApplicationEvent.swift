@@ -25,12 +25,12 @@ import Cornea
 
 struct ApplicationEvent: ArcusApplicationServiceEvent {
   var application: UIApplication
-  var launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+  var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   var type: ApplicationEventType
   var payload: Any?
 
   init(_ application: UIApplication,
-       launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil,
+       launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil,
        type: ApplicationEventType,
        payload: Any? = nil) {
     self.application = application

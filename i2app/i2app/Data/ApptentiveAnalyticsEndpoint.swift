@@ -39,7 +39,7 @@ import Cornea
     }
   }
 
-  func onAlarmStateChanged(_ note: Notification) {
+  @objc func onAlarmStateChanged(_ note: Notification) {
 
   }
   

@@ -175,9 +175,9 @@ extension AlarmDevicesViewController {
     cell.subtitle.text = device.subtitle
     cell.alarmMode.text = device.mode
     if device.isOffline {
-      cell.redDotContainerWidth.priority = 200
+      cell.redDotContainerWidth.priority = UILayoutPriority(rawValue: 200)
     } else {
-      cell.redDotContainerWidth.priority = 999
+      cell.redDotContainerWidth.priority = UILayoutPriority(rawValue: 999)
     }
 
     if device.isOffline || device.isBypassed {

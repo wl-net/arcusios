@@ -134,7 +134,7 @@ PromptToEnableBiometricAuthenticationPresenterProtocol {
             single(.error(ClientError(errorType: .genericError)))
           },
           onError: { [single] _ in
-            single(.success())
+            single(.success(()))
         }).disposed(by: disposeBag)
 
       }

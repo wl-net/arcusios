@@ -68,7 +68,7 @@ class AddPersonPhoneNumberViewController: BaseTextViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    if self.isMovingToParentViewController {
+    if self.isMovingToParent {
       self.configureForm(self.addPersonModel)
     }
   }
@@ -147,7 +147,7 @@ class AddPersonPhoneNumberViewController: BaseTextViewController {
     }
   }
 
-  func confirmNoPhone() {
+  @objc func confirmNoPhone() {
     self.slideOutTwoButtonAlert()
     validateAndUpdate()
   }

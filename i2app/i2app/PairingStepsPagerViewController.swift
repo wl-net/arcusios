@@ -146,7 +146,7 @@ public class PairingStepsPagerViewController: UIPageViewController, UIPageViewCo
 protocol PairingStepsPagerDelegate: class {
   func onPageChanged(isLastPage: Bool,
                      stepViewModel: ArcusPairingStepViewModel?)
-  func pageDidChange(_ index: Int, direction: UIPageViewControllerNavigationDirection)
+  func pageDidChange(_ index: Int, direction: UIPageViewController.NavigationDirection)
 }
 
 extension PairingStepsPagerViewController: UIPageViewControllerDataSource {

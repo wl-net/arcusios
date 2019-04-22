@@ -69,36 +69,47 @@ import UIKit
     if wideSpacing {
       kerning = kerningValue
     }
-    var attributes = [NSFontAttributeName: titleLabel!.font,
-                      NSKernAttributeName: kerning] as [String : Any]
+    var attributes = [convertFromNSAttributedStringKey(NSAttributedString.Key.font): titleLabel!.font,
+                      convertFromNSAttributedStringKey(NSAttributedString.Key.kern): kerning] as [String : Any]
 
-    var hightlightedAttributes = [NSFontAttributeName: titleLabel!.font,
-                                  NSKernAttributeName: kerning] as [String : Any]
+    var hightlightedAttributes = [convertFromNSAttributedStringKey(NSAttributedString.Key.font): titleLabel!.font,
+                                  convertFromNSAttributedStringKey(NSAttributedString.Key.kern): kerning] as [String : Any]
 
     if !disableHighlightColor {
-      attributes[NSForegroundColorAttributeName] = titleLabel!.textColor
-      hightlightedAttributes[NSForegroundColorAttributeName] = titleLabel!.textColor.withAlphaComponent(0.4)
+      attributes[convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor)] = titleLabel!.textColor
+      hightlightedAttributes[convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor)] = titleLabel!.textColor.withAlphaComponent(0.4)
     }
 
     var title: String = ""
-    if self.title(for: UIControlState()) != nil {
-      title = self.title(for: UIControlState())!
+    if self.title(for: UIControl.State()) != nil {
+      title = self.title(for: UIControl.State())!
     }
     if allCaps {
       title = title.uppercased()
     }
 
     let attributedString: NSAttributedString = NSAttributedString.init(string: title,
-                                                                       attributes: attributes)
+                                                                       attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
     let hightlightedAttributedString: NSAttributedString =
-      NSAttributedString.init(string: title, attributes: hightlightedAttributes)
+      NSAttributedString.init(string: title, attributes: convertToOptionalNSAttributedStringKeyDictionary(hightlightedAttributes))
 
     setAttributedTitle(attributedString, for: .normal)
     setAttributedTitle(hightlightedAttributedString, for: .highlighted)
   }
 
-  override func setTitle(_ title: String?, for state: UIControlState) {
+  override func setTitle(_ title: String?, for state: UIControl.State) {
     super.setTitle(title, for: state)
     updateTitleLabel()
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

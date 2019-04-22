@@ -45,9 +45,9 @@ class BillingOptionsViewController: UIViewController, UITableViewDataSource, UIT
   @IBOutlet var tableView: UITableView! {
     didSet {
       self.tableView.backgroundColor = UIColor.clear
-      self.tableView.rowHeight = UITableViewAutomaticDimension
+      self.tableView.rowHeight = UITableView.automaticDimension
       self.tableView.estimatedRowHeight = 80
-      self.tableView.rowHeight = UITableViewAutomaticDimension
+      self.tableView.rowHeight = UITableView.automaticDimension
       self.tableView.alwaysBounceVertical = false
     }
   }
@@ -101,8 +101,8 @@ class BillingOptionsViewController: UIViewController, UITableViewDataSource, UIT
 
             if let places = places as? [PlaceModel] {
               self.placesArray = places.sorted {
-                let firstName = PlaceCapability.getNameFrom($0.0)
-                let secondName = PlaceCapability.getNameFrom($0.1)
+                let firstName = PlaceCapability.getNameFrom($0)
+                let secondName = PlaceCapability.getNameFrom($1)
                 return firstName!.caseInsensitiveCompare(secondName!) == .orderedAscending
               }
             }
@@ -205,7 +205,7 @@ class BillingOptionsViewController: UIViewController, UITableViewDataSource, UIT
     return cell!
   }
 
-  func handleTap() {
+  @objc func handleTap() {
     if let usersAccountModel = usersAccountModel {
       let vc: BillingViewController = BillingViewController.createInEditMode(withAccount: usersAccountModel)
       self.navigationController?.pushViewController(vc, animated: true)

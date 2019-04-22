@@ -42,13 +42,13 @@ ClearTableConfigurator {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 70.0
     tableView.allowsSelectionDuringEditing = true
 
     editButton = UIButton(type: .custom)
     editButton.setAttributedTitle(FontData.getString(editText, withFont: FontDataTypeNavBar),
-                                  for: UIControlState())
+                                  for: UIControl.State())
     editButton.frame = CGRect(x: 0, y: 0, width: 50, height: 12)
     editButton.addTarget(self, action: #selector(self.editPressed(_:)), for: .touchUpInside)
     editbarButtonItem = UIBarButtonItem(customView: editButton)
@@ -100,10 +100,10 @@ ClearTableConfigurator {
     tableView.setEditing(isEditing, animated: true)
     if isEditing {
       editButton.setAttributedTitle(FontData.getString(doneText, withFont: FontDataTypeNavBar),
-                                    for: UIControlState())
+                                    for: UIControl.State())
     } else {
       editButton.setAttributedTitle(FontData.getString(editText, withFont: FontDataTypeNavBar),
-                                    for: UIControlState())
+                                    for: UIControl.State())
     }
     tableView.reloadData()
   }
@@ -139,7 +139,7 @@ extension AlarmNotificationListViewController : UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView,
-                 editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+                 editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
     return .insert
   }
 

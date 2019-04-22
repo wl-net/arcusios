@@ -129,7 +129,7 @@
     textObservable
       .subscribe(onNext: { [unowned self] textLinkAttributes in
         self.settingsInfoTextView.attributedText = textLinkAttributes.attributedText
-        self.settingsInfoTextView.linkTextAttributes = textLinkAttributes.linkAttributes
+        self.settingsInfoTextView.linkTextAttributes = convertToOptionalNSAttributedStringKeyDictionary(textLinkAttributes.linkAttributes)
       })
       .disposed(by: disposeBag)
 
@@ -148,14 +148,14 @@
     let style = NSMutableParagraphStyle()
     style.alignment = settingsInfoTextView.textAlignment
 
-    let attributes = [NSFontAttributeName : font!, NSParagraphStyleAttributeName: style]
+    let attributes = [convertFromNSAttributedStringKey(NSAttributedString.Key.font) : font!, convertFromNSAttributedStringKey(NSAttributedString.Key.paragraphStyle): style]
 
     let attributedString: NSMutableAttributedString =
-      NSMutableAttributedString(string: string, attributes: attributes)
+      NSMutableAttributedString(string: string, attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
 
-    attributedString.addAttribute(NSLinkAttributeName, value: "settings", range: range)
+    attributedString.addAttribute(NSAttributedString.Key.link, value: "settings", range: range)
 
-    return (attributedString, [NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue])
+    return (attributedString, [convertFromNSAttributedStringKey(NSAttributedString.Key.underlineStyle) : NSUnderlineStyle.single.rawValue])
   }
 
   func clearedAttributedString(_ string: String) -> TextLinkAttributes {
@@ -164,10 +164,10 @@
     let style = NSMutableParagraphStyle()
     style.alignment = settingsInfoTextView.textAlignment
 
-    let attributes = [NSFontAttributeName : font!, NSParagraphStyleAttributeName: style]
+    let attributes = [convertFromNSAttributedStringKey(NSAttributedString.Key.font) : font!, convertFromNSAttributedStringKey(NSAttributedString.Key.paragraphStyle): style]
 
     let attributedString: NSMutableAttributedString =
-      NSMutableAttributedString(string: string, attributes: attributes)
+      NSMutableAttributedString(string: string, attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
 
     return (attributedString, [:])
   }
@@ -197,3 +197,14 @@
     return URL(string: "App-Prefs:")
   }
  }
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}

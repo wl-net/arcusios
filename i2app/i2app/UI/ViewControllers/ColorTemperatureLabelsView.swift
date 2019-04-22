@@ -63,14 +63,25 @@ import Cornea
 
     let attributedString: NSMutableAttributedString =
       NSMutableAttributedString(string: "\(temperatureValue)K",
-        attributes: [NSFontAttributeName: self.valueLabel.font])
+        attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): self.valueLabel.font]))
     attributedString
-      .setAttributes([NSFontAttributeName: ssFont,
-                      NSBaselineOffsetAttributeName: 5,
-                      NSForegroundColorAttributeName: self.valueLabel.textColor.withAlphaComponent(0.6)],
+      .setAttributes(convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): ssFont,
+                      convertFromNSAttributedStringKey(NSAttributedString.Key.baselineOffset): 5,
+                      convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): self.valueLabel.textColor.withAlphaComponent(0.6)]),
                      range: NSRange(location:attributedString.length - 1,
                                     length:1))
 
     return attributedString
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

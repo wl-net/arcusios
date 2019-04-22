@@ -33,8 +33,8 @@ class ArcusCarouselViewFlowLayout: UICollectionViewFlowLayout {
   override func prepare() {
     super.prepare()
 
-    self.scrollDirection = UICollectionViewScrollDirection.horizontal
-    self.collectionView?.decelerationRate = UIScrollViewDecelerationRateFast
+    self.scrollDirection = UICollectionView.ScrollDirection.horizontal
+    self.collectionView?.decelerationRate = UIScrollView.DecelerationRate.fast
 
     let visibleCells: [UICollectionViewCell]? =
       self.collectionView!.visibleCells as [UICollectionViewCell]
@@ -68,7 +68,7 @@ class ArcusCarouselViewFlowLayout: UICollectionViewFlowLayout {
 
       var newAttributes: UICollectionViewLayoutAttributes?
       for attributes in visibleCellAttributes
-        where attributes.representedElementCategory == UICollectionElementCategory.cell {
+        where attributes.representedElementCategory == UICollectionView.ElementCategory.cell {
           if newAttributes != nil {
             let attrCenter: CGFloat = attributes.center.x - proposedContentOffsetCenterX
             let newAttrCenter: CGFloat = newAttributes!.center.x - proposedContentOffsetCenterX

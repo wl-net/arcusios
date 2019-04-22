@@ -72,7 +72,7 @@ class C2CPairingViewController: UIViewController, C2CCancelableDelegate {
     dismiss(animated: animated, completion: nil)
   }
   
-  func cancelButtonTapped(_ sender: Any) {
+  @objc func cancelButtonTapped(_ sender: Any) {
     dismiss(animated: true, completion: { [weak self] in
       self?.presenter.navigationDelegate?.onCloudToCloundCanceled()
     })

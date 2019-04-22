@@ -44,7 +44,7 @@ class HaloWeatherRadioSetupViewController: UITableViewController {
     navBar(withBackButtonAndTitle: "Weather Radio")
 
     tableView.tableFooterView = UIView()
-    view.bringSubview(toFront: tableView)
+    view.bringSubviewToFront(tableView)
   }
 
   override func tableView(_ tableView: UITableView,

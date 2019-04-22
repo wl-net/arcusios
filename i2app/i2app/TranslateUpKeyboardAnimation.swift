@@ -62,15 +62,15 @@ extension TranslateUpKeyboardAnimation where Self: UIViewController {
   func keyboardWillChangeFrameMoveFrameUp(_ note: Notification) {
     //this animation will move the entire view up by the height of the keyboard
     guard let info = note.userInfo,
-      let keyboardEndFrame = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-      let keyboardBeginFrame = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-      let animationCurveRawValue = (info[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue,
-      let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue else {
+      let keyboardEndFrame = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+      let keyboardBeginFrame = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+      let animationCurveRawValue = (info[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue,
+      let animationDuration = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue else {
         return
     }
 
     var newFrame = self.view.frame
-    let animationCurve = UIViewAnimationOptions(rawValue: animationCurveRawValue)
+    let animationCurve = UIView.AnimationOptions(rawValue: animationCurveRawValue)
     let keyboardFrameEnd = self.view.convert(keyboardEndFrame, to: nil)
     let keyboardFrameBegin = self.view.convert(keyboardBeginFrame, to: nil)
     newFrame.origin.y -= (keyboardFrameBegin.origin.y - keyboardFrameEnd.origin.y)

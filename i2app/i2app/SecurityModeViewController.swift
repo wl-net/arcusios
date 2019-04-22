@@ -120,7 +120,7 @@ class SecurityModeViewController: UIViewController {
     addScleraStyleToNavigationTitle()
     updateActionButtonText()
     
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 78
     tableView.tableFooterView = UIView()
     tableView.addObserver(self,

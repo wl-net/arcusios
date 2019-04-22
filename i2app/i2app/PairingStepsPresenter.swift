@@ -335,7 +335,7 @@ ArcusProductCapability, BLEPairingPresenterProtocol {
         }
         .subscribe(
           onNext: { _ in
-             single(.success())
+             single(.success(()))
         }, onError: { error in
           single(.error(error))
         })

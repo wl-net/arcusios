@@ -87,7 +87,7 @@ PostPairingSchedulerUIProtocol {
         popupWindow?.open()
     }
 
-    func closePopup(_ sender: AnyObject) {
+    @objc func closePopup(_ sender: AnyObject) {
         if let value = sender as? ArcusDateTime {
             endDate.update(value)
             tableView.reloadData()

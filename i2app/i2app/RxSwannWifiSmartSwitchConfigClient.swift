@@ -106,7 +106,7 @@ class RxSwannSmartSwitchConfigClient: WSSConfigurator {
           onNext: { isConnected in
             // Return success if connected.
             if !self.intialConnection && isConnected {
-              single(.success())
+              single(.success(()))
             }
         })
 

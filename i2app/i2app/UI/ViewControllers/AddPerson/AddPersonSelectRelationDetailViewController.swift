@@ -38,7 +38,7 @@ class AddPersonSelectRelationDetailViewController: AddPersonSelectRelationViewCo
   // MARK: UI Configuration
   override func configureUI() {
     self.relationTableView.estimatedRowHeight = 70
-    self.relationTableView.rowHeight = UITableViewAutomaticDimension
+    self.relationTableView.rowHeight = UITableView.automaticDimension
   }
   
   func configureRelationDetails(_ detailsArray: NSArray?,

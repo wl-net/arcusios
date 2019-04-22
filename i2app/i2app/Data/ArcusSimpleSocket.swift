@@ -73,8 +73,8 @@ class ArcusSimpleSocket: NSObject, StreamDelegate {
         self.inputStream?.delegate = self
         self.outputStream?.delegate = self
 
-        self.inputStream?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
-        self.outputStream?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+        self.inputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
+        self.outputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
 
         self.inputStream?.open()
         self.outputStream?.open()
@@ -85,9 +85,9 @@ class ArcusSimpleSocket: NSObject, StreamDelegate {
         self.outputStream?.close()
 
         self.inputStream?.remove(from: .current,
-                                            forMode: RunLoopMode.defaultRunLoopMode)
+                                            forMode: RunLoop.Mode.default)
         self.outputStream?.remove(from: .current,
-                                             forMode: RunLoopMode.defaultRunLoopMode)
+                                             forMode: RunLoop.Mode.default)
         self.inputStream?.delegate = nil
         self.outputStream?.delegate = nil
 

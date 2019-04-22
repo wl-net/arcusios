@@ -147,7 +147,7 @@ DeviceImageLoader {
 
   func configurePrimaryButtonLabel(_ modalAlertPresenter: ModalAlertPresenter) {
     if let primaryActionTitle = modalAlertPresenter.primaryActionTitle() {
-      primaryActionButton.setTitle(primaryActionTitle, for: UIControlState())
+      primaryActionButton.setTitle(primaryActionTitle, for: UIControl.State())
     } else {
       primaryActionButton.isHidden = true
     }
@@ -155,7 +155,7 @@ DeviceImageLoader {
 
   func configureSecondaryButtonLabel(_ modalAlertPresenter: ModalAlertPresenter) {
     if let secondaryActionTitle = modalAlertPresenter.secondaryActionTitle() {
-      secondaryActionButton.setTitle(secondaryActionTitle, for: UIControlState())
+      secondaryActionButton.setTitle(secondaryActionTitle, for: UIControl.State())
     } else {
       secondaryActionButton.isHidden = true
     }
@@ -235,7 +235,7 @@ DeviceImageLoader {
 
   func tableView(_ tableView: UITableView,
                  heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableViewAutomaticDimension
+    return UITableView.automaticDimension
   }
 
   func tableView(_ tableView: UITableView,
@@ -245,7 +245,7 @@ DeviceImageLoader {
 
   func tableView(_ tableView: UITableView,
                  heightForHeaderInSection section: Int) -> CGFloat {
-    return UITableViewAutomaticDimension
+    return UITableView.automaticDimension
   }
 
   func tableView(_ tableView: UITableView,

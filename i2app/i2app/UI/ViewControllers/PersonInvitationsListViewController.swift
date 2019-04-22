@@ -82,7 +82,7 @@ UITableViewDelegate, PersonInvitationsCallback {
         as? PersonInvitationListTableViewCell {
 
       cell.backgroundColor = UIColor.clear
-      cell.selectionStyle = UITableViewCellSelectionStyle.none
+      cell.selectionStyle = UITableViewCell.SelectionStyle.none
 
       let invitation: Invitation = invitationsList[indexPath.row]
 
@@ -156,11 +156,11 @@ UITableViewDelegate, PersonInvitationsCallback {
     }
   }
 
-  func doAccept(_ invitation: Invitation) {
+  @objc func doAccept(_ invitation: Invitation) {
     self.invitationsController.acceptInvitation(invitation)
   }
 
-  func doDecline(_ invitation: Invitation) {
+  @objc func doDecline(_ invitation: Invitation) {
     self.invitationsController.declineInvitation(invitation)
   }
 

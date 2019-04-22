@@ -123,7 +123,7 @@ class AddPersonBasicInfoViewController: BaseTextViewController {
     }
   }
 
-  func validateAndUpdate() {
+  @objc func validateAndUpdate() {
     self.slideOutTwoButtonAlert()
     presentAddPersonRelation()
   }
@@ -247,9 +247,9 @@ class AddPersonBasicInfoViewController: BaseTextViewController {
     let text: String = NSLocalizedString("Missing Information", comment: "")
     let attributedText: NSAttributedString =
       NSAttributedString(string: text.uppercased(),
-                         attributes: [NSForegroundColorAttributeName: ObjCMacroAdapter.arcusPinkAlertColor(),
-                                      NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 11.0)!,
-                                      NSKernAttributeName: 2.0])
+                         attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): ObjCMacroAdapter.arcusPinkAlertColor(),
+                                      convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-DemiBold", size: 11.0)!,
+                                      convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 2.0]))
 
     textField.floatingLabel.attributedText = attributedText
   }
@@ -262,4 +262,15 @@ class AddPersonBasicInfoViewController: BaseTextViewController {
       selectRelationViewController?.addPersonModel = self.addPersonModel
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

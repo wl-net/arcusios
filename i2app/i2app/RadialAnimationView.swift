@@ -145,13 +145,13 @@ class RadialAnimationView: UIView {
     let scale = CABasicAnimation(keyPath: scaleKey)
     scale.fromValue = startScale
     scale.toValue = endScale
-    scale.fillMode = kCAFillModeForwards
+    scale.fillMode = CAMediaTimingFillMode.forwards
     scale.duration = animationDuration
     
     let opacityAnimation = CABasicAnimation(keyPath: opacityKey)
     opacityAnimation.fromValue = 0.6
     opacityAnimation.toValue = 0.0
-    opacityAnimation.fillMode = kCAFillModeForwards
+    opacityAnimation.fillMode = CAMediaTimingFillMode.forwards
     opacityAnimation.duration = animationDuration
     
     let animationGroup = CAAnimationGroup()

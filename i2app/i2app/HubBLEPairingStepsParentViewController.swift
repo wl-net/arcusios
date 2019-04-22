@@ -259,7 +259,7 @@ ArcusHubBLEPairingCompletionPresenter {
 
   // MARK: HubBLEPairingStepsPagerDelegate
 
-  func pageDidChange(_ index: Int, direction: UIPageViewControllerNavigationDirection) {
+  func pageDidChange(_ index: Int, direction: UIPageViewController.NavigationDirection) {
     stepsMovedBackSubject.onNext(index)
   }
 

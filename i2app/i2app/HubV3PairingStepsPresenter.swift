@@ -52,11 +52,11 @@ internal class HubV3PairingStepsPresenter: HubV3PairingStepsPresenterProtocol {
     step3.info = "The Hub’s light ring will rotate purple during boot up. After you hear the welcome message, the Hub will start rotating blue."
     let attributedString = NSMutableAttributedString(string: "Light ring not rotating blue?\n")
     let attributes0: [String : Any] = [
-      NSFontAttributeName: UIFont(name: "AvenirNext-Regular", size: 14)!,
-      NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
+      convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-Regular", size: 14)!,
+      convertFromNSAttributedStringKey(NSAttributedString.Key.underlineStyle): NSUnderlineStyle.single.rawValue
     ]
 
-    attributedString.addAttributes(attributes0, range: NSRange(location: 0, length: attributedString.length))
+    attributedString.addAttributes(convertToNSAttributedStringKeyDictionary(attributes0), range: NSRange(location: 0, length: attributedString.length))
 
     step3.linkText = attributedString
     step3.linkDestination = NSURL.SupportHubPurpleRing
@@ -74,4 +74,14 @@ internal class HubV3PairingStepsPresenter: HubV3PairingStepsPresenterProtocol {
     return computedSteps
   }()
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

@@ -235,7 +235,7 @@ protocol ArcusThermostatControlDelegate: class {
 
   // MARK: Event Handling
 
-  func handlePlusButton(button: UIButton) {
+  @objc func handlePlusButton(button: UIButton) {
     guard viewModel.mode == .heat || viewModel.mode == .cool || viewModel.mode == .auto else {
       return
     }
@@ -258,7 +258,7 @@ protocol ArcusThermostatControlDelegate: class {
     configureView()
   }
 
-  func handleMinusButton(button: UIButton) {
+  @objc func handleMinusButton(button: UIButton) {
     guard viewModel.mode == .heat || viewModel.mode == .cool || viewModel.mode == .auto else {
       return
     }
@@ -277,12 +277,12 @@ protocol ArcusThermostatControlDelegate: class {
     configureView()
   }
 
-  func handleModeButton(button: UIButton) {
+  @objc func handleModeButton(button: UIButton) {
     delegate?.modeButtonPressed(self)
   }
 
-  func emitChangeEvent() {
-    sendActions(for: UIControlEvents.valueChanged)
+  @objc func emitChangeEvent() {
+    sendActions(for: UIControl.Event.valueChanged)
   }
 
   // MARK: Public Configuration Methods
@@ -476,15 +476,15 @@ protocol ArcusThermostatControlDelegate: class {
     let first = "\(viewModel.heatSetpoint)°"
     let second = "\(viewModel.coolSetpoint)°"
     let white = UIColor(red: 255, green: 255, blue: 255, alpha: 0.5)
-    let attributes: [String: AnyObject] = [ NSForegroundColorAttributeName: white]
+    let attributes: [String: AnyObject] = [ convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): white]
     let firstComponent: NSMutableAttributedString
     let secondComponent: NSMutableAttributedString
 
     if activeHandle == .heatHandle {
       firstComponent = NSMutableAttributedString(string: first)
-      secondComponent = NSMutableAttributedString(string: "●\(second)", attributes: attributes)
+      secondComponent = NSMutableAttributedString(string: "●\(second)", attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
     } else {
-      firstComponent = NSMutableAttributedString(string: "\(first)●", attributes: attributes)
+      firstComponent = NSMutableAttributedString(string: "\(first)●", attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
       secondComponent = NSMutableAttributedString(string: second)
     }
 
@@ -775,4 +775,15 @@ protocol ArcusThermostatControlDelegate: class {
                                            repeats: false)
   }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

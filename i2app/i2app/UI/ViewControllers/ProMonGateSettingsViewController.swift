@@ -69,7 +69,7 @@ class ProMonGateSettingsViewController: UIViewController, UITextFieldDelegate, P
     displayGenericErrorMessage()
   }
 
-  func onHideKeyboard() {
+  @objc func onHideKeyboard() {
     self.gateField.resignFirstResponder()
   }
 

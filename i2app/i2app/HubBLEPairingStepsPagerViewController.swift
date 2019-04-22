@@ -26,7 +26,7 @@ import RxSwift
 /// Delegate definition for Hub Pairing Steps Pager
 internal protocol HubBLEPairingStepsPagerDelegate: class {
   /// called on every page change
-  func pageDidChange(_ index: Int, direction: UIPageViewControllerNavigationDirection)
+  func pageDidChange(_ index: Int, direction: UIPageViewController.NavigationDirection)
 }
 
 

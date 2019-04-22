@@ -73,7 +73,7 @@ class CamerasMoreViewController: UIViewController, ArcusTabBarComponent {
 
   func configureTableView() {
     tableView.estimatedRowHeight = 120
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
   }
 
   // MARK: IBActions

@@ -67,7 +67,7 @@ extension ArcusHubBLEPairingPresenter {
             if let state = res.getState() {
               switch state {
               case .online, .downloading, .applying, .registered:
-                single(.success())
+                single(.success(()))
               default: //mostly just .offline unless enum is updated
                 single(.error(PlaceRegisterHubOfflineError()))
               }

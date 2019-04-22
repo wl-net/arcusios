@@ -49,7 +49,7 @@ class MVPDeviceMoreViewController: UIViewController, DeviceMoreConfigurable {
 
   func configureUI() {
     tableView.estimatedRowHeight = 120
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
   }
 
   @IBAction func removeDevicePressed(_ sender: AnyObject) {
@@ -181,11 +181,11 @@ extension MVPDeviceMoreViewController: DeviceMorePresenterDelegate {
                                              style: popupStyle)
   }
 
-  func removeDevice(_ sender: AnyObject!) {
+  @objc func removeDevice(_ sender: AnyObject!) {
     presenter?.removeDevice()
   }
 
-  func closePopup(_ sender: AnyObject!) {}
+  @objc func closePopup(_ sender: AnyObject!) {}
 }
 
 class DeviceMoreItemSwitchCell: ArcusSelectOptionTableViewCell {

@@ -47,7 +47,7 @@ extension ArcusBLEPairable {
           return ()
         }
         .subscribe(onNext: { _ in
-          observer.onNext()
+          observer.onNext(())
           observer.onCompleted()
         }, onError: { error in
           observer.onError(error)

@@ -43,7 +43,7 @@ open class SpaceHeaterScheduledEventModel: ScheduledEventModel {
              maxSetpointF: Int) {
     self.minSetpointF = minSetpointF
     self.maxSetpointF = maxSetpointF
-    super.init(eventDay: eventDay, withDelegate: delegate)
+    super.init(eventDay: eventDay, withDelegate: delegate as! UIViewController & ScheduledEventModelDelegate)
   }
 
   @objc open override func getScheduleEventOptions() -> [SchedulerSettingOption]! {
@@ -130,21 +130,21 @@ open class SpaceHeaterScheduledEventModel: ScheduledEventModel {
     }
   }
 
-  func onOnButton() {
+  @objc func onOnButton() {
     setHeaterState(true)
   }
 
-  func onOffButton() {
+  @objc func onOffButton() {
     setHeaterState(false)
   }
 
-  func onTemperatureChosen(_ value: NSObject) {
+  @objc func onTemperatureChosen(_ value: NSObject) {
     if let selectedTemperature = value as? NSNumber {
       setSetpointInF(Int(selectedTemperature))
     }
   }
 
-  func onStateSelected () {
+  @objc func onStateSelected () {
     let on = PopupSelectionButtonModel.create("ON", event: #selector(onOnButton))
     let off = PopupSelectionButtonModel.create("OFF", event: #selector(onOffButton))
     let popup = PopupSelectionButtonsView.create(withTitle: "POWER", buttons:[on!, off!])
@@ -155,7 +155,7 @@ open class SpaceHeaterScheduledEventModel: ScheduledEventModel {
     }
   }
 
-  func onTemperatureSelected () {
+  @objc func onTemperatureSelected () {
     let temperaturePopup = PopupSelectionNumberView.create("TEMPERATURE",
                                                            withMinNumber: CGFloat(minSetpointF!),
                                                            maxNumber: CGFloat(maxSetpointF!),

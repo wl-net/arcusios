@@ -92,7 +92,7 @@ class WSSExternalSettingsInfoViewController: UIViewController, WSSPairingPresent
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
 
-    if isMovingFromParentViewController {
+    if isMovingFromParent {
       // Re-enable paging.
       pairingEnabled.value = true
 

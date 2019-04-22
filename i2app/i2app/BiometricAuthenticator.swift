@@ -188,7 +188,7 @@ class BiometricAuthenticator: LocalAuthenticator {
       let disposable = self?.nonRetryEnabledKeychain().subscribe(
         onSuccess: { _ in },
         onError: { [single] _ in
-          single(.success())
+          single(.success(()))
       })
       disposable?.disposed(by: disposeBag)
 
@@ -205,14 +205,14 @@ class BiometricAuthenticator: LocalAuthenticator {
               single(.error(ClientError(errorType: .genericError)))
             },
             onError: { [single] _ in
-              single(.success())
+              single(.success(()))
           }).disposed(by: disposeBag)
 
         return Disposables.create()
       }
     } else {
       return Single<Void>.create { single in
-        single(.success())
+        single(.success(()))
         return Disposables.create()
       }
     }

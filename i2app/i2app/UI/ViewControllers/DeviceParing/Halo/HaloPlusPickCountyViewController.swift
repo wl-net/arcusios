@@ -112,7 +112,7 @@ class HaloPlusPickCountyViewController: BasePairingViewController, HaloSetupPres
                                        close: #selector(doCloseStatePicker(_:)))
     }
 
-    func doCloseStatePicker(_ state: String) {
+    @objc func doCloseStatePicker(_ state: String) {
          if let index = self.states.allValues.index(where: {$0 as? String == state}) {
             if self.stateLabel.text != state {
                 self.countyLabel.text = nil
@@ -138,7 +138,7 @@ class HaloPlusPickCountyViewController: BasePairingViewController, HaloSetupPres
                                        close: #selector(doCloseCountyPicker(_:)))
     }
 
-    func doCloseCountyPicker(_ county: String) {
+    @objc func doCloseCountyPicker(_ county: String) {
         self.countyLabel.text = county
 
         DispatchQueue.global(qos: .background).async {

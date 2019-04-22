@@ -164,8 +164,8 @@ class PersonalInfoViewController: BaseTextViewController, RegistrationConfigHold
           self.photoButton.layer.cornerRadius = self.photoButton.frame.size.width/2.0
           self.photoButton.layer.borderColor = UIColor.black.cgColor
           self.photoButton.layer.borderWidth = 1.0
-          self.photoButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
-          self.photoButton.setImage(image, for: UIControlState())
+          self.photoButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
+          self.photoButton.setImage(image, for: UIControl.State())
       }
     }
   }

@@ -84,7 +84,7 @@ class HaloNamePhotoRoomViewController: UIViewController {
               .swiftThen({ image in
                 self.selectedImage = image as? UIImage
 
-                self.logoButton.setImage(self.selectedImage, for: UIControlState())
+                self.logoButton.setImage(self.selectedImage, for: UIControl.State())
                 return nil
               })
           }
@@ -107,14 +107,14 @@ class HaloNamePhotoRoomViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     NotificationCenter.default.addObserver(self, selector:#selector(keyboardFrameWillChange),
-                                           name: NSNotification.Name.UIKeyboardWillChangeFrame,
+                                           name: UIResponder.keyboardWillChangeFrameNotification,
                                            object: nil)
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     NotificationCenter.default.removeObserver(self,
-                                              name: NSNotification.Name.UIKeyboardWillChangeFrame,
+                                              name: UIResponder.keyboardWillChangeFrameNotification,
                                               object: nil)
   }
 
@@ -177,7 +177,7 @@ class HaloNamePhotoRoomViewController: UIViewController {
                                  owner: self,
                                  close: #selector(doCloseRoomPicker(_:)))
   }
-  func doCloseRoomPicker(_ state: String) {
+  @objc func doCloseRoomPicker(_ state: String) {
     if let index = roomsDictionary.allValues.index(where: {$0 as? String == state}) {
       self.roomNameLabel.text = self.roomsDictionary.allKeys[index] as? String
     }
@@ -227,13 +227,13 @@ class HaloNamePhotoRoomViewController: UIViewController {
   @objc func keyboardFrameWillChange(_ note: Notification) {
     //this animation will move the entire view up by the height of the keyboard
     guard let info = note.userInfo,
-      let keyboardEndFrame = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-      let keyboardBeginFrame = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-      let animationCurveValue = (info[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue,
-      let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue else {
+      let keyboardEndFrame = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+      let keyboardBeginFrame = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+      let animationCurveValue = (info[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue,
+      let animationDuration = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue else {
         return
     }
-    let animationCurve = UIViewAnimationCurve(rawValue: animationCurveValue)!
+    let animationCurve = UIView.AnimationCurve(rawValue: animationCurveValue)!
     var newFrame = self.view.frame
     let keyboardFrameEnd = self.view.convert(keyboardEndFrame, to: nil)
     let keyboardFrameBegin = self.view.convert(keyboardBeginFrame, to: nil)
@@ -247,7 +247,7 @@ class HaloNamePhotoRoomViewController: UIViewController {
   }
 
   // MARK: Keyboard Toolbar Selectors
-  func keyboardDoneTapped() {
+  @objc func keyboardDoneTapped() {
     view.endEditing(true)
   }
 

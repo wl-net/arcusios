@@ -48,7 +48,7 @@ class WeatherAlertController: AlertController, AlertControllerProtocol, HaloEasC
 
   // MARK: Notification Response Handling
 
-  func alertNotificationReceived(_ notification: Notification) {
+  @objc func alertNotificationReceived(_ notification: Notification) {
     preventAlertDisplay = processPriorityAlarm()
     if preventAlertDisplay != true {
       if notification.name == Model

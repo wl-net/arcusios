@@ -84,16 +84,16 @@ open class ZWaveHealRecommendedViewController: UIViewController {
 
     titleLabel
       .attributedText = NSAttributedString(string: title,
-                                           attributes:[NSFontAttributeName: UIFont(name: "AvenirNext-Medium",
+                                           attributes:convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-Medium",
                                                                                    size: 18.0)!,
-                                                       NSKernAttributeName: 0.0,
-                                                       NSForegroundColorAttributeName: UIColor.white])
+                                                       convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 0.0,
+                                                       convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.white]))
 
     descriptionLabel
       .attributedText = NSAttributedString(string:  description,
-                                           attributes: [NSFontAttributeName: UIFont(name: "AvenirNext-Medium",
+                                           attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-Medium",
                                                                                     size: 14.0)!,
-                                                        NSKernAttributeName: 0.0])
+                                                        convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 0.0]))
 
   }
 
@@ -111,7 +111,7 @@ open class ZWaveHealRecommendedViewController: UIViewController {
     self.addDarkOverlay(BackgroupOverlayLightLevel)
   }
 
-  func onUserCancelled (_ sender: AnyObject!) {
+  @objc func onUserCancelled (_ sender: AnyObject!) {
 
     // Stooopid: Have to pop back to the dashboard before showing modal VC, otherwise, 
     // we can't dismiss ZWaveRebuildLaterViewController due to issue 
@@ -125,8 +125,19 @@ open class ZWaveHealRecommendedViewController: UIViewController {
     navigationController.present(nextViewController, animated: true, completion: nil)
   }
 
-  func onUserDidNotCancel (_ sender: AnyObject!) {
+  @objc func onUserDidNotCancel (_ sender: AnyObject!) {
     // Nothing to do
   }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

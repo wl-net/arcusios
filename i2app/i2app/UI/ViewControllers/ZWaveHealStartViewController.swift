@@ -47,16 +47,16 @@ open class ZWaveHealStartViewController: UIViewController {
 
     titleLabel
       .attributedText = NSAttributedString(string: title,
-                                           attributes: [NSFontAttributeName: UIFont(name: "AvenirNext-Medium",
+                                           attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-Medium",
                                                                                     size: 18.0)!,
-                                                        NSKernAttributeName: 0.0,
-                                                        NSForegroundColorAttributeName: UIColor.white])
+                                                        convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 0.0,
+                                                        convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.white]))
 
     descriptionLabel
       .attributedText = NSAttributedString(string: description,
-                                           attributes: [NSFontAttributeName: UIFont(name: "AvenirNext-Medium",
+                                           attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-Medium",
                                                                                     size: 14.0)!,
-                                                        NSKernAttributeName: 0.0])
+                                                        convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 0.0]))
   }
 
   fileprivate func configureNavBar() {
@@ -76,4 +76,15 @@ open class ZWaveHealStartViewController: UIViewController {
     let nextViewController = ZWaveHealProgressViewController.createAndStartRebuild()
     self.navigationController?.pushViewController(nextViewController, animated: true)
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

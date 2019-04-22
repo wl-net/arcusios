@@ -90,7 +90,7 @@ class HubPairingViewController: UIViewController, HubPairingNode,
     NotificationCenter.default
       .addObserver(self,
                    selector: #selector(HubPairingViewController.didBecomeActive(_:)),
-                   name: .UIApplicationWillEnterForeground,
+                   name: UIApplication.willEnterForegroundNotification,
                    object: nil)
   }
 
@@ -317,7 +317,7 @@ extension HubPairingViewController: HubPairingDelegate {
     ArcusAnalytics.tag(named: AnalyticsTags.HubPairingComplete)
     
     self.progressIndicator.setProgress(1, animated: true)
-    UIView.animate(withDuration:  1.0) { _ in
+    UIView.animate(withDuration:  1.0) { 
       self.progressLabel.text = "100%"
     }
   }
@@ -368,7 +368,7 @@ extension HubPairingViewController: HubPairingDelegate {
     presenter?.startProcess()
   }
 
-  func onHideKeyboard() {
+  @objc func onHideKeyboard() {
     textField.resignFirstResponder()
   }
   

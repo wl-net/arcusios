@@ -110,15 +110,15 @@ class CamerasVideoStorageProMonViewController: UIViewController {
     
   }
   
-  func performClean(_ sender: AnyObject) {
+  @objc func performClean(_ sender: AnyObject) {
     presenter?.cleanStorage()
   }
   
-  func performDelete(_ sender: AnyObject) {
+  @objc func performDelete(_ sender: AnyObject) {
     presenter?.deleteAll()
   }
   
-  func closePopup(_ sender: AnyObject!) {}
+  @objc func closePopup(_ sender: AnyObject!) {}
 }
 
 extension CamerasVideoStorageProMonViewController: CameraVideoStoragePresenterDelegate {

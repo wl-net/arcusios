@@ -114,14 +114,14 @@ extension OffsetScrollViewKeyboardAnimatable where Self: UIViewController {
 
   func addKeyboardScrolling() {
     keyboardAnimatableShowObserver = NotificationCenter.default.addObserver(
-      forName: NSNotification.Name.UIKeyboardWillShow,
+      forName: UIResponder.keyboardWillShowNotification,
       object: nil,
       queue: nil) { (notification) in
         self.keyboardWillShow(notification)
     }
 
     keyboardAnimatableHideObserver = NotificationCenter.default.addObserver(
-      forName: NSNotification.Name.UIKeyboardWillHide,
+      forName: UIResponder.keyboardWillHideNotification,
       object: nil,
       queue: nil) { (notification) in
         self.keyboardWillHide(notification)
@@ -142,7 +142,7 @@ extension OffsetScrollViewKeyboardAnimatable where Self: UIViewController {
     guard let window = UIApplication.shared.delegate?.window as? UIWindow,
       let scrollSuperview = keyboardAnimationView.superview,
       let info = notification.userInfo,
-      let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+      let keyboardFrame = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
         return
     }
     let transformToGlobalFrame = scrollSuperview.convert(keyboardAnimationView.frame, to: nil)

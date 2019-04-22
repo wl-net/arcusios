@@ -94,7 +94,7 @@ ArcusPairingDeviceCapability, StaticResourceImageURLHelper, KitSetupHelper {
   /// ordered list of products calculated once requested
   var viewModel: BrandSectionViewModel {
     didSet {
-      DispatchQueue.main.async { [unowned self] _ in
+      DispatchQueue.main.async { [unowned self] 
         self.delegate?.availableBrandsDidUpdate()
       }
     }

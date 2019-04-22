@@ -57,7 +57,7 @@ class AlarmActivityViewController: UIViewController, ArcusTabBarComponent, Clear
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 90.0
     presenter = AlarmActivityPresenter(delegate: self)
     configureClearLayout()
