@@ -31,8 +31,8 @@ extension Constants {
     public static let httpScheme: String = "https"
     public static let wsScheme: String = "wss"
 
-    public static let host: String = "ios.arcus.wl-net.net"
-    public static let devHost: String = "ios.arcus.wl-net.net"
+    public static let host: String = "client.arcus.wl-net.net"
+    public static let devHost: String = "client.arcus.wl-net.net"
 
     public static let port: Int = 443
 
