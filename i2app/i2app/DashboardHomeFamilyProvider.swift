@@ -23,7 +23,7 @@
 import Cornea
 
 protocol DashboardHomeFamilyProvider {
-  weak var delegate: DashboardPresenterDelegate? { get set }
+  var delegate: DashboardPresenterDelegate? { get set }
 
   // MARK: Extended
   func fetchDashboardHomeFamily()

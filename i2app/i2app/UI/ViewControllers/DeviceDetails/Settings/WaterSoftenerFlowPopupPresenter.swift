@@ -27,7 +27,7 @@ import Cornea
  `WaterFlowPopupPresenter` defines the expected properties of a presenter used by a `PopupSelectionBaseContainer` for Water Flow Popups.
  **/
 protocol WaterFlowPopupPresenter {
-  weak var delegate: WaterFlowPopupPresenterDelegate? { get set }
+  var delegate: WaterFlowPopupPresenterDelegate? { get set }
 
   var device: DeviceModel { get set }
   var settingItems: [WaterFlowViewModel] { get }
