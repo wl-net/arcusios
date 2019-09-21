@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.author           = { ''s' => '' }
   s.source           = { :path => "." }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.swift_version = '3.2'
   s.source_files = 'Cornea/Classes/**/*', 'Cornea/Classes/**/**/*' # Only have 2 Levels of Files
   
