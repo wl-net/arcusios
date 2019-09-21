@@ -180,7 +180,7 @@ class ContactInfoViewController: BaseTextViewController {
         }
       }
     } else {
-      if self.phoneField.text?.characters.count == 0 {
+      if self.phoneField.text?.isEmpty == true {
         let msg = "A phone number is required so Arcus can contact you in the event of an alarm."
         self.displayErrorMessage(msg, withTitle: "Phone Number Required")
       } else {

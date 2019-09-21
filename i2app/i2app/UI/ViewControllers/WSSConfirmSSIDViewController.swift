@@ -86,8 +86,8 @@ UITextFieldDelegate {
     }
 
     @IBAction func doneButtonPressed(_ sender: AnyObject) {
-        if self.SSID.characters.count > 0 &&
-            self.confirmSSID.characters.count > 0 &&
+        if self.SSID.count > 0 &&
+            self.confirmSSID.count > 0 &&
             self.SSID == self.confirmSSID {
 
             self.completion(self.SSID, self.confirmSSID)
