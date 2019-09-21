@@ -23,7 +23,7 @@
 import Cornea
 
 protocol UpgradeAlarmPresenter {
-  weak var delegate: UpgradeAlarmDelegate? { get set }
+  var delegate: UpgradeAlarmDelegate? { get set }
   var alarmSubsystem: SubsystemModel! { get set }
 
   func upgradeAlarm()

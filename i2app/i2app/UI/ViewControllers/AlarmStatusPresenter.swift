@@ -26,7 +26,7 @@ import PromiseKit
 
 protocol AlarmStatusPresenterProtocol {
   var subsystemModel: SubsystemModel { get set }
-  weak var delegate: AlarmStatusPresenterDelegate? { get set }
+  var delegate: AlarmStatusPresenterDelegate? { get set }
   var alarmStatusModels: [AlarmStatusViewModel] { get set }
   var partialIndicator: Bool { get set }
   var isSwitchingSecurityMode: Bool { get set }

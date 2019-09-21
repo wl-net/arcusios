@@ -94,7 +94,7 @@ protocol InputFormDelegate: class {
 
 protocol PairingStepsPresenterProtocol: InputFormDelegate {
   weak var delegate: PairingStepsDelegate? { get set }
-  weak var formDelegate: InputFormDelegate? { get set }
+  var formDelegate: InputFormDelegate? { get set }
 
   /// Puts the current place in pairing mode, and returns pairing instruction data for
   /// given product.

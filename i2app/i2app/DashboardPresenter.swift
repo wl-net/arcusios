@@ -33,7 +33,7 @@ protocol DashboardPresenterProtocol: class {
   var currentPlaceName: String { get set }
   var viewModels: [DashboardCardViewModel] { get set }
   var hasMultiplePlaces: Bool { get set }
-  weak var delegate: DashboardPresenterDelegate? { get set }
+  var delegate: DashboardPresenterDelegate? { get set }
 
   func viewModelIndexForType(_ type: DashboardCardType) -> Int
   func updatePlaceForId(_ placeId: String)

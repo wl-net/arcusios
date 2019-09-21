@@ -29,7 +29,7 @@ import CocoaLumberjack
 /// Manage the different ways to start a stream, returns the url to start streaming to its delegate
 /// handles the polling of the hls URL to ensure the stream is ready to view
 protocol CameraPlaybackPresenterProtocol {
-  weak var delegate: CameraPlaybackDelegate? { get set }
+  var delegate: CameraPlaybackDelegate? { get set }
   init(delegate: CameraPlaybackDelegate?)
 
   /// fetchActive is true when a active fetch of a stream is taking place

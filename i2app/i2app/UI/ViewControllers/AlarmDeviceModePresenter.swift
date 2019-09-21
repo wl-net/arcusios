@@ -37,7 +37,7 @@ private enum DeviceModeTitle {
 }
 
 protocol AlarmDeviceModePresenterProtocol {
-  weak var delegate: AlarmDeviceModePresenterDelegate? { get set }
+  var delegate: AlarmDeviceModePresenterDelegate? { get set }
   var deviceModes: [AlarmDeviceModeViewModel] { get set }
 
   func navigationTitle() -> String

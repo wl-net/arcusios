@@ -41,7 +41,7 @@ import UIKit
  
  */
 protocol ClearTableConfigurator : class {
-    weak var tableView: UITableView! { get }
+    var tableView: UITableView! { get }
     func configureClearLayout()
 }
 
