@@ -134,7 +134,7 @@ class ContactInfoViewController: BaseTextViewController {
     let success: Bool = isDataValid(&errorMessage)
     if success {
       // Hobbits may delete their phone number but should be warned that they won't be notified if they do so
-      if phoneField.text?.characters.count == 0 && accessType == .hobbit {
+      if phoneField.text?.isEmpty == true && accessType == .hobbit {
         let msg = "A person without a phone number specified will not be notified in the event of an alarm."
         displayErrorMessage(msg, withTitle: "WARNING")
       }
