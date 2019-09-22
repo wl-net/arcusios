@@ -17,7 +17,6 @@ public extension ObservableType {
    */
   public func filter<T>(type: T.Type) -> Observable<T> {
     return filter {
-      print("\(T.Type)")
       return $0 is T.Type
       }.map {
         return $0 as! T

@@ -33,15 +33,15 @@ extension CBPeripheral {
    - Returns: `RxCBPeripheralDelegateProxy` wrapper for `CBPeripheralDelegateProxy`
    */
   public func rxDelegateProxy() -> RxCBPeripheralDelegateProxy {
-    return RxCBPeripheralDelegateProxy(parentObject: self)
+    return RxCBPeripheralDelegateProxy(parentObject: self, delegateProxy: RxCBPeripheralDelegateProxy.self)
   }
 }
 
 extension Reactive where Base: CBPeripheral {
   // MARK: - Properties
   
-    public var delegate: DelegateProxy<AnyObject, Any> {
-        return RxCBPeripheralDelegateProxy.createProxyForObject(base) as! DelegateProxy<AnyObject, Any>
+    public var delegate: DelegateProxy<CBPeripheral, CBPeripheralDelegate> {
+        return RxCBPeripheralDelegateProxy.createProxyForObject(base) as! DelegateProxy<CBPeripheral, CBPeripheralDelegate>
   }
   
   // - seealso: `CBPeripheralDelegate`
@@ -132,25 +132,25 @@ extension Reactive where Base: CBPeripheral {
   
   // - seealso: `CBPeripheralDelegate`
   public var didUpdateValueForCharacteristic: Observable<(peripheral: CBPeripheral, characteristic: CBCharacteristic, error: Error?)> {
-    let proxy = RxCBPeripheralDelegateProxy.proxyForObject(base)
+    let proxy = RxCBPeripheralDelegateProxy.createProxyForObject(base)
     return proxy.didUpdateValueForCharacteristicPublishSubject
   }
   
   // - seealso: `CBPeripheralDelegate`
   public var didUpdateValueForDescriptor: Observable<(peripheral: CBPeripheral, descriptor: CBDescriptor, error: Error?)> {
-    let proxy = RxCBPeripheralDelegateProxy.proxyForObject(base)
+    let proxy = RxCBPeripheralDelegateProxy.createProxyForObject(base)
     return proxy.didUpdateValueForDescriptorPublishSubject
   }
   
   // - seealso: `CBPeripheralDelegate`
   public var didWriteValueForCharacteristic: Observable<(peripheral: CBPeripheral, characteristic: CBCharacteristic, error: Error?)> {
-    let proxy = RxCBPeripheralDelegateProxy.proxyForObject(base)
+    let proxy = RxCBPeripheralDelegateProxy.createProxyForObject(base)
     return proxy.didWriteValueForCharacteristicPublishSubject
   }
   
   // - seealso: `CBPeripheralDelegate`
   public var didWriteValueForDescriptor: Observable<(peripheral: CBPeripheral, descriptor: CBDescriptor, error: Error?)> {
-    let proxy = RxCBPeripheralDelegateProxy.proxyForObject(base)
+    let proxy = RxCBPeripheralDelegateProxy.createProxyForObject(base)
     return proxy.didWriteValueForDescriptorPublishSubject
   }
   

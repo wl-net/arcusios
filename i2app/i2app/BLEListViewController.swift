@@ -121,27 +121,25 @@ class BLEListViewController: UIViewController, BLEListPresenter {
   }
 
   private func bindTableView() {
-    let dataSource = RxTableViewSectionedReloadDataSource<BLESectionType>(configureCell: <#(TableViewSectionedDataSource<S>, UITableView, IndexPath, S.Item) -> UITableViewCell#>)
-
-    dataSource.configureCell = {(dataSource, tableView, indexPath, row) -> UITableViewCell in
-      let sectionSource = dataSource[indexPath]
-      if let viewModel = sectionSource.viewModel as? ArcusBLEViewModel,
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? BLETableViewCell {
-        cell.titleLabel.text = viewModel.name
-
-        return cell
-      } else if let viewModel = sectionSource.viewModel as? WiFiScanItem,
-        let cell = tableView.dequeueReusableCell(withIdentifier: "wifiCell") as? BLEWifiNetworkTableViewCell {
-        cell.ssidLabel.text = viewModel.ssid
-        cell.securityLabel.text = viewModel.security
-        cell.channelLabel.text = String(describing: viewModel.channel)
-        cell.strengthImageView.image = WiFiScanItem.imageForSignalStrength(viewModel.signal,
-                                                                           security: viewModel.security)
-
-        return cell
-      }
-      return UITableViewCell()
-    }
+    let dataSource = RxTableViewSectionedReloadDataSource<BLESectionType>(configureCell: {(dataSource, tableView, indexPath, row) -> UITableViewCell in
+        let sectionSource = dataSource[indexPath]
+        if let viewModel = sectionSource.viewModel as? ArcusBLEViewModel,
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? BLETableViewCell {
+            cell.titleLabel.text = viewModel.name
+            
+            return cell
+        } else if let viewModel = sectionSource.viewModel as? WiFiScanItem,
+            let cell = tableView.dequeueReusableCell(withIdentifier: "wifiCell") as? BLEWifiNetworkTableViewCell {
+            cell.ssidLabel.text = viewModel.ssid
+            cell.securityLabel.text = viewModel.security
+            cell.channelLabel.text = String(describing: viewModel.channel)
+            cell.strengthImageView.image = WiFiScanItem.imageForSignalStrength(viewModel.signal,
+                                                                               security: viewModel.security)
+            
+            return cell
+        }
+        return UITableViewCell()
+    })
 
     tableDataSource()
       .bind(to: tableView.rx.items(dataSource: dataSource))

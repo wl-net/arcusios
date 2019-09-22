@@ -24,7 +24,8 @@ import CoreBluetooth
 import RxSwift
 import RxCocoa
 
-public class RxCBPeripheralDelegateProxy: DelegateProxy, CBPeripheralDelegate, DelegateProxyType {
+public class RxCBPeripheralDelegateProxy: DelegateProxy<CBPeripheral, CBPeripheralDelegate>, CBPeripheralDelegate, DelegateProxyType {
+    
   public weak fileprivate(set) var peripheral: CBPeripheral?
 
   var didUpdateValueForCharacteristicPublishSubject =
@@ -39,16 +40,26 @@ public class RxCBPeripheralDelegateProxy: DelegateProxy, CBPeripheralDelegate, D
 
   // MARK: - Initialization
 
-  public required init(parentObject: AnyObject) {
-    self.peripheral = parentObject as? CBPeripheral
-    super.init(parentObject: parentObject)
-  }
+//  public required init(parentObject: CBPeripheral) {
+////    super.init(parentObject: parentObject)
+//  }
 
   // MARK: - Delegate Proxy
 
-  public override class func createProxyForObject(_ object: AnyObject) -> AnyObject {
-    guard let peripheral: CBPeripheral = object as? CBPeripheral else { fatalError() }
-    return peripheral.rxDelegateProxy()
+    public static func registerKnownImplementations() {
+        // todo
+    }
+    
+
+    
+
+  public class func createProxyForObject(_ object: CBPeripheral) -> RxCBPeripheralDelegateProxy {
+//    guard let peripheral: CBPeripheral = object as? CBPeripheral else { fatalError() }
+    return object.rxDelegateProxy()
+  }
+
+  public static func setCurrentDelegate(_ delegate: CBPeripheralDelegate?, to object: CBPeripheral) {
+    object.delegate = delegate
   }
 
   public static func setCurrentDelegate(_ delegate: AnyObject?, toObject object: AnyObject) {
@@ -56,10 +67,14 @@ public class RxCBPeripheralDelegateProxy: DelegateProxy, CBPeripheralDelegate, D
     central.delegate = delegate as? CBPeripheralDelegate
   }
 
-  public static func currentDelegateFor(_ object: AnyObject) -> AnyObject? {
-    guard let peripheral: CBPeripheral = object as? CBPeripheral else { fatalError() }
-    return peripheral.delegate
+  public static func currentDelegate(for object: CBPeripheral) -> CBPeripheralDelegate? {
+    return object.delegate
   }
+    
+//  public static func currentDelegateFor(_ object: CBPeripheral) -> CBPeripheralDelegate? {
+//    guard let peripheral: CBPeripheral = object as? CBPeripheral else { fatalError() }
+//    return peripheral.delegate
+//  }
 
   public func peripheral(_ peripheral: CBPeripheral,
                          didUpdateValueFor characteristic: CBCharacteristic,

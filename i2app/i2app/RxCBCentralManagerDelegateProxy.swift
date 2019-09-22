@@ -26,16 +26,18 @@ import RxCocoa
 
 public class RxCBCentralManagerDelegateProxy: DelegateProxy, CBCentralManagerDelegate, DelegateProxyType {
   public weak fileprivate(set) var central: CBCentralManager?
+public class RxCBCentralManagerDelegateProxy: DelegateProxy<CBCentralManager, CBCentralManagerDelegate>, CBCentralManagerDelegate, DelegateProxyType {
+  public var central: CBCentralManager
 
   internal var stateBehaviorSubject: BehaviorSubject<CBManagerState>!
 
   // MARK: - Initialization
 
-  public required init(parentObject: AnyObject) {
-    self.central = parentObject as? CBCentralManager
-    self.stateBehaviorSubject = BehaviorSubject<CBManagerState>(value: central?.state ?? .unknown)
-    super.init(parentObject: parentObject)
-  }
+//  public required init<RxCBCentralManagerDelegateProxy>(parentObject: CBCentralManager, delegateProxy: RxCBCentralManagerDelegateProxy) {
+//    self.central = parentObject
+//    self.stateBehaviorSubject = BehaviorSubject<CBManagerState>(value: central?.state ?? .unknown)
+//    super.init(parentObject: parentObject, delegateProxy: delegateProxy)
+//  }
 
   deinit {
     stateBehaviorSubject.onCompleted()
@@ -50,9 +52,16 @@ public class RxCBCentralManagerDelegateProxy: DelegateProxy, CBCentralManagerDel
 
   // MARK: - Delegate Proxy
 
-  public override class func createProxyForObject(_ object: AnyObject) -> AnyObject {
-    guard let central: CBCentralManager = object as? CBCentralManager else { fatalError() }
-    return central.rxDelegateProxy()
+  public static func registerKnownImplementations() {
+    // TODO: what do we do here?
+  }
+
+  public class func createProxyForObject(_ object: CBCentralManager) -> RxCBCentralManagerDelegateProxy {
+    return object.rxDelegateProxy()
+  }
+
+  public static func setCurrentDelegate(_ delegate: CBCentralManagerDelegate?, to object: CBCentralManager) {
+    object.delegate = delegate
   }
 
   public static func setCurrentDelegate(_ delegate: AnyObject?, toObject object: AnyObject) {
@@ -60,8 +69,12 @@ public class RxCBCentralManagerDelegateProxy: DelegateProxy, CBCentralManagerDel
     central.delegate = delegate as? CBCentralManagerDelegate
   }
 
-  public static func currentDelegateFor(_ object: AnyObject) -> AnyObject? {
-    guard let central: CBCentralManager = object as? CBCentralManager else { fatalError() }
+  public static func currentDelegate(for object: CBCentralManager) -> CBCentralManagerDelegate? {
+    return object.delegate
+  }
+
+  // The old way of doing things.
+  public static func currentDelegateFor(for object: CBCentralManager) -> CBCentralManagerDelegate? {
     return central.delegate
   }
 }

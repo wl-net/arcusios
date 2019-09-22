@@ -92,13 +92,13 @@ final public class ArcusModelUpdateQueue {
                                                         qos: .utility)
   
   public func add(_ item: AnyObject, identifier: String) {
-    accessQueue.async { [unowned self] _ in
+    accessQueue.async {
       self.updates[identifier] = item
     }
   }
   
   public func remove(_ identifier: String) {
-    accessQueue.async { [unowned self] _ in
+    accessQueue.async {
       self.updates[identifier] = nil
     }
   }

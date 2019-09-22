@@ -32,7 +32,7 @@ extension CBCentralManager {
    - Returns: `RxCBCentralManagerDelegateProxy` wrapper for `CBCenteralManagerDelegate`
    */
   public func rxDelegateProxy() -> RxCBCentralManagerDelegateProxy {
-    return RxCBCentralManagerDelegateProxy(parentObject: self)
+    return RxCBCentralManagerDelegateProxy(parentObject: self, delegateProxy: RxCBCentralManagerDelegateProxy.self)
   }
 }
 
@@ -40,12 +40,12 @@ extension Reactive where Base: CBCentralManager {
 
   // MARK: - Properties
 
-  public var delegate: DelegateProxy {
-    return RxCBCentralManagerDelegateProxy.proxyForObject(base)
+  public var delegate: RxCBCentralManagerDelegateProxy {
+    return RxCBCentralManagerDelegateProxy.createProxyForObject(base)
   }
 
   public var state: Observable<CBManagerState> {
-    let proxy = RxCBCentralManagerDelegateProxy.proxyForObject(base)
+    let proxy = RxCBCentralManagerDelegateProxy.createProxyForObject(base)
     return proxy.stateBehaviorSubject.asObservable()
   }
 

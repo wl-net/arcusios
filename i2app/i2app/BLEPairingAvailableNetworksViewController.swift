@@ -232,26 +232,24 @@ class BLEPairingAvailableNetworksViewController: UIViewController, ArcusBLEAvail
   }
 
   private func bindTableView() {
-    let dataSource = RxTableViewSectionedReloadDataSource<BLESectionType>()
-
-    dataSource.configureCell = {(dataSource, tableView, indexPath, row) -> UITableViewCell in
-      let sectionSource = dataSource[indexPath]
-
-      if let model = sectionSource.viewModel as? WiFiScanItem,
-        let cell = tableView.dequeueReusableCell(withIdentifier: "wifiCell") as? BLEWifiScanTableViewCell {
-        cell.nameLabel.text = model.ssid
-        cell.wifiSignalIcon.image = WiFiScanItem.imageForSignalStrength(model.signal,
-                                                                        security: model.security)
-
-        return cell
-      } else if let manualString = sectionSource.viewModel as? String,
-        let cell = tableView.dequeueReusableCell(withIdentifier: "manualCell") as? BLEManualConfigTableViewCell {
-        cell.configLabel.text = manualString
-
-        return cell
-      }
-      return UITableViewCell()
-    }
+    let dataSource = RxTableViewSectionedReloadDataSource<BLESectionType>(configureCell: {(dataSource, tableView, indexPath, row) -> UITableViewCell in
+        let sectionSource = dataSource[indexPath]
+        
+        if let model = sectionSource.viewModel as? WiFiScanItem,
+            let cell = tableView.dequeueReusableCell(withIdentifier: "wifiCell") as? BLEWifiScanTableViewCell {
+            cell.nameLabel.text = model.ssid
+            cell.wifiSignalIcon.image = WiFiScanItem.imageForSignalStrength(model.signal,
+                                                                            security: model.security)
+            
+            return cell
+        } else if let manualString = sectionSource.viewModel as? String,
+            let cell = tableView.dequeueReusableCell(withIdentifier: "manualCell") as? BLEManualConfigTableViewCell {
+            cell.configLabel.text = manualString
+            
+            return cell
+        }
+        return UITableViewCell()
+    })
 
     wifiNetworksDataSource(bleClient)
       .bind(to: tableView.rx.items(dataSource: dataSource))
