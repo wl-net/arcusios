@@ -41,13 +41,13 @@
       "3.0.6"
     ],
     "RxSwift": [
-
+      "4.5.0"
     ],
     "RxSwiftExt": [
-      "2.5.1"
+      "3.4.0"
     ],
     "RxReachability": [
-
+      "0.1.8"
     ]
   },
   "swift_version": "3.2"

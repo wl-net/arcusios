@@ -23,7 +23,7 @@
 import Foundation
 import RxSwift
 import RxReachability
-import ReachabilitySwift
+import Reachability
 
 /**
 `RxReachabilityHandler` protocol is a mix-in that can be implemeneted in order for a class to RxSwift based
@@ -32,7 +32,7 @@ import ReachabilitySwift
 public protocol RxReachabilityHandler: class {
   var disposeBag: DisposeBag { get set }
   var reachability: Reachability? { get set }
-  var reachableEventObservable: PublishSubject<Reachability.NetworkStatus> { get set }
+  var reachableEventObservable: PublishSubject<Reachability.Connection> { get set }
 
   // MARK: Extended
 
@@ -51,7 +51,7 @@ public protocol RxReachabilityHandler: class {
 
    - Returns: Instance of `Observable<Reachability.NetworkStatus>`
    */
-  func getReachabilityEvents() -> Observable<Reachability.NetworkStatus>
+  func getReachabilityEvents() -> Observable<Reachability.Connection>
 }
 
 /**
@@ -70,7 +70,7 @@ extension RxReachabilityHandler {
     reachableEventObservable.onCompleted()
   }
 
-  public func getReachabilityEvents() -> Observable<Reachability.NetworkStatus> {
+  public func getReachabilityEvents() -> Observable<Reachability.Connection> {
     return reachableEventObservable.asObservable()
   }
 
@@ -87,6 +87,6 @@ extension RxReachabilityHandler {
 public class ReachabilityHandler: RxReachabilityHandler {
   public var disposeBag: DisposeBag = DisposeBag()
   public var reachability: Reachability? = Reachability()
-  public var reachableEventObservable: PublishSubject<Reachability.NetworkStatus> =
-    PublishSubject<Reachability.NetworkStatus>()
+  public var reachableEventObservable: PublishSubject<Reachability.Connection> =
+    PublishSubject<Reachability.Connection>()
 }

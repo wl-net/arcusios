@@ -144,23 +144,27 @@ class CameraClipsViewController: UIViewController {
   }
 
   func configureReachability() {
-    reach = Reachability.forInternetConnection()
+    reach = Reachability()
     // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
-    reach.reachableOnWWAN = false
+    reach.allowsCellularConnection = false
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(reachabilityChanged(_:)),
       name: NSNotification.Name.reachabilityChanged,
       object: nil
     )
-    reach.startNotifier()
-    if reach.isReachableViaWiFi() {
+    do {
+      try reach.startNotifier()
+    } catch {
+        // ignore XXX
+    }
+    if reach.isReachableViaWiFi {
       isOnWifi = true
     }
   }
 
   @objc fileprivate func reachabilityChanged(_ note: Notification) {
-    if reach.isReachableViaWiFi() {
+    if reach.isReachableViaWiFi {
       isOnWifi = true
     } else {
       isOnWifi = false

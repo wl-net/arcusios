@@ -40,8 +40,8 @@ extension CBPeripheral {
 extension Reactive where Base: CBPeripheral {
   // MARK: - Properties
   
-  public var delegate: DelegateProxy {
-    return RxCBPeripheralDelegateProxy.proxyForObject(base)
+    public var delegate: DelegateProxy<AnyObject, Any> {
+        return RxCBPeripheralDelegateProxy.createProxyForObject(base) as! DelegateProxy<AnyObject, Any>
   }
   
   // - seealso: `CBPeripheralDelegate`

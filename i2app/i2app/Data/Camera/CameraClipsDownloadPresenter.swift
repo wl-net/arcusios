@@ -22,7 +22,7 @@
 
 import Foundation
 import Cornea
-import Proposer
+//import Proposer
 import MZDownloadManager
 import AssetsLibrary
 import CocoaLumberjack
@@ -172,23 +172,23 @@ class CameraClipsDownloadPresenter: NSObject, MZDownloadManagerDelegate {
 
   fileprivate func fetchDownload(_ fileName: String, urlString: String, downloadSize: Int) {
     // Check for Photos Permissions
-    let photos: PrivateResource = .photos
-
-    proposeToAccess(photos, agreed: {
-      // Download Video and Save
-      self.downloadSize = downloadSize
-
-      let fileUrl: NSString = urlString as NSString
-
-      self.downloadManager.addDownloadTask(fileName, fileURL: fileUrl as String)
-
-      // Download Started
-      self.callback?.showDownloadStarted()
-
-    }, rejected: {
-      // Show Permissions Error
-      self.callback?.showPermissionsError()
-    })
+//    let photos: PrivateResource = .photos
+//
+//    proposeToAccess(photos, agreed: {
+//      // Download Video and Save
+//      self.downloadSize = downloadSize
+//
+//      let fileUrl: NSString = urlString as NSString
+//
+//      self.downloadManager.addDownloadTask(fileName, fileURL: fileUrl as String)
+//
+//      // Download Started
+//      self.callback?.showDownloadStarted()
+//
+//    }, rejected: {
+//      // Show Permissions Error
+//      self.callback?.showPermissionsError()
+//    })
   }
 
   @objc func cancelDownload() {

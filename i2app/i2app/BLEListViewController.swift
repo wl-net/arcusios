@@ -121,7 +121,7 @@ class BLEListViewController: UIViewController, BLEListPresenter {
   }
 
   private func bindTableView() {
-    let dataSource = RxTableViewSectionedReloadDataSource<BLESectionType>()
+    let dataSource = RxTableViewSectionedReloadDataSource<BLESectionType>(configureCell: <#(TableViewSectionedDataSource<S>, UITableView, IndexPath, S.Item) -> UITableViewCell#>)
 
     dataSource.configureCell = {(dataSource, tableView, indexPath, row) -> UITableViewCell in
       let sectionSource = dataSource[indexPath]
@@ -175,7 +175,7 @@ class BLEListViewController: UIViewController, BLEListPresenter {
   @IBAction func configureNetworkPressed(_ sender: AnyObject) {
     guard let network = selectedNetwork.value, let key = networkKeyTextField.text else { return }
     client.configureWifiNetwork(network, networkKey: key)
-      .do(onNext: { _ in
+      .do(onSuccess: { _ in
         DDLogInfo("Configuration Successful")
       }, onError: { _ in
         DDLogInfo("Configuration Failed")
@@ -183,7 +183,7 @@ class BLEListViewController: UIViewController, BLEListPresenter {
       .flatMap { _ in
         return self.client.getDeviceSerial()
       }
-      .do(onNext: { serial in
+      .do(onSuccess: { serial in
         DDLogInfo("Camera Serial: \(serial)")
       })
       .asObservable()

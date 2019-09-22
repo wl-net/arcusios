@@ -15,17 +15,17 @@ def shared_pods
   pod 'PromiseKit/Promise', '1.5.3'
   pod 'SDWebImage', '3.7.5'
   pod 'CocoaLumberjack/Swift', '~>3.4.1'
-  pod 'Proposer', '1.1.0' # MIT
+  # pod 'Proposer', '1.1.0' # MIT
   pod 'MZDownloadManager', '3.0' # BSD
   pod 'SwiftLint', '0.18.1' #MIT
   pod 'Locksmith', '4.0'
-  pod 'CryptoSwift', '0.10.0'
+  pod 'CryptoSwift', '0.12.0'
 
   # Pods for RxArcusClient
   pod 'RxSwift' # Mit
   pod 'RxCocoa' # Mit
-  pod 'RxSwiftExt', '2.5.1'
-  pod 'RxDataSources', '2.0.2'
+  pod 'RxSwiftExt', '3.4.0'
+  pod 'RxDataSources', '3.1.0'
 
   pod 'Cornea', :path => './CorneaPod'
 end
