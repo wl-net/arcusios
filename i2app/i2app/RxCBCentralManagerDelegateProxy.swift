@@ -24,19 +24,17 @@ import CoreBluetooth
 import RxSwift
 import RxCocoa
 
-public class RxCBCentralManagerDelegateProxy: DelegateProxy, CBCentralManagerDelegate, DelegateProxyType {
-  public weak fileprivate(set) var central: CBCentralManager?
 public class RxCBCentralManagerDelegateProxy: DelegateProxy<CBCentralManager, CBCentralManagerDelegate>, CBCentralManagerDelegate, DelegateProxyType {
-  public var central: CBCentralManager
+  public weak fileprivate(set) var central: CBCentralManager?
 
   internal var stateBehaviorSubject: BehaviorSubject<CBManagerState>!
 
   // MARK: - Initialization
 
-//  public required init<RxCBCentralManagerDelegateProxy>(parentObject: CBCentralManager, delegateProxy: RxCBCentralManagerDelegateProxy) {
-//    self.central = parentObject
+//  public required init<Proxy: DelegateProxyType>(parentObject: CBCentralManager, delegate: CBCentralManagerDelegate) {
+//    self.central = parentObject //parentObject as? CBCentralManager
 //    self.stateBehaviorSubject = BehaviorSubject<CBManagerState>(value: central?.state ?? .unknown)
-//    super.init(parentObject: parentObject, delegateProxy: delegateProxy)
+//    super.init(parentObject: parentObject, delegateProxy: delegate)
 //  }
 
   deinit {
@@ -57,6 +55,7 @@ public class RxCBCentralManagerDelegateProxy: DelegateProxy<CBCentralManager, CB
   }
 
   public class func createProxyForObject(_ object: CBCentralManager) -> RxCBCentralManagerDelegateProxy {
+//    guard let central: CBCentralManager = object as? CBCentralManager else { fatalError() }
     return object.rxDelegateProxy()
   }
 
@@ -72,9 +71,10 @@ public class RxCBCentralManagerDelegateProxy: DelegateProxy<CBCentralManager, CB
   public static func currentDelegate(for object: CBCentralManager) -> CBCentralManagerDelegate? {
     return object.delegate
   }
-
+    
   // The old way of doing things.
   public static func currentDelegateFor(for object: CBCentralManager) -> CBCentralManagerDelegate? {
+    guard let central: CBCentralManager = object as? CBCentralManager else { fatalError() }
     return central.delegate
   }
 }

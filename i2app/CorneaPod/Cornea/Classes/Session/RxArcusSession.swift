@@ -166,7 +166,7 @@ public class RxArcusSession: ArcusSession, RxSwiftSession, UrlBuilder, ArcusSess
   public func logout() {
     // Send Logout Request to the Platform.
     if let request: HttpRequest = logoutRequest() {
-      client.sendHttp(request) { _ in }
+        client.sendHttp(request) { _,_ in }
     }
 
     // Process Logout.
@@ -439,23 +439,22 @@ public class RxArcusSession: ArcusSession, RxSwiftSession, UrlBuilder, ArcusSess
       .subscribe(
         onNext: { status in
           guard self.state != .suspended else { return }
-          
-          if status == .notReachable {
-            self.state = .unreachable
-            self.client.disconnect(true)
-          } else {
-            if self.state == .unreachable || self.state == .inactive {
-              // Connect Socket.  Cannot call Connect(), because it guards against state == .unreachable
-              if let config: ArcusSocketConfig = self.socketConfig,
-                let url: URL = self.sessionUrl {
-                self.client.configureClient(url,
-                                            clientHeaders: self.sessionHeaders(),
-                                            clientCookies: self.sessionCookies(),
-                                            socketConfig: config)
-              }
-              self.client.connect()
-            }
-          }
+//          if status == Reachability.Connection.unavailable {
+//            self.state = .unreachable
+//            self.client.disconnect(true)
+//          } else {
+//            if self.state == .unreachable || self.state == .inactive {
+//              // Connect Socket.  Cannot call Connect(), because it guards against state == .unreachable
+//              if let config: ArcusSocketConfig = self.socketConfig,
+//                let url: URL = self.sessionUrl {
+//                self.client.configureClient(url,
+//                                            clientHeaders: self.sessionHeaders(),
+//                                            clientCookies: self.sessionCookies(),
+//                                            socketConfig: config)
+//              }
+//              self.client.connect()
+//            }
+//          }
       })
       .addDisposableTo(disposeBag)
 
@@ -682,7 +681,6 @@ public class RxArcusSession: ArcusSession, RxSwiftSession, UrlBuilder, ArcusSess
         onSuccess: { [weak self] keychain in
           self?.token = keychain
           self?.socketConfig = self?.tokenBasedSocketConfig()
-          single(.success())
         }, onError: { error in
           self?.socketConfig = SocketConfig.emptyConfig()
           single(.error(error))
@@ -843,7 +841,7 @@ public class RxArcusSession: ArcusSession, RxSwiftSession, UrlBuilder, ArcusSess
   private func sessionCookies() -> [String: String] {
     var cookies: [String: String] = [:]
     if let tokenValue = token?.value {
-      cookies = ["arcusAuthToken": tokenValue]
+      cookies = ["irisAuthToken": tokenValue]
     }
     return cookies
   }
