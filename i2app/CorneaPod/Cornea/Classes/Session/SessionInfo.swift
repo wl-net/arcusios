@@ -26,7 +26,7 @@ import Foundation
  `SessionInfo` class is used to conform to `ArcusSessionInfo`, and can be used by classes 
  conforming `ArcusSession`.
  */
-public class SessionInfo: NSObject, ArcusSessionInfo {
+@objcMembers public class SessionInfo: NSObject, ArcusSessionInfo {
   // Billing
   public var billingPublicKey: String?
   public var billingTokenUrl: String?

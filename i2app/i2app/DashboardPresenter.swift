@@ -134,11 +134,11 @@ class DashboardPresenter: NSObject, BatchNotificationObserver, ArcusPlaceCapabil
     }
   }
 
-  func handleFavoritesNotification() {
+  @objc func handleFavoritesNotification() {
     fetchDashboardFavorites()
   }
 
-  func fetchData(_ allData: Bool = false) {
+  @objc func fetchData(_ allData: Bool = false) {
     // Make sure the subsystem model is updated  before fetching data.
     if let alarmSubsystem: SubsystemModel = SubsystemCache.sharedInstance.alarmSubsystem() {
       self.alarmSubsystem = alarmSubsystem
@@ -359,7 +359,7 @@ extension DashboardPresenter: DashboardPresenterProtocol {
     }
   }
 
-  func updatePlaceResponseReceived() {
+  @objc func updatePlaceResponseReceived() {
     guard let settings: ArcusSettings = RxCornea.shared.settings,
       let modelId = settings.currentPlace?.modelId else {
         return
@@ -379,7 +379,7 @@ extension DashboardPresenter: DashboardPresenterProtocol {
     delegate?.shouldDismissChangePlaceOverlay()
   }
 
-  func updateDelegate() {
+  @objc func updateDelegate() {
     delegate?.shouldUpdateViews()
   }
 

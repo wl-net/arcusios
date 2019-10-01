@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SceneTemplateCapabilityLegacy: NSObject, ArcusSceneTemplateCapability, ArcusPromiseConverter {
+@objcMembers public class SceneTemplateCapabilityLegacy: NSObject, ArcusSceneTemplateCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: SceneTemplateCapabilityLegacy  = SceneTemplateCapabilityLegacy()
   

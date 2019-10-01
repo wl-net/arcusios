@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class PairingSubsystemCapabilityLegacy: NSObject, ArcusPairingSubsystemCapability, ArcusPromiseConverter {
+@objcMembers public class PairingSubsystemCapabilityLegacy: NSObject, ArcusPairingSubsystemCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: PairingSubsystemCapabilityLegacy  = PairingSubsystemCapabilityLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class IrrigationSchedulableCapabilityLegacy: NSObject, ArcusIrrigationSchedulableCapability, ArcusPromiseConverter {
+@objcMembers public class IrrigationSchedulableCapabilityLegacy: NSObject, ArcusIrrigationSchedulableCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: IrrigationSchedulableCapabilityLegacy  = IrrigationSchedulableCapabilityLegacy()
   

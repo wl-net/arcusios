@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class VideoServiceLegacy: NSObject, ArcusVideoService, ArcusPromiseConverter {
+@objcMembers public class VideoServiceLegacy: NSObject, ArcusVideoService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: VideoServiceLegacy = VideoServiceLegacy()
   

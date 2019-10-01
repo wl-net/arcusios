@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class CareSubsystemCapabilityLegacy: NSObject, ArcusCareSubsystemCapability, ArcusPromiseConverter {
+@objcMembers public class CareSubsystemCapabilityLegacy: NSObject, ArcusCareSubsystemCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: CareSubsystemCapabilityLegacy  = CareSubsystemCapabilityLegacy()
   

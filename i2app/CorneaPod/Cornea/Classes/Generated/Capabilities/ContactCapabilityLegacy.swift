@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ContactCapabilityLegacy: NSObject, ArcusContactCapability, ArcusPromiseConverter {
+@objcMembers public class ContactCapabilityLegacy: NSObject, ArcusContactCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: ContactCapabilityLegacy  = ContactCapabilityLegacy()
   

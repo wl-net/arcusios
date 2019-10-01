@@ -170,8 +170,8 @@ class LoginViewController: UIViewController,
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
 
-    NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardDidShow, object: nil)
-    NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardWillHide, object: nil)
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
   }
 
   deinit {
@@ -191,18 +191,18 @@ class LoginViewController: UIViewController,
   private func registerKeyboardNotifications() {
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(keyboardWasShown),
-                                           name: Notification.Name.UIKeyboardDidShow,
+                                           name: UIResponder.keyboardDidShowNotification,
                                            object: nil)
 
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(keyboardWillBeHidden),
-                                           name: Notification.Name.UIKeyboardWillHide,
+                                           name: UIResponder.keyboardWillHideNotification,
                                            object: nil)
   }
 
   @objc private func keyboardWasShown(_ notification: Notification) {
     guard let info = notification.userInfo,
-      let keyboardRect = info[UIKeyboardFrameBeginUserInfoKey] as? CGRect else {
+      let keyboardRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect else {
         return
     }
 

@@ -69,22 +69,33 @@ class AlarmEventViewModel: AlarmTrackerStateViewModel {
 
   fileprivate func formatTimerText(_ seconds: Int) -> NSAttributedString {
     let attributes: [String: AnyObject] =
-      [NSFontAttributeName: UIFont(name: "Avenir Next", size: 36)!,
-       NSForegroundColorAttributeName: UIColor(red: 255,
+      [convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "Avenir Next", size: 36)!,
+       convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor(red: 255,
         green: 255,
         blue: 255,
         alpha: 0.7)]
 
     let subAttributes: [String: AnyObject] =
-      [NSFontAttributeName: UIFont(name: "Avenir Next", size: 18)!,
-       NSForegroundColorAttributeName: UIColor(
+      [convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "Avenir Next", size: 18)!,
+       convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor(
         red: 255, green: 255, blue: 255, alpha: 0.7),
-       NSBaselineOffsetAttributeName: 7.0 as AnyObject]
+       convertFromNSAttributedStringKey(NSAttributedString.Key.baselineOffset): 7.0 as AnyObject]
 
-    let time = NSMutableAttributedString(string: "\(seconds)", attributes: attributes)
-    let sub = NSAttributedString(string: "s", attributes:subAttributes)
+    let time = NSMutableAttributedString(string: "\(seconds)", attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
+    let sub = NSAttributedString(string: "s", attributes:convertToOptionalNSAttributedStringKeyDictionary(subAttributes))
 
     time.append(sub)
     return time
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

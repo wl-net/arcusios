@@ -52,7 +52,7 @@ class LutronBridgeC2CViewController: BasePairingViewController {
 
   // MARK: Events
 
-  func cancelButtonTapped() {
+  @objc func cancelButtonTapped() {
     // Check if device details exists in the stack and if so present it
     if let navigationController = navigationController {
       let viewControllers = navigationController.viewControllers
@@ -83,7 +83,7 @@ class LutronBridgeC2CViewController: BasePairingViewController {
     let editButton = UIButton(type: .custom)
     editButton.setAttributedTitle(FontData.getString(NSLocalizedString("Cancel", comment: ""),
                                                      withFont: FontDataTypeNavBar),
-                                  for: UIControlState())
+                                  for: UIControl.State())
     editButton.frame = CGRect(x: 0, y: 0, width: 50, height: 12)
     editButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: editButton)
@@ -144,7 +144,7 @@ class LutronBridgeC2CViewController: BasePairingViewController {
 extension LutronBridgeC2CViewController: UIWebViewDelegate {
   func webView(_ webView: UIWebView,
                shouldStartLoadWith request: URLRequest,
-               navigationType: UIWebViewNavigationType) -> Bool {
+               navigationType: UIWebView.NavigationType) -> Bool {
     guard let urlString = request.url?.absoluteString else {
       return true
     }

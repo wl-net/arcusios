@@ -77,7 +77,7 @@ class UpgradeAlarmViewController: UIViewController, ContactSupportHandler {
                                              style: style)
   }
 
-  func closePopup(_ sender: AnyObject) {
+  @objc func closePopup(_ sender: AnyObject) {
     if presenter?.upgradeSuccessul == true {
       dismiss()
     }

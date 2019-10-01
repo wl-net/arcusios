@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class RelativeHumidityCapabilityLegacy: NSObject, ArcusRelativeHumidityCapability, ArcusPromiseConverter {
+@objcMembers public class RelativeHumidityCapabilityLegacy: NSObject, ArcusRelativeHumidityCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: RelativeHumidityCapabilityLegacy  = RelativeHumidityCapabilityLegacy()
   

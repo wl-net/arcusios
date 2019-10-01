@@ -112,17 +112,17 @@ class SecurityQuestionsViewController: BaseTextViewController,
 
             var values = [String](questions.values)
             var fontData = FontData.getString(values[0], withFont: fontType)
-            self.securityQuestion1Button.setAttributedTitle(fontData, for: UIControlState())
+            self.securityQuestion1Button.setAttributedTitle(fontData, for: UIControl.State())
             self.securityQuestion1Button.titleLabel?.numberOfLines = 0
             self.securityQuestion1Button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
 
             fontData = FontData.getString(values[1], withFont: fontType)
-            self.securityQuestion2Button.setAttributedTitle(fontData, for: UIControlState())
+            self.securityQuestion2Button.setAttributedTitle(fontData, for: UIControl.State())
             self.securityQuestion2Button.titleLabel?.numberOfLines = 0
             self.securityQuestion2Button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
 
             fontData = FontData.getString(values[2], withFont: fontType)
-            self.securityQuestion3Button.setAttributedTitle(fontData, for: UIControlState())
+            self.securityQuestion3Button.setAttributedTitle(fontData, for: UIControl.State())
             self.securityQuestion3Button.titleLabel?.numberOfLines = 0
             self.securityQuestion3Button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
 
@@ -246,7 +246,7 @@ class SecurityQuestionsViewController: BaseTextViewController,
                 if questionButton != nil {
                   let fontData =
                     FontData.getString(self.securityQuestions?[key] ?? "", withFont: translucentType)
-                  questionButton?.setAttributedTitle(fontData, for: UIControlState())
+                  questionButton?.setAttributedTitle(fontData, for: UIControl.State())
                 }
 
                 if answerField != nil {
@@ -294,7 +294,7 @@ class SecurityQuestionsViewController: BaseTextViewController,
     var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
 
     if cell == nil {
-      cell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+      cell = UITableViewCell.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
     }
 
     cell?.backgroundColor = UIColor.clear

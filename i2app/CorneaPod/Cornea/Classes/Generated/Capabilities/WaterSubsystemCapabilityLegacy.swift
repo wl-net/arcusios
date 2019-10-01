@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class WaterSubsystemCapabilityLegacy: NSObject, ArcusWaterSubsystemCapability, ArcusPromiseConverter {
+@objcMembers public class WaterSubsystemCapabilityLegacy: NSObject, ArcusWaterSubsystemCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: WaterSubsystemCapabilityLegacy  = WaterSubsystemCapabilityLegacy()
   

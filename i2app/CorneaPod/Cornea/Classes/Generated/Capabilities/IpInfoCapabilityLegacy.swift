@@ -31,19 +31,19 @@ public class IpInfoCapabilityLegacy: NSObject, ArcusIpInfoCapability, ArcusPromi
   
 
   
-  public static func getIp(_ model: DeviceModel) -> String? {
+  @objc public static func getIp(_ model: DeviceModel) -> String? {
     return capability.getIpInfoIp(model)
   }
   
-  public static func getMac(_ model: DeviceModel) -> String? {
+  @objc public static func getMac(_ model: DeviceModel) -> String? {
     return capability.getIpInfoMac(model)
   }
   
-  public static func getNetmask(_ model: DeviceModel) -> String? {
+  @objc public static func getNetmask(_ model: DeviceModel) -> String? {
     return capability.getIpInfoNetmask(model)
   }
   
-  public static func getGateway(_ model: DeviceModel) -> String? {
+  @objc public static func getGateway(_ model: DeviceModel) -> String? {
     return capability.getIpInfoGateway(model)
   }
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class DoorsNLocksSubsystemCapabilityLegacy: NSObject, ArcusDoorsNLocksSubsystemCapability, ArcusPromiseConverter {
+@objcMembers public class DoorsNLocksSubsystemCapabilityLegacy: NSObject, ArcusDoorsNLocksSubsystemCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: DoorsNLocksSubsystemCapabilityLegacy  = DoorsNLocksSubsystemCapabilityLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class DeviceMockCapabilityLegacy: NSObject, ArcusDeviceMockCapability, ArcusPromiseConverter {
+@objcMembers public class DeviceMockCapabilityLegacy: NSObject, ArcusDeviceMockCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: DeviceMockCapabilityLegacy  = DeviceMockCapabilityLegacy()
   

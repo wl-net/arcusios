@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class IpcdServiceLegacy: NSObject, ArcusIpcdService, ArcusPromiseConverter {
+@objcMembers public class IpcdServiceLegacy: NSObject, ArcusIpcdService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: IpcdServiceLegacy = IpcdServiceLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class RuleServiceLegacy: NSObject, ArcusRuleService, ArcusPromiseConverter {
+@objcMembers public class RuleServiceLegacy: NSObject, ArcusRuleService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: RuleServiceLegacy = RuleServiceLegacy()
   

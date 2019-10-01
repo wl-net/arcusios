@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class DeviceOtaCapabilityLegacy: NSObject, ArcusDeviceOtaCapability, ArcusPromiseConverter {
+@objcMembers public class DeviceOtaCapabilityLegacy: NSObject, ArcusDeviceOtaCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: DeviceOtaCapabilityLegacy  = DeviceOtaCapabilityLegacy()
   

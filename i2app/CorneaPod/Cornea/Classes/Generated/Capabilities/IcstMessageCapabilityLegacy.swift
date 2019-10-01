@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class IcstMessageCapabilityLegacy: NSObject, ArcusIcstMessageCapability, ArcusPromiseConverter {
+@objcMembers public class IcstMessageCapabilityLegacy: NSObject, ArcusIcstMessageCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: IcstMessageCapabilityLegacy  = IcstMessageCapabilityLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class LeakGasCapabilityLegacy: NSObject, ArcusLeakGasCapability, ArcusPromiseConverter {
+@objcMembers public class LeakGasCapabilityLegacy: NSObject, ArcusLeakGasCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: LeakGasCapabilityLegacy  = LeakGasCapabilityLegacy()
   

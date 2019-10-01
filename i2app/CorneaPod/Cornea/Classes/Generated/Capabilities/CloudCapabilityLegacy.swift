@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class CloudCapabilityLegacy: NSObject, ArcusCloudCapability, ArcusPromiseConverter {
+@objcMembers public class CloudCapabilityLegacy: NSObject, ArcusCloudCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: CloudCapabilityLegacy  = CloudCapabilityLegacy()
   

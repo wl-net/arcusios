@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SupportSearchServiceLegacy: NSObject, ArcusSupportSearchService, ArcusPromiseConverter {
+@objcMembers public class SupportSearchServiceLegacy: NSObject, ArcusSupportSearchService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: SupportSearchServiceLegacy = SupportSearchServiceLegacy()
   

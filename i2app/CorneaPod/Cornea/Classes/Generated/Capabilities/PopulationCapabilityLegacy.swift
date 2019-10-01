@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class PopulationCapabilityLegacy: NSObject, ArcusPopulationCapability, ArcusPromiseConverter {
+@objcMembers public class PopulationCapabilityLegacy: NSObject, ArcusPopulationCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: PopulationCapabilityLegacy  = PopulationCapabilityLegacy()
   

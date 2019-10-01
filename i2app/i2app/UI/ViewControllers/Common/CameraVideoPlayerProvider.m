@@ -130,7 +130,7 @@
                                          withStream:isSteaming
                                        withDuration:(int)duration].then(^(VideoServiceStartRecordingResponse *response) {
                 
-                self.currentVideoUrl = [NSURL URLWithString:response.getHls];
+//                self.currentVideoUrl = [NSURL URLWithString:response.getHls];
                 self.currentVideoId = [self streamIdWithStreamURL:self.currentVideoUrl];
                 
                 DDLogDebug(@"Got stream url %@", self.currentVideoUrl.absoluteString);

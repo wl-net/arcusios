@@ -81,7 +81,7 @@ class PersonListPresenter: NSObject {
   }
 
   // MARK: Notification Handling
-  func personListChanged(_ notification: Notification) {
+  @objc func personListChanged(_ notification: Notification) {
     if notification.object is PersonModel {
       self.fetchPeopleList()
     }

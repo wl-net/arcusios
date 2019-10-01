@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class EasCodeServiceLegacy: NSObject, ArcusEasCodeService, ArcusPromiseConverter {
+@objcMembers public class EasCodeServiceLegacy: NSObject, ArcusEasCodeService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: EasCodeServiceLegacy = EasCodeServiceLegacy()
   

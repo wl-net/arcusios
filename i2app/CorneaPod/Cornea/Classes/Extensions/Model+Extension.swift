@@ -23,7 +23,7 @@
 import Foundation
 
 extension Model {
-  open var name: String {
+  @objc open var name: String {
     return getName()
   }
 

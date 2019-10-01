@@ -31,7 +31,7 @@ public class TestCapabilityLegacy: NSObject, ArcusTestCapability, ArcusPromiseCo
   
 
   
-  public static func getLastTestTime(_ model: DeviceModel) -> Date? {
+  @objc public static func getLastTestTime(_ model: DeviceModel) -> Date? {
     guard let lastTestTime: Date = capability.getTestLastTestTime(model) else {
       return nil
     }

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SceneServiceLegacy: NSObject, ArcusSceneService, ArcusPromiseConverter {
+@objcMembers public class SceneServiceLegacy: NSObject, ArcusSceneService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: SceneServiceLegacy = SceneServiceLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class TiltCapabilityLegacy: NSObject, ArcusTiltCapability, ArcusPromiseConverter {
+@objcMembers public class TiltCapabilityLegacy: NSObject, ArcusTiltCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: TiltCapabilityLegacy  = TiltCapabilityLegacy()
   

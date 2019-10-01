@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class HubWiFiCapabilityLegacy: NSObject, ArcusHubWiFiCapability, ArcusPromiseConverter {
+@objcMembers public class HubWiFiCapabilityLegacy: NSObject, ArcusHubWiFiCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: HubWiFiCapabilityLegacy  = HubWiFiCapabilityLegacy()
   

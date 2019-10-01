@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class BridgeChildCapabilityLegacy: NSObject, ArcusBridgeChildCapability, ArcusPromiseConverter {
+@objcMembers public class BridgeChildCapabilityLegacy: NSObject, ArcusBridgeChildCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: BridgeChildCapabilityLegacy  = BridgeChildCapabilityLegacy()
   

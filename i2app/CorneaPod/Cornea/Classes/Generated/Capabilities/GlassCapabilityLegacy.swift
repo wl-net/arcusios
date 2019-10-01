@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class GlassCapabilityLegacy: NSObject, ArcusGlassCapability, ArcusPromiseConverter {
+@objcMembers public class GlassCapabilityLegacy: NSObject, ArcusGlassCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: GlassCapabilityLegacy  = GlassCapabilityLegacy()
   

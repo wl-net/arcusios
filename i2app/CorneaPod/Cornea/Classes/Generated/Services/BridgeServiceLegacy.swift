@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class BridgeServiceLegacy: NSObject, ArcusBridgeService, ArcusPromiseConverter {
+@objcMembers public class BridgeServiceLegacy: NSObject, ArcusBridgeService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: BridgeServiceLegacy = BridgeServiceLegacy()
   

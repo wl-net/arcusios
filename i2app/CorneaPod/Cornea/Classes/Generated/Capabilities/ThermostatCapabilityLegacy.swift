@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ThermostatCapabilityLegacy: NSObject, ArcusThermostatCapability, ArcusPromiseConverter {
+@objcMembers public class ThermostatCapabilityLegacy: NSObject, ArcusThermostatCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: ThermostatCapabilityLegacy  = ThermostatCapabilityLegacy()
   

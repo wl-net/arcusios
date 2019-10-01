@@ -147,10 +147,10 @@ class ScleraBannerView: UIView, NibConfigurable {
       font = mainText.font!
     }
 
-    mainText.linkTextAttributes = [
-      NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
-      NSFontAttributeName: font
-    ]
+    mainText.linkTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([
+      NSAttributedString.Key.underlineStyle.rawValue: NSUnderlineStyle.single.rawValue,
+      NSAttributedString.Key.font.rawValue: font
+    ])
   }
 
   private func updateImage() {
@@ -168,4 +168,10 @@ class ScleraBannerView: UIView, NibConfigurable {
       icon.image = image
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

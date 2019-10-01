@@ -25,7 +25,7 @@ import RxSwift
 import CocoaLumberjack
 
 extension Constants {
-  public static let kPlaceChangedNotification: String = "PlaceChangedNotification"
+  @objc public static let kPlaceChangedNotification: String = "PlaceChangedNotification"
 }
 
 extension Notification.Name {

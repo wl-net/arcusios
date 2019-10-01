@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class Somfy1CapabilityLegacy: NSObject, ArcusSomfy1Capability, ArcusPromiseConverter {
+@objcMembers public class Somfy1CapabilityLegacy: NSObject, ArcusSomfy1Capability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: Somfy1CapabilityLegacy  = Somfy1CapabilityLegacy()
   

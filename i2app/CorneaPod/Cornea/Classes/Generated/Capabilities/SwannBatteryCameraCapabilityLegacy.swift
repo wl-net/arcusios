@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SwannBatteryCameraCapabilityLegacy: NSObject, ArcusSwannBatteryCameraCapability, ArcusPromiseConverter {
+@objcMembers public class SwannBatteryCameraCapabilityLegacy: NSObject, ArcusSwannBatteryCameraCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: SwannBatteryCameraCapabilityLegacy  = SwannBatteryCameraCapabilityLegacy()
   

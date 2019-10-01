@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class HubChimeCapabilityLegacy: NSObject, ArcusHubChimeCapability, ArcusPromiseConverter {
+@objcMembers public class HubChimeCapabilityLegacy: NSObject, ArcusHubChimeCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: HubChimeCapabilityLegacy  = HubChimeCapabilityLegacy()
   

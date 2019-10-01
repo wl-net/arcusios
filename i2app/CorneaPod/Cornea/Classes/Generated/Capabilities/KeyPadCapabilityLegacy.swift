@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class KeyPadCapabilityLegacy: NSObject, ArcusKeyPadCapability, ArcusPromiseConverter {
+@objcMembers public class KeyPadCapabilityLegacy: NSObject, ArcusKeyPadCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: KeyPadCapabilityLegacy  = KeyPadCapabilityLegacy()
   

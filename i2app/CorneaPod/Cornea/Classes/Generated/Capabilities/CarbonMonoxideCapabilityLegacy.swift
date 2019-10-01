@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class CarbonMonoxideCapabilityLegacy: NSObject, ArcusCarbonMonoxideCapability, ArcusPromiseConverter {
+@objcMembers public class CarbonMonoxideCapabilityLegacy: NSObject, ArcusCarbonMonoxideCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: CarbonMonoxideCapabilityLegacy  = CarbonMonoxideCapabilityLegacy()
   

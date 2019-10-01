@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class HubSercommCapabilityLegacy: NSObject, ArcusHubSercommCapability, ArcusPromiseConverter {
+@objcMembers public class HubSercommCapabilityLegacy: NSObject, ArcusHubSercommCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: HubSercommCapabilityLegacy  = HubSercommCapabilityLegacy()
   

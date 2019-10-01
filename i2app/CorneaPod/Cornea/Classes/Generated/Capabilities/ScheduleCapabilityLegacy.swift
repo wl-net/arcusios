@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ScheduleCapabilityLegacy: NSObject, ArcusScheduleCapability, ArcusPromiseConverter {
+@objcMembers public class ScheduleCapabilityLegacy: NSObject, ArcusScheduleCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: ScheduleCapabilityLegacy  = ScheduleCapabilityLegacy()
   

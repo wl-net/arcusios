@@ -63,7 +63,7 @@ class AddPersonPinCodeEntryViewController: ArcusPinCodeViewController {
     }
 
     // MARK: SkipIt
-    func onSkipTapped() {
+    @objc func onSkipTapped() {
         let subtitle = NSLocalizedString("Without a PIN Code, this person will not be able to disarm your "
           + "alarm, participate in your Alarm Notification List or unlock any locks. Are you sure you want "
           + "to skip?", comment: "")
@@ -80,7 +80,7 @@ class AddPersonPinCodeEntryViewController: ArcusPinCodeViewController {
             andButtonTwoSelector: #selector(self.onSkipConfirmed))
     }
 
-    func onSkipConfirmed() {
+    @objc func onSkipConfirmed() {
         slideOutTwoButtonAlert()
 
         self.addPersonModel?.pinCode = ""   // Clear any previously-entered PIN code

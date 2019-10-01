@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class HoneywellTCCCapabilityLegacy: NSObject, ArcusHoneywellTCCCapability, ArcusPromiseConverter {
+@objcMembers public class HoneywellTCCCapabilityLegacy: NSObject, ArcusHoneywellTCCCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: HoneywellTCCCapabilityLegacy  = HoneywellTCCCapabilityLegacy()
   

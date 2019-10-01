@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class PresenceCapabilityLegacy: NSObject, ArcusPresenceCapability, ArcusPromiseConverter {
+@objcMembers public class PresenceCapabilityLegacy: NSObject, ArcusPresenceCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: PresenceCapabilityLegacy  = PresenceCapabilityLegacy()
   

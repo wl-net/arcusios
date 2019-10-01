@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class HubVolumeCapabilityLegacy: NSObject, ArcusHubVolumeCapability, ArcusPromiseConverter {
+@objcMembers public class HubVolumeCapabilityLegacy: NSObject, ArcusHubVolumeCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: HubVolumeCapabilityLegacy  = HubVolumeCapabilityLegacy()
   

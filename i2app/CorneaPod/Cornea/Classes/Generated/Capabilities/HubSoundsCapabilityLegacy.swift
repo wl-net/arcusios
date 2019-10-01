@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class HubSoundsCapabilityLegacy: NSObject, ArcusHubSoundsCapability, ArcusPromiseConverter {
+@objcMembers public class HubSoundsCapabilityLegacy: NSObject, ArcusHubSoundsCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: HubSoundsCapabilityLegacy  = HubSoundsCapabilityLegacy()
   

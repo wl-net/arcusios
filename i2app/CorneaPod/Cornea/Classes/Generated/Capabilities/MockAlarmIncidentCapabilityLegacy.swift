@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class MockAlarmIncidentCapabilityLegacy: NSObject, ArcusMockAlarmIncidentCapability, ArcusPromiseConverter {
+@objcMembers public class MockAlarmIncidentCapabilityLegacy: NSObject, ArcusMockAlarmIncidentCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: MockAlarmIncidentCapabilityLegacy  = MockAlarmIncidentCapabilityLegacy()
   

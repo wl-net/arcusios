@@ -83,7 +83,7 @@ extension _SessionController {
 }
 
 // TODO: Fix Naming
-public class SessionController: NSObject, _SessionController {
+@objcMembers public class SessionController: NSObject, _SessionController {
   
   // Duplicate implementation `_SessionController` in order to expose to ObjC
   

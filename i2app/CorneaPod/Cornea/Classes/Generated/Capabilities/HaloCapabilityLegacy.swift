@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class HaloCapabilityLegacy: NSObject, ArcusHaloCapability, ArcusPromiseConverter {
+@objcMembers public class HaloCapabilityLegacy: NSObject, ArcusHaloCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: HaloCapabilityLegacy  = HaloCapabilityLegacy()
   

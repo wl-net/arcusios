@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class MotionCapabilityLegacy: NSObject, ArcusMotionCapability, ArcusPromiseConverter {
+@objcMembers public class MotionCapabilityLegacy: NSObject, ArcusMotionCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: MotionCapabilityLegacy  = MotionCapabilityLegacy()
   

@@ -22,8 +22,7 @@
 
 import Foundation
 
-@objc
-public class PlaceAndRoleModel: NSObject {
+@objcMembers public class PlaceAndRoleModel: NSObject {
 
   public static let ownerString = "OWNER"
   public static let guestString = "FULL_ACCESS"

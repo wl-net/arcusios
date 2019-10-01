@@ -50,7 +50,7 @@ public protocol ServiceLevelable {
   static func getInheritedServiceLevelFrom(_ place: PlaceModel) -> String
 }
 
-@objc public class AnyServiceLevelable: NSObject, ServiceLevelable {
+@objcMembers public class AnyServiceLevelable: NSObject, ServiceLevelable {
   public static func isPremiumPlace(_ place: PlaceModel) -> Bool {
     guard let serviceLevel: String = PlaceCapabilityLegacy.getServiceLevel(place) else {
       return false

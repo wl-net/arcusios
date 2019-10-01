@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class CameraCapabilityLegacy: NSObject, ArcusCameraCapability, ArcusPromiseConverter {
+@objcMembers public class CameraCapabilityLegacy: NSObject, ArcusCameraCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: CameraCapabilityLegacy  = CameraCapabilityLegacy()
   

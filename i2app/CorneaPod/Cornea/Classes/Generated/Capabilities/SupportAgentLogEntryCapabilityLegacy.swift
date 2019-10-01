@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SupportAgentLogEntryCapabilityLegacy: NSObject, ArcusSupportAgentLogEntryCapability, ArcusPromiseConverter {
+@objcMembers public class SupportAgentLogEntryCapabilityLegacy: NSObject, ArcusSupportAgentLogEntryCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: SupportAgentLogEntryCapabilityLegacy  = SupportAgentLogEntryCapabilityLegacy()
   

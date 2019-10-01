@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class DeviceConnectionCapabilityLegacy: NSObject, ArcusDeviceConnectionCapability, ArcusPromiseConverter {
+@objcMembers public class DeviceConnectionCapabilityLegacy: NSObject, ArcusDeviceConnectionCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: DeviceConnectionCapabilityLegacy  = DeviceConnectionCapabilityLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class MotorizedDoorCapabilityLegacy: NSObject, ArcusMotorizedDoorCapability, ArcusPromiseConverter {
+@objcMembers public class MotorizedDoorCapabilityLegacy: NSObject, ArcusMotorizedDoorCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: MotorizedDoorCapabilityLegacy  = MotorizedDoorCapabilityLegacy()
   

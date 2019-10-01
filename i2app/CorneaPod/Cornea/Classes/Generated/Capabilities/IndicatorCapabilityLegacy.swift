@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class IndicatorCapabilityLegacy: NSObject, ArcusIndicatorCapability, ArcusPromiseConverter {
+@objcMembers public class IndicatorCapabilityLegacy: NSObject, ArcusIndicatorCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: IndicatorCapabilityLegacy  = IndicatorCapabilityLegacy()
   

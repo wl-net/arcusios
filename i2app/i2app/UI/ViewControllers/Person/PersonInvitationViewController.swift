@@ -198,15 +198,15 @@ PersonInvitationsCallback {
 
   // MARK: Popup Actions
 
-  func doAccept(_ invitation: Invitation) {
+  @objc func doAccept(_ invitation: Invitation) {
     self.personController?.acceptInvitation(invitation)
   }
 
-  func doDecline(_ invitation: Invitation) {
+  @objc func doDecline(_ invitation: Invitation) {
     self.personController?.declineInvitation(invitation)
   }
 
-  func doClose() {
+  @objc func doClose() {
     userInteraction = false
   }
 

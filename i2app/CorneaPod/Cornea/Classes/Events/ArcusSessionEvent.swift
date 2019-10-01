@@ -49,7 +49,7 @@ extension ArcusSessionEvent {
   }
 }
 
-public class SessionEvent: NSObject, ArcusSessionEvent {
+@objcMembers public class SessionEvent: NSObject, ArcusSessionEvent {
   public var type: String = ""
   public var source: String = ""
   public var attributes: [String: AnyObject] = [String: AnyObject]()

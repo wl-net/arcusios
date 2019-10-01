@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class AtmosCapabilityLegacy: NSObject, ArcusAtmosCapability, ArcusPromiseConverter {
+@objcMembers public class AtmosCapabilityLegacy: NSObject, ArcusAtmosCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: AtmosCapabilityLegacy  = AtmosCapabilityLegacy()
   

@@ -54,7 +54,7 @@ typedef enum {
     NSDictionary    *_navigationIconsWhite;
     NSDictionary    *_navigationIconsBlack;
 
-#define navButtonImagesTypeToString(enum) [@[@"MenuIcon", @"AddIcon", @"button_close", @"button_back", @"SearchButton", @"DashLogo"] objectAtIndex:enum]
+#define navButtonImagesTypeToString(enum) [@[@"MenuIcon", @"AddIcon", @"button_close", @"button_back", @"SearchButton", @"button_close"] objectAtIndex:enum]
 
 @dynamic navigationIconsWhite;
 @dynamic navigationIconsBlack;

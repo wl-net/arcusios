@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class FlowCapabilityLegacy: NSObject, ArcusFlowCapability, ArcusPromiseConverter {
+@objcMembers public class FlowCapabilityLegacy: NSObject, ArcusFlowCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: FlowCapabilityLegacy  = FlowCapabilityLegacy()
   

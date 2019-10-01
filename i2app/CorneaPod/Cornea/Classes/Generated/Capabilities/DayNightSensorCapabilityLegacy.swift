@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class DayNightSensorCapabilityLegacy: NSObject, ArcusDayNightSensorCapability, ArcusPromiseConverter {
+@objcMembers public class DayNightSensorCapabilityLegacy: NSObject, ArcusDayNightSensorCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: DayNightSensorCapabilityLegacy  = DayNightSensorCapabilityLegacy()
   

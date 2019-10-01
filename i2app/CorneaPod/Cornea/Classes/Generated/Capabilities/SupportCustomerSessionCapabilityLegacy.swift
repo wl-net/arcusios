@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SupportCustomerSessionCapabilityLegacy: NSObject, ArcusSupportCustomerSessionCapability, ArcusPromiseConverter {
+@objcMembers public class SupportCustomerSessionCapabilityLegacy: NSObject, ArcusSupportCustomerSessionCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: SupportCustomerSessionCapabilityLegacy  = SupportCustomerSessionCapabilityLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class LawnNGardenSubsystemCapabilityLegacy: NSObject, ArcusLawnNGardenSubsystemCapability, ArcusPromiseConverter {
+@objcMembers public class LawnNGardenSubsystemCapabilityLegacy: NSObject, ArcusLawnNGardenSubsystemCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: LawnNGardenSubsystemCapabilityLegacy  = LawnNGardenSubsystemCapabilityLegacy()
   

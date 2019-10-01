@@ -31,7 +31,7 @@ public class IdentifyCapabilityLegacy: NSObject, ArcusIdentifyCapability, ArcusP
   
 
   
-  public static func identify(_ model: DeviceModel) -> PMKPromise { 
+  @objc public static func identify(_ model: DeviceModel) -> PMKPromise { 
     
     do {
       return try capability.promiseForObservable(capability.requestIdentifyIdentify(model))

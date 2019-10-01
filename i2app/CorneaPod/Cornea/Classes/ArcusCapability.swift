@@ -85,6 +85,9 @@ extension RxArcusModel: ArcusCapability {
 
     if getCapabilities()?.contains(Constants.deviceNamespace) ?? false {
       if let device = self as? DeviceModel,
+//        let name = DeviceCapability.getNameFrom(self) {
+//            result = name
+//        }
         let name = DeviceCapabilityLegacy.getName(device) {
           result = name
         }

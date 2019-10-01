@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class VentCapabilityLegacy: NSObject, ArcusVentCapability, ArcusPromiseConverter {
+@objcMembers public class VentCapabilityLegacy: NSObject, ArcusVentCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: VentCapabilityLegacy  = VentCapabilityLegacy()
   

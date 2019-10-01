@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class LightsNSwitchesSubsystemCapabilityLegacy: NSObject, ArcusLightsNSwitchesSubsystemCapability, ArcusPromiseConverter {
+@objcMembers public class LightsNSwitchesSubsystemCapabilityLegacy: NSObject, ArcusLightsNSwitchesSubsystemCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: LightsNSwitchesSubsystemCapabilityLegacy  = LightsNSwitchesSubsystemCapabilityLegacy()
   

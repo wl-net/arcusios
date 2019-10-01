@@ -40,8 +40,8 @@ ArcusInputAccessoryProtocol {
     didSet {
       self.otherTextFieldInputAccessoryView.inputDelegate = self
       self.otherTextFieldInputAccessoryView.doneButton
-        .setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white],
-                                for: UIControlState())
+        .setTitleTextAttributes(convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.white]),
+                                for: UIControl.State())
     }
   }
 
@@ -66,11 +66,11 @@ ArcusInputAccessoryProtocol {
 
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(self.keyboardWillShow(_:)),
-                                           name: Notification.Name.UIKeyboardWillShow,
+                                           name: UIResponder.keyboardWillShowNotification,
                                            object: nil)
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(self.keyboardWillHide(_:)),
-                                           name: Notification.Name.UIKeyboardWillHide,
+                                           name: UIResponder.keyboardWillHideNotification,
                                            object: nil)
 
     self.configureUI()
@@ -92,12 +92,12 @@ ArcusInputAccessoryProtocol {
     self.relationTableView.backgroundColor = UIColor.clear
     self.relationTableView.backgroundView = nil
     self.relationTableView.estimatedRowHeight = 70
-    self.relationTableView.rowHeight = UITableViewAutomaticDimension
+    self.relationTableView.rowHeight = UITableView.automaticDimension
 
     self.selectedIndex = 0
     self.relationTableView.selectRow(at: IndexPath(row: 0, section:0),
                                      animated: false,
-                                     scrollPosition: UITableViewScrollPosition.top)
+                                     scrollPosition: UITableView.ScrollPosition.top)
   }
 
   // MARK: IBActions
@@ -198,7 +198,7 @@ ArcusInputAccessoryProtocol {
 
     cell?.backgroundColor = UIColor.clear
     cell?.managesSelectionState = true
-    cell?.selectionStyle = UITableViewCellSelectionStyle.none
+    cell?.selectionStyle = UITableViewCell.SelectionStyle.none
 
     cell?.titleLabel.text = titleString
 
@@ -257,7 +257,7 @@ ArcusInputAccessoryProtocol {
 
     cell?.backgroundColor = UIColor.clear
     cell?.managesSelectionState = true
-    cell?.selectionStyle = UITableViewCellSelectionStyle.none
+    cell?.selectionStyle = UITableViewCell.SelectionStyle.none
 
     cell?.otherTextField.isUserInteractionEnabled = false
     cell?.otherTextField.tintColor = UIColor.black.withAlphaComponent(0.2)
@@ -283,7 +283,7 @@ ArcusInputAccessoryProtocol {
       self.otherTextField?.isUserInteractionEnabled = true
       self.otherTextField?.becomeFirstResponder()
 
-      tableView.scrollToNearestSelectedRow(at: UITableViewScrollPosition.top,
+      tableView.scrollToNearestSelectedRow(at: UITableView.ScrollPosition.top,
                                            animated: true)
     }
 
@@ -315,10 +315,10 @@ ArcusInputAccessoryProtocol {
   }
 
   // MARK: Keyboard Handling
-  func keyboardWillShow(_ notification: Notification) {
+  @objc func keyboardWillShow(_ notification: Notification) {
     let userInfo: NSDictionary = notification.userInfo! as NSDictionary
     let keyboardFrame: NSValue? =
-      userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue
+      userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue
     let keyboardRectangle = keyboardFrame?.cgRectValue
     let keyboardHeight = keyboardRectangle?.height
 
@@ -326,7 +326,7 @@ ArcusInputAccessoryProtocol {
     self.relationTableView.layoutIfNeeded()
   }
 
-  func keyboardWillHide(_ notification: Notification) {
+  @objc func keyboardWillHide(_ notification: Notification) {
     self.relationTableBottomSpacingConstraint.constant = self.defaultTrailingSpace
     self.relationTableView.layoutIfNeeded()
   }
@@ -373,4 +373,15 @@ ArcusInputAccessoryProtocol {
         })
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

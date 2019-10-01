@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class WaterSoftenerCapabilityLegacy: NSObject, ArcusWaterSoftenerCapability, ArcusPromiseConverter {
+@objcMembers public class WaterSoftenerCapabilityLegacy: NSObject, ArcusWaterSoftenerCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: WaterSoftenerCapabilityLegacy  = WaterSoftenerCapabilityLegacy()
   

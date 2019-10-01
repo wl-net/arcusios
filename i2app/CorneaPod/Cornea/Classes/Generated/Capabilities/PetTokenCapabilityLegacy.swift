@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class PetTokenCapabilityLegacy: NSObject, ArcusPetTokenCapability, ArcusPromiseConverter {
+@objcMembers public class PetTokenCapabilityLegacy: NSObject, ArcusPetTokenCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: PetTokenCapabilityLegacy  = PetTokenCapabilityLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ProblemDeviceCapabilityLegacy: NSObject, ArcusProblemDeviceCapability, ArcusPromiseConverter {
+@objcMembers public class ProblemDeviceCapabilityLegacy: NSObject, ArcusProblemDeviceCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: ProblemDeviceCapabilityLegacy  = ProblemDeviceCapabilityLegacy()
   

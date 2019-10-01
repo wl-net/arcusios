@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SubsystemServiceLegacy: NSObject, ArcusSubsystemService, ArcusPromiseConverter {
+@objcMembers public class SubsystemServiceLegacy: NSObject, ArcusSubsystemService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: SubsystemServiceLegacy = SubsystemServiceLegacy()
   

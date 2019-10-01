@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class CentraLiteSmartPlugCapabilityLegacy: NSObject, ArcusCentraLiteSmartPlugCapability, ArcusPromiseConverter {
+@objcMembers public class CentraLiteSmartPlugCapabilityLegacy: NSObject, ArcusCentraLiteSmartPlugCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: CentraLiteSmartPlugCapabilityLegacy  = CentraLiteSmartPlugCapabilityLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class RecordingCapabilityLegacy: NSObject, ArcusRecordingCapability, ArcusPromiseConverter {
+@objcMembers public class RecordingCapabilityLegacy: NSObject, ArcusRecordingCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: RecordingCapabilityLegacy  = RecordingCapabilityLegacy()
   

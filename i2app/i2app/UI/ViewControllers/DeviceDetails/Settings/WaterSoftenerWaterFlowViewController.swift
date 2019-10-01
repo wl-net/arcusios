@@ -50,7 +50,7 @@ class WaterSoftenerWaterFlowViewController: UIViewController {
     addDarkOverlay(BackgroupOverlayLightLevel)
 
     tableView.estimatedRowHeight = 120
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
   }
 
   // MARK: Popup Handling

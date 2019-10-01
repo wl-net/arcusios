@@ -142,13 +142,13 @@ class AlarmTrackerIconView: UIView {
 
   func trackerTimerTextMask() -> ArcusVerticallyCenteredTextLayer {
     let textMask = ArcusVerticallyCenteredTextLayer()
-    textMask.alignmentMode = kCAAlignmentCenter
+    textMask.alignmentMode = CATextLayerAlignmentMode.center
     textMask.bounds = bounds
     textMask.contentsScale = UIScreen.main.scale
     textMask.foregroundColor = UIColor.black.cgColor
     textMask.position = CGPoint(x: bounds.midX, y: bounds.midY)
     textMask.string = attributedText
-    textMask.truncationMode = kCATruncationNone
+    textMask.truncationMode = CATextLayerTruncationMode.none
     textMask.isWrapped = false
 
     return textMask
@@ -186,7 +186,7 @@ class AlarmTrackerIconView: UIView {
     mask.frame = AVMakeRect(aspectRatio: size, insideRect: containingRect)
     mask.position = CGPoint(x: ceil(bounds.midX), y: ceil(bounds.midY))
     mask.contents = image?.cgImage
-    mask.fillRule = kCAFillRuleEvenOdd
+    mask.fillRule = CAShapeLayerFillRule.evenOdd
 
     return mask
   }
@@ -202,7 +202,7 @@ class AlarmTrackerIconView: UIView {
     let mask = CAShapeLayer()
     mask.path = circlePath.cgPath
     mask.lineWidth = width
-    mask.fillRule = kCAFillRuleEvenOdd
+    mask.fillRule = CAShapeLayerFillRule.evenOdd
     mask.fillColor = UIColor.clear.cgColor
     mask.strokeColor = UIColor.white.cgColor
 

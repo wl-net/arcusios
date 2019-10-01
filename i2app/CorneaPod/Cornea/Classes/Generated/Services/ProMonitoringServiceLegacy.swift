@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ProMonitoringServiceLegacy: NSObject, ArcusProMonitoringService, ArcusPromiseConverter {
+@objcMembers public class ProMonitoringServiceLegacy: NSObject, ArcusProMonitoringService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: ProMonitoringServiceLegacy = ProMonitoringServiceLegacy()
   

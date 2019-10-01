@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class AlertCapabilityLegacy: NSObject, ArcusAlertCapability, ArcusPromiseConverter {
+@objcMembers public class AlertCapabilityLegacy: NSObject, ArcusAlertCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: AlertCapabilityLegacy  = AlertCapabilityLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ClimateSubsystemCapabilityLegacy: NSObject, ArcusClimateSubsystemCapability, ArcusPromiseConverter {
+@objcMembers public class ClimateSubsystemCapabilityLegacy: NSObject, ArcusClimateSubsystemCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: ClimateSubsystemCapabilityLegacy  = ClimateSubsystemCapabilityLegacy()
   

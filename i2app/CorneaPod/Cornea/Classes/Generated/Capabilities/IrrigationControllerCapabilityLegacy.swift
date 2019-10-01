@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class IrrigationControllerCapabilityLegacy: NSObject, ArcusIrrigationControllerCapability, ArcusPromiseConverter {
+@objcMembers public class IrrigationControllerCapabilityLegacy: NSObject, ArcusIrrigationControllerCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: IrrigationControllerCapabilityLegacy  = IrrigationControllerCapabilityLegacy()
   

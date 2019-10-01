@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class PersonCapabilityLegacy: NSObject, ArcusPersonCapability, ArcusPromiseConverter {
+@objcMembers public class PersonCapabilityLegacy: NSObject, ArcusPersonCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: PersonCapabilityLegacy  = PersonCapabilityLegacy()
   

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ButtonCapabilityLegacy: NSObject, ArcusButtonCapability, ArcusPromiseConverter {
+@objcMembers public class ButtonCapabilityLegacy: NSObject, ArcusButtonCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: ButtonCapabilityLegacy  = ButtonCapabilityLegacy()
   

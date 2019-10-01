@@ -21,7 +21,7 @@
 
 import Foundation
 
-public class DeviceModel: Model, LegacyModelNotifier {
+@objc public class DeviceModel: Model, LegacyModelNotifier {
   // MARK: LegacyModel Methods
 
   public static func addressForId(_ modelId: String) -> String {

@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SwitchCapabilityLegacy: NSObject, ArcusSwitchCapability, ArcusPromiseConverter {
+@objcMembers public class SwitchCapabilityLegacy: NSObject, ArcusSwitchCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: SwitchCapabilityLegacy  = SwitchCapabilityLegacy()
   

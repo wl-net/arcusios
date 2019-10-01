@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class PowerUseCapabilityLegacy: NSObject, ArcusPowerUseCapability, ArcusPromiseConverter {
+@objcMembers public class PowerUseCapabilityLegacy: NSObject, ArcusPowerUseCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: PowerUseCapabilityLegacy  = PowerUseCapabilityLegacy()
   

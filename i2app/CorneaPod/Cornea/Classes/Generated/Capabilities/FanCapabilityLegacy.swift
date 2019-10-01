@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class FanCapabilityLegacy: NSObject, ArcusFanCapability, ArcusPromiseConverter {
+@objcMembers public class FanCapabilityLegacy: NSObject, ArcusFanCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: FanCapabilityLegacy  = FanCapabilityLegacy()
   

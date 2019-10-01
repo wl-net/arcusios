@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ColorTemperatureCapabilityLegacy: NSObject, ArcusColorTemperatureCapability, ArcusPromiseConverter {
+@objcMembers public class ColorTemperatureCapabilityLegacy: NSObject, ArcusColorTemperatureCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: ColorTemperatureCapabilityLegacy  = ColorTemperatureCapabilityLegacy()
   

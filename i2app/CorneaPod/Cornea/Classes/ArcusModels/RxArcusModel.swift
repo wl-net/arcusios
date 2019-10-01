@@ -33,20 +33,20 @@ fileprivate extension Array {
 
 public class Model: RxArcusModel {}
 
-public class RxArcusModel: NSObject,
+@objcMembers public class RxArcusModel: NSObject,
   ArcusModel,
   ArcusModelInternal,
   RxSwiftModel,
   ArcusPromiseConverter,
 ArcusNotificationConverter {
 
-  public var modelId: String {
+  @objc public var modelId: String {
     if let modelId = getModelId() {
       return modelId
     }
     return ""
   }
-  public var address: String {
+  @objc public var address: String {
     if let address = getAddress() {
       return address
     }
@@ -55,12 +55,12 @@ ArcusNotificationConverter {
 
   public var disposeBag: DisposeBag = DisposeBag()
   public var attributes: [String: AnyObject] = [:]
-  public var changes: [String: AnyObject] = [:]
+  @objc public var changes: [String: AnyObject] = [:]
   public var eventObservable: PublishSubject<ArcusModelEvent> = PublishSubject<ArcusModelEvent>()
 
   override public init() {}
 
-  public init(attributes: [String: AnyObject]) {
+  @objc public init(attributes: [String: AnyObject]) {
     self.attributes = attributes
   }
 
@@ -81,7 +81,7 @@ ArcusNotificationConverter {
     return attributes
   }
 
-  public func getAttribute(_ key: String) -> AnyObject? {
+  @objc public func getAttribute(_ key: String) -> AnyObject? {
     if let modifiedAttribute = changes[key] {
       return modifiedAttribute
     }
@@ -183,7 +183,7 @@ ArcusNotificationConverter {
 }
 
 extension RxArcusModel: LegacyModel {
-  @discardableResult open func commit() -> PMKPromise {
+  @objc @discardableResult open func commit() -> PMKPromise {
     guard changes.count > 0 else {
       // TODO: FIXME!
       // Reject promise instead.
@@ -204,12 +204,12 @@ extension RxArcusModel: LegacyModel {
     return promiseForObservable(refresh(address))
   }
 
-  public static func attributeChangedNotificationName(_ attr: String) -> Notification.Name {
+  @objc public static func attributeChangedNotificationName(_ attr: String) -> Notification.Name {
     let generatedString = attributeChangedNotification(attr)
     return Notification.Name(generatedString)
   }
 
-  public static func attributeChangedNotification(_ attribute: String) -> String {
+  @objc public static func attributeChangedNotification(_ attribute: String) -> String {
     return "\(kAttributeChangedNotification)\(attribute)"
   }
 
@@ -248,7 +248,7 @@ extension RxArcusModel: LegacyModel {
     return ""
   }
 
-  public func modelChangedNotification() -> String {
+  @objc public func modelChangedNotification() -> String {
     return "\(kModelChangedNotification)\(modelId)"
   }
 }

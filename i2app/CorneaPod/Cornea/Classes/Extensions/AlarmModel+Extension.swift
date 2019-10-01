@@ -24,9 +24,11 @@ import Foundation
 import PromiseKit
 
 extension AlarmModel {
-  override public func commit() -> PMKPromise {
-    return PMKPromise.new { (fulfiller: PMKFulfiller?, _: PMKRejecter?) in
-      fulfiller?(self)
-    }
-  }
+    // This won't work in Swift 4+ since you can't override methods from an extension anymore.
+    // do we even need it?
+//  override public func commit() -> PMKPromise {
+//    return PMKPromise.new { (fulfiller: PMKFulfiller?, _: PMKRejecter?) in
+//      fulfiller?(self)
+//    }
+//  }
 }

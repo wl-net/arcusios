@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SmokeCapabilityLegacy: NSObject, ArcusSmokeCapability, ArcusPromiseConverter {
+@objcMembers public class SmokeCapabilityLegacy: NSObject, ArcusSmokeCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: SmokeCapabilityLegacy  = SmokeCapabilityLegacy()
   

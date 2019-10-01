@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class WiFiScanCapabilityLegacy: NSObject, ArcusWiFiScanCapability, ArcusPromiseConverter {
+@objcMembers public class WiFiScanCapabilityLegacy: NSObject, ArcusWiFiScanCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: WiFiScanCapabilityLegacy  = WiFiScanCapabilityLegacy()
   

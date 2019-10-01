@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class LutronBridgeCapabilityLegacy: NSObject, ArcusLutronBridgeCapability, ArcusPromiseConverter {
+@objcMembers public class LutronBridgeCapabilityLegacy: NSObject, ArcusLutronBridgeCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: LutronBridgeCapabilityLegacy  = LutronBridgeCapabilityLegacy()
   

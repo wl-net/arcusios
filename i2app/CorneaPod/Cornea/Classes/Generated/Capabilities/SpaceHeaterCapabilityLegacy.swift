@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SpaceHeaterCapabilityLegacy: NSObject, ArcusSpaceHeaterCapability, ArcusPromiseConverter {
+@objcMembers public class SpaceHeaterCapabilityLegacy: NSObject, ArcusSpaceHeaterCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: SpaceHeaterCapabilityLegacy  = SpaceHeaterCapabilityLegacy()
   

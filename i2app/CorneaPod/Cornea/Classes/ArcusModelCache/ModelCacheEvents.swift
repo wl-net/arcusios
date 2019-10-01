@@ -23,14 +23,14 @@
 import Foundation
 
 extension Constants {
-  public static let kService: String = "SERV"
-  public static let kDriv: String = "DRIV"
-  public static let kModel: String = "Model"
+  @objc public static let kService: String = "SERV"
+  @objc public static let kDriv: String = "DRIV"
+  @objc public static let kModel: String = "Model"
 
-  public static let kModelAddedNotification: String = "ModelAddedNotification"
-  public static let kModelErrorNotification: String = "ModelErrorNotification"
-  public static let kModelRemovedNotification: String = "ModelRemovedNotification"
-  public static let kModelRefreshedNotification: String = "ModelRefreshedNotification"
+  @objc public static let kModelAddedNotification: String = "ModelAddedNotification"
+  @objc public static let kModelErrorNotification: String = "ModelErrorNotification"
+  @objc public static let kModelRemovedNotification: String = "ModelRemovedNotification"
+  @objc public static let kModelRefreshedNotification: String = "ModelRefreshedNotification"
 }
 
 extension Notification.Name {

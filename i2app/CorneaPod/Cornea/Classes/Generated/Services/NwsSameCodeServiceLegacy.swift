@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class NwsSameCodeServiceLegacy: NSObject, ArcusNwsSameCodeService, ArcusPromiseConverter {
+@objcMembers public class NwsSameCodeServiceLegacy: NSObject, ArcusNwsSameCodeService, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let service: NwsSameCodeServiceLegacy = NwsSameCodeServiceLegacy()
   

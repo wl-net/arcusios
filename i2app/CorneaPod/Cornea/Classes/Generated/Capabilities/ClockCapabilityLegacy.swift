@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ClockCapabilityLegacy: NSObject, ArcusClockCapability, ArcusPromiseConverter {
+@objcMembers public class ClockCapabilityLegacy: NSObject, ArcusClockCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: ClockCapabilityLegacy  = ClockCapabilityLegacy()
   

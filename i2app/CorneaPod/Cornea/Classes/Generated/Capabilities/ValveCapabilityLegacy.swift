@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class ValveCapabilityLegacy: NSObject, ArcusValveCapability, ArcusPromiseConverter {
+@objcMembers public class ValveCapabilityLegacy: NSObject, ArcusValveCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: ValveCapabilityLegacy  = ValveCapabilityLegacy()
   

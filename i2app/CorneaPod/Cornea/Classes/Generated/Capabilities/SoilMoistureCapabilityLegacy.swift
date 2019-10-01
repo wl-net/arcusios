@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class SoilMoistureCapabilityLegacy: NSObject, ArcusSoilMoistureCapability, ArcusPromiseConverter {
+@objcMembers public class SoilMoistureCapabilityLegacy: NSObject, ArcusSoilMoistureCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: SoilMoistureCapabilityLegacy  = SoilMoistureCapabilityLegacy()
   

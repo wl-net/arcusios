@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class WaterHeaterCapabilityLegacy: NSObject, ArcusWaterHeaterCapability, ArcusPromiseConverter {
+@objcMembers public class WaterHeaterCapabilityLegacy: NSObject, ArcusWaterHeaterCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: WaterHeaterCapabilityLegacy  = WaterHeaterCapabilityLegacy()
   

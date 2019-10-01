@@ -78,7 +78,7 @@ public class RecordingViewResponse: SessionEvent {
   
   
   /** A URL that can be used to stream video using the HLS protocol. */
-  public func getHls() -> String? {
+  @objc public func getHls() -> String? {
     return self.attributes["hls"] as? String
   }
   /** This parameter was deprecated in 2018.07.  A URL that can be used to stream video using the MPEG-DASH protocol. */

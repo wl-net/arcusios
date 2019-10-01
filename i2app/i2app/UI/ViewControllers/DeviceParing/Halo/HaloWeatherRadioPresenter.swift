@@ -62,7 +62,7 @@ class HaloWeatherRadioPresenter: NSObject {
               stationsArray.append(radioStation)
             }
           }
-          let sortedStationsArray = stationsArray.sorted { return $0.0.rssiValue > $0.1.rssiValue }
+          let sortedStationsArray = stationsArray.sorted { return $0.rssiValue > $1.rssiValue }
           completionBlock(sortedStationsArray)
           return nil
       }

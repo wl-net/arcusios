@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class DimmerCapabilityLegacy: NSObject, ArcusDimmerCapability, ArcusPromiseConverter {
+@objcMembers public class DimmerCapabilityLegacy: NSObject, ArcusDimmerCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: DimmerCapabilityLegacy  = DimmerCapabilityLegacy()
   

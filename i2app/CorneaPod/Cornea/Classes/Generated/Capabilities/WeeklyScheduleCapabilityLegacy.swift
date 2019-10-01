@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class WeeklyScheduleCapabilityLegacy: NSObject, ArcusWeeklyScheduleCapability, ArcusPromiseConverter {
+@objcMembers public class WeeklyScheduleCapabilityLegacy: NSObject, ArcusWeeklyScheduleCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: WeeklyScheduleCapabilityLegacy  = WeeklyScheduleCapabilityLegacy()
   

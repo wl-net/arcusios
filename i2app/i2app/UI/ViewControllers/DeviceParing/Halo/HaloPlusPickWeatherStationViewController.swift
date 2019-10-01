@@ -160,28 +160,28 @@ UITableViewDelegate, UITableViewDataSource {
     cell?.selectionStyle = .none
     if self.selectedRadioStationIndex == indexPath.row {
       if isPairing {
-        cell?.selectionButton.setImage(UIImage(named: "RoleCheckedIcon"), for: UIControlState())
+        cell?.selectionButton.setImage(UIImage(named: "RoleCheckedIcon"), for: UIControl.State())
       } else {
-        cell?.selectionButton.setImage(UIImage(named: "RoleCheckedIconWhite"), for: UIControlState())
+        cell?.selectionButton.setImage(UIImage(named: "RoleCheckedIconWhite"), for: UIControl.State())
       }
     } else {
       if isPairing {
-        cell?.selectionButton.setImage(UIImage(named: "RoleUncheckButton"), for: UIControlState())
+        cell?.selectionButton.setImage(UIImage(named: "RoleUncheckButton"), for: UIControl.State())
       } else {
-        cell?.selectionButton.setImage(UIImage(named: "RoleUncheckButtonWhite"), for: UIControlState())
+        cell?.selectionButton.setImage(UIImage(named: "RoleUncheckButtonWhite"), for: UIControl.State())
       }
     }
     if self.playingRadioStationIndex == indexPath.row {
       if isPairing {
-        cell?.playRadioButton.setImage(UIImage(named: "radioPauseBlack"), for: UIControlState())
+        cell?.playRadioButton.setImage(UIImage(named: "radioPauseBlack"), for: UIControl.State())
       } else {
-        cell?.playRadioButton.setImage(UIImage(named: "radioPauseWhite"), for: UIControlState())
+        cell?.playRadioButton.setImage(UIImage(named: "radioPauseWhite"), for: UIControl.State())
       }
     } else {
       if isPairing {
-        cell?.playRadioButton.setImage(UIImage(named: "radioPlayBlack"), for: UIControlState())
+        cell?.playRadioButton.setImage(UIImage(named: "radioPlayBlack"), for: UIControl.State())
       } else {
-        cell?.playRadioButton.setImage(UIImage(named: "radioPlayWhite"), for: UIControlState())
+        cell?.playRadioButton.setImage(UIImage(named: "radioPlayWhite"), for: UIControl.State())
       }
     }
 
@@ -230,7 +230,7 @@ UITableViewDelegate, UITableViewDataSource {
 
   func setPlayRadioStationButtonAction(_ cell: HaloPlusPickWeatherStationTableCell) {
     cell.playRadioButton
-      .setActionTo(UIControlEvents.touchUpInside,
+      .setActionTo(UIControl.Event.touchUpInside,
                    closure: {(button: UIButton) -> Void in
                     if self.playingRadioStationIndex != NSNotFound {
                       let playingIndexPath: IndexPath =
@@ -244,7 +244,7 @@ UITableViewDelegate, UITableViewDataSource {
                         .cellForRow(at: playingIndexPath) as?
                         HaloPlusPickWeatherStationTableCell {
                         playingCell.playRadioButton.setImage(UIImage(named: imageName),
-                                                             for: UIControlState())
+                                                             for: UIControl.State())
                       }
                     }
 
@@ -257,7 +257,7 @@ UITableViewDelegate, UITableViewDataSource {
                           if success == true {
                             self.playingRadioStationIndex = NSNotFound
                             playingCell.playRadioButton.setImage(UIImage(named: self.isPairing ?
-                              "radioPlayBlack" : "radioPlayWhite"), for: UIControlState())
+                              "radioPlayBlack" : "radioPlayWhite"), for: UIControl.State())
                           } else {
                             self.displayGenericErrorMessage()
                           }
@@ -276,7 +276,7 @@ UITableViewDelegate, UITableViewDataSource {
                                             playingCell.playRadioButton.setImage(
                                               UIImage(named: self.isPairing ?
                                                 "radioPauseBlack" : "radioPauseWhite"),
-                                              for: UIControlState())
+                                              for: UIControl.State())
                                           } else {
                                             self.displayGenericErrorMessage()
                                           }
@@ -287,7 +287,7 @@ UITableViewDelegate, UITableViewDataSource {
       })
   }
 
-  func setPlayButtonState(_ notification: Notification) {
+  @objc func setPlayButtonState(_ notification: Notification) {
     if !Thread.isMainThread {
       DispatchQueue.main.async {
         self.setPlayButtonState(notification)
@@ -302,7 +302,7 @@ UITableViewDelegate, UITableViewDataSource {
     self.tableView.reloadData()
   }
 
-  func setSelectedButtonState(_ notification: Notification) {
+  @objc func setSelectedButtonState(_ notification: Notification) {
     if !Thread.isMainThread {
       DispatchQueue.main.async {
         self.setSelectedButtonState(notification)
@@ -401,11 +401,11 @@ UITableViewDelegate, UITableViewDataSource {
             color = UIColor.black
           }
           let attributes =
-            [NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 14.0)!,
-             NSKernAttributeName: 0.0,
-             NSForegroundColorAttributeName: color]
+            [convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-Medium", size: 14.0)!,
+             convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 0.0,
+             convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): color]
               as [String : Any]
-          self.subtitleLabel.attributedText = NSAttributedString(string: string, attributes: attributes)
+          self.subtitleLabel.attributedText = NSAttributedString(string: string, attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
           let handler = {(hyperLabel: ArcusHyperLabel?, substring: String?) -> Void in
             DispatchQueue.main.async {
               UIApplication.shared.openURL(NSURL.NoaaMaps)
@@ -419,4 +419,15 @@ UITableViewDelegate, UITableViewDataSource {
       }
     })
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

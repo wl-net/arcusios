@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class LightCapabilityLegacy: NSObject, ArcusLightCapability, ArcusPromiseConverter {
+@objcMembers public class LightCapabilityLegacy: NSObject, ArcusLightCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: LightCapabilityLegacy  = LightCapabilityLegacy()
   

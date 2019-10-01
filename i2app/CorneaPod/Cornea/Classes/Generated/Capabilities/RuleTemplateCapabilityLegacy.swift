@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class RuleTemplateCapabilityLegacy: NSObject, ArcusRuleTemplateCapability, ArcusPromiseConverter {
+@objcMembers public class RuleTemplateCapabilityLegacy: NSObject, ArcusRuleTemplateCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: RuleTemplateCapabilityLegacy  = RuleTemplateCapabilityLegacy()
   

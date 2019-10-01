@@ -39,13 +39,13 @@ final public class RxCornea: Cornea {
 }
 
 public class CorneaHolder: NSObject {
-  public static var shared: CorneaHolder {
+  @objc public static var shared: CorneaHolder {
     return CorneaHolder(RxCornea.shared)
   }
 
-  internal(set) public var session: SessionHolder?
-  internal(set) public var modelCache: CacheHolder?
-  internal(set) public var settings: SettingsHolder?
+  @objc internal(set) public var session: SessionHolder?
+  @objc internal(set) public var modelCache: CacheHolder?
+  @objc internal(set) public var settings: SettingsHolder?
 
   required public init(_ cornea: RxCornea) {
     super.init()
@@ -64,7 +64,7 @@ public class CorneaHolder: NSObject {
   }
 }
 
-public class SessionHolder: NSObject {
+@objcMembers public class SessionHolder: NSObject {
   internal(set) public var session: RxArcusSession
 
   public var sessionInfo: SessionInfo? {
@@ -122,7 +122,7 @@ public class SessionHolder: NSObject {
   }
 }
 
-public class CacheHolder: NSObject {
+@objcMembers public class CacheHolder: NSObject {
   internal(set) public var modelCache: RxArcusModelCache
 
   required public init(_ modelCache: RxArcusModelCache) {
@@ -151,7 +151,7 @@ public class CacheHolder: NSObject {
     modelCache.deleteModel(address)
   }
 
-  public func fetchModel(_ address: String) -> Model? {
+  @objc public func fetchModel(_ address: String) -> Model? {
     return modelCache.fetchModel(address) as? Model
   }
 
@@ -168,7 +168,7 @@ public class CacheHolder: NSObject {
   }
 }
 
-public class SettingsHolder: NSObject {
+@objcMembers public class SettingsHolder: NSObject {
   internal(set) public var settings: RxArcusSettings
 
   required public init(_ settings: RxArcusSettings) {
@@ -185,7 +185,7 @@ public class SettingsHolder: NSObject {
     return settings.currentHub
   }
 
-  public func currentPerson() -> PersonModel? {
+  @objc public func currentPerson() -> PersonModel? {
     return settings.currentPerson
   }
 

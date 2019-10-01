@@ -25,7 +25,7 @@ import RxSwift
 
 // MARK: Legacy Support
 
-public class HubZigbeeCapabilityLegacy: NSObject, ArcusHubZigbeeCapability, ArcusPromiseConverter {
+@objcMembers public class HubZigbeeCapabilityLegacy: NSObject, ArcusHubZigbeeCapability, ArcusPromiseConverter {
   public var disposeBag: DisposeBag = DisposeBag()
   private static let capability: HubZigbeeCapabilityLegacy  = HubZigbeeCapabilityLegacy()
   
