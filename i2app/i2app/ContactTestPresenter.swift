@@ -37,7 +37,8 @@ PairingCustomizationStepPresenter {
   
   var contactTestViewModel: ContactTestViewModel { get set }
   
-  var deviceAddress: String { get }
+  // XXX: this had to be removed for Swift 4.2+
+//  var deviceAddress: String { get }
   
   // MARK: Extended
   

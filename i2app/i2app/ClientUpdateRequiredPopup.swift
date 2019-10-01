@@ -85,8 +85,8 @@ class ClientUpdateRequiredPopup: ArcusPopupViewController,
   // MARK: SKStoreProductViewControllerDelegate
 
   func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
-    viewController.presentingViewController?.dismiss(animated: true, completion: { [weak self] _ in
-      self?.presentingViewController?.dismiss(animated: true, completion:nil)
+    viewController.presentingViewController?.dismiss(animated: true, completion: { [self] in
+      self.presentingViewController?.dismiss(animated: true, completion:nil)
     })
   }
 

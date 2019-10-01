@@ -76,7 +76,7 @@ extension AppDelegate: UIApplicationDelegate {
       // Set up the application so that the audio emitted by a clip can be heard even if the device is in
       // silent mode.
       do {
-        try AVAudioSession.sharedInstance().setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback))
+        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
       } catch {
         DDLogError("Application could not set AVAudioSession category to AVAudioSessionCategoryPlayback")
       }

@@ -256,7 +256,7 @@ class RxSwannSmartSwitchConfigClient: WSSConfigurator {
         // Dispose of the timer.
         timerDisposable.dispose()
     },
-      onDisposed: { [socket] _ in
+      onDisposed: { [socket] in
         // Close the socket.
         socket?.close()
     })

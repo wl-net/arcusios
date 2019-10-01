@@ -228,7 +228,6 @@ RuleListPresenterDelegate {
 
       cell?.configureSelectionOverlay()
       cell?.selectImageTappedCompletion = {
-        Void in
         if RuleListPresenter.ruleIsEnabled(rule) == true {
           self.ruleListPresenter?.disableRule(rule.modelId as String)
         } else {

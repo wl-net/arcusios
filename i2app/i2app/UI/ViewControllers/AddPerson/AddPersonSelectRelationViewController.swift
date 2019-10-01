@@ -223,7 +223,6 @@ ArcusInputAccessoryProtocol {
       cell?.descriptionLabel.addGestureRecognizer(accessoryImageTapRecognizer)
       cell?.descriptionLabel.isUserInteractionEnabled = true
       cell?.accessoryImageTappedCompletion = {
-        Void in
         if let key = (self.relationshipArray![indexPath.row] as AnyObject).allKeys[0] as? String,
           let detailsArray = PersonModel.subrelationArrayForRelationKey(key) as NSArray? {
           self.selectedIndex = indexPath.row

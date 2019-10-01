@@ -180,9 +180,9 @@ typealias NeedsNavConfig = (needsConfig: Bool, accountState: SwiftAccountState?)
     }
 
     if #available(iOS 11.0, *) {
-      emailTextField.textContentType = UITextContentType("")
-      passwordFirstTextField.textContentType = UITextContentType("")
-      passwordSecondTextField.textContentType = UITextContentType("")
+      emailTextField.textContentType = UITextContentType(rawValue: "")
+      passwordFirstTextField.textContentType = UITextContentType(rawValue: "")
+      passwordSecondTextField.textContentType = UITextContentType(rawValue: "")
     }
   }
 

@@ -136,7 +136,7 @@ class CorneaController: ArcusApplicationServiceProtocol, BiometricAuthentication
     biometricAuthenticator = BiometricAuthenticator()
 
     // Ensure we are not locked out or unenrolled
-    evaluateBiometricSettings(lockoutHandler: { [weak self] 
+    evaluateBiometricSettings(lockoutHandler: { [self] 
       self.biometricAuthenticationLogout(.lockout)
       }, notEnrolledHandler: { [weak self] in
         self?.biometricAuthenticationLogout(.notEnrolled)

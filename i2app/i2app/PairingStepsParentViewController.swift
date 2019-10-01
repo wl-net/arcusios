@@ -314,29 +314,29 @@ class PairingStepsParentViewController: UIViewController,
     } else if let bleErrorPopup = segue.destination as? BLEPairingDeviceNotFoundErrorViewController {
       bleErrorPopup.shortName = deviceShortName
       bleErrorPopup.ipcdDeviceType = ipcdDeviceType
-      bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+      bleErrorPopup.tryAgainHandler = {
         self.pagerController?.goToPageIndex(2, completion: nil)
         self.dismissPopup(nil)
       }
     } else if let bleErrorPopup = segue.destination as? BLEPairingUnableToSendInfoErrorViewController {
       bleErrorPopup.shortName = deviceShortName
       bleErrorPopup.ipcdDeviceType = ipcdDeviceType
-      bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+      bleErrorPopup.tryAgainHandler = {
         self.dismissPopup(nil)
       }
     } else if let bleErrorPopup = segue.destination as? BLEPairingErrorViewController {
       if segue.identifier == PairingStepSegues.segueToBLENotEnabledErrorPopOver.rawValue {
-        bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+        bleErrorPopup.tryAgainHandler = {
           self.pagerController?.goToPageIndex(1, completion: nil)
           self.dismissPopup(nil)
         }
       } else if segue.identifier == PairingStepSegues.segueToBLEConnectionLostErrorPopOver.rawValue {
-        bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+        bleErrorPopup.tryAgainHandler = {
           self.pagerController?.goToPageIndex(2, completion: nil)
           self.dismissPopup(nil)
         }
       } else {
-        bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+        bleErrorPopup.tryAgainHandler = {
           self.dismissPopup(nil)
         }
       }

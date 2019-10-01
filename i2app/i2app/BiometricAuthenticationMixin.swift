@@ -228,7 +228,7 @@ extension BiometricAuthenticationMixin {
   func saveUserCredentials(_ email: String,
                            password: String) {
     // Clear all of Keychains for kKeyArcusActiveCredentialService
-    deleteUserCredentials(email) { _ in
+    deleteUserCredentials(email) {
       let userKeychain = LSArcusKeychain(value: password,
                                         account: email,
                                         service: kKeyArcusActiveCredentialService)

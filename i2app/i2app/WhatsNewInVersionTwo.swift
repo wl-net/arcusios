@@ -65,11 +65,12 @@ class WhatsNewInVersionTwo: UIViewController {
 
   @IBAction func closePressed() {
     if let parent = self.presentingViewController {
-      parent.dismiss(animated: true, completion: { [weak self] _ in
-        guard let strongSelf = self else {
-          return
-        }
-        strongSelf.container.didFinishDisplayOfWhatsNew()
+      parent.dismiss(animated: true, completion: {
+        // XXX: what's wrong here?
+//        guard let strongSelf = self else {
+//          return
+//        }
+        self.container.didFinishDisplayOfWhatsNew()
       })
     }
   }

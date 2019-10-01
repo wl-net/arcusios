@@ -332,7 +332,7 @@ enum ArcusIconButtonIconSide: String {
     let imageMask = CAShapeLayer()
     imageMask.bounds = AVMakeRect(aspectRatio: size, insideRect: containingRect)
     imageMask.contents = image.cgImage
-    imageMask.fillMode = CAShapeLayerFillRule.evenOdd
+    imageMask.fillRule = CAShapeLayerFillRule.evenOdd
     imageMask.position = CGPoint(x: containingRect.midX,
                                  y: containingRect.midY)
 
@@ -361,7 +361,7 @@ enum ArcusIconButtonIconSide: String {
     let mask = CAShapeLayer()
     mask.bounds = bounds
     mask.fillColor = UIColor.clear.cgColor
-    mask.fillMode = CAShapeLayerFillRule.evenOdd
+    mask.fillRule = CAShapeLayerFillRule.evenOdd
     mask.position = CGPoint(x: bounds.midX,
                             y: bounds.midY)
 

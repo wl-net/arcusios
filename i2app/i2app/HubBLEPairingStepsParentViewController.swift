@@ -130,7 +130,7 @@ ArcusHubBLEPairingCompletionPresenter {
       .filter{ return $0 } // only do work if true
       .take(1) // only transition once
       .do(onNext: { [unowned self] _ in
-        self.dismissPopup { [unowned self] _ in
+        self.dismissPopup {
           self.performSegue(withIdentifier: HubPairingSegues.search.rawValue, sender: self)
         }
       })
@@ -203,23 +203,23 @@ ArcusHubBLEPairingCompletionPresenter {
     }
     if let bleErrorPopup = segue.destination as? BLEPairingErrorViewController {
       if segue.identifier == PairingStepSegues.segueToBLENotEnabledErrorPopOver.rawValue {
-        bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+        bleErrorPopup.tryAgainHandler = {
           self.pagingEnabled.value = true
           self.pagerController?.goToPageIndex(0, completion: nil)
           self.dismissPopup()
         }
       } else if segue.identifier == PairingStepSegues.segueToBLEConnectionLostErrorPopOver.rawValue {
-        bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+        bleErrorPopup.tryAgainHandler = {
           self.pagingEnabled.value = true
           self.pagerController?.goToPageIndex(0, completion: nil)
           self.dismissPopup()
         }
       } else if segue.identifier == PairingStepSegues.segueToBLEConfigFailedErrorPopOver.rawValue {
-        bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+        bleErrorPopup.tryAgainHandler = {
           self.dismissPopup()
         }
       } else {
-        bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+        bleErrorPopup.tryAgainHandler = {
           self.dismissPopup()
         }
       }
@@ -228,7 +228,7 @@ ArcusHubBLEPairingCompletionPresenter {
       if let shortName = deviceShortName {
         bleErrorPopup.shortName = shortName
       }
-      bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+      bleErrorPopup.tryAgainHandler = {
         self.pagingEnabled.value = true
         self.pagerController?.goToPageIndex(0, completion: nil)
         self.dismissPopup(nil)
@@ -238,7 +238,7 @@ ArcusHubBLEPairingCompletionPresenter {
       if let shortName = deviceShortName {
         bleErrorPopup.shortName = shortName
       }
-      bleErrorPopup.tryAgainHandler = { [unowned self] _ in
+      bleErrorPopup.tryAgainHandler = {
         self.dismissPopup(nil)
       }
     }

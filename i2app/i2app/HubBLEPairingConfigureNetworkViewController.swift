@@ -105,7 +105,7 @@ class HubBLEPairingConfigureNetworkViewController: BLEPairingConfigureNetworkVie
         delegate?.showPopupWithSegue(errorSegue)
         self.bindConnectedDevice()
         self.bindAttemptPairingWithDelay()
-      }, onDisposed: { _ in
+      }, onDisposed: {
         DDLogDebug("Disposed attemptPairingObserver")
       })
     attemptPairingObserver?.disposed(by: disposeBag)

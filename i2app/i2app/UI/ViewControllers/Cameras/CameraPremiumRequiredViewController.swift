@@ -89,7 +89,7 @@ class CameraPremiumRequiredViewController: UIViewController {
   }
 
   @IBAction func closeButtonPressed(_ sender: AnyObject) {
-    self.dismiss(animated: true, completion: { _ in })
+    self.dismiss(animated: true, completion: {})
   }
 
   override var prefersStatusBarHidden: Bool {

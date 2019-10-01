@@ -74,7 +74,7 @@ class CellularBackupPresenter: NSObject {
   }
 
   @objc func update(_ note: Notification?) {
-    DispatchQueue.main.async { [weak self] 
+    DispatchQueue.main.async { [self]
 
       if let state = self.subsystemController.cellBackupSubsystemController?.state() {
         switch state {

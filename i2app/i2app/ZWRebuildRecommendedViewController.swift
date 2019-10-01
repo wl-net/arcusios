@@ -45,6 +45,6 @@ class ZWRebuildRecommendedViewController: ZWRebuildBaseViewController,
 
   /// Called to say that the user *does not want to cancel*, delegate should dismiss the popup
   func onConfirmCancelDidPressNo() {
-    dismiss(animated: true) { _ in }
+    dismiss(animated: true) { }
   }
 }
