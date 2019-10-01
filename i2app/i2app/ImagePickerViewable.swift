@@ -77,19 +77,24 @@ extension ImagePickerViewable where Self: UIViewController {
 
   func getPickedMedia(withInfo info: [String : Any]) -> UIImage?{
     var newImage: UIImage?
-    if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+    if let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
       newImage = editedImage
-    }else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    }else if let originalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
       newImage = originalImage
     }
     return newImage
   }
   
-  private func presentImagePicker(withSourceType sourceType: UIImagePickerControllerSourceType) {
+  private func presentImagePicker(withSourceType sourceType: UIImagePickerController.SourceType) {
     imagePicker.allowsEditing = true
     imagePicker.sourceType = sourceType
     
     present(imagePicker, animated: true, completion: nil)
   }
   
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

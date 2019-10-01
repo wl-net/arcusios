@@ -98,12 +98,12 @@ import UIKit
     super.layoutSubviews()
   }
 
-  override func setImage(_ image: UIImage?, for state: UIControlState) {
+  override func setImage(_ image: UIImage?, for state: UIControl.State) {
     super.setImage(image, for: state)
     setNeedsLayout()
   }
 
-  override func setTitle(_ title: String?, for state: UIControlState) {
+  override func setTitle(_ title: String?, for state: UIControl.State) {
     super.setTitle(title, for: .normal)
     setNeedsLayout()
   }
@@ -135,7 +135,7 @@ import UIKit
     titleLabel?.layer.opacity = 0
     isUserInteractionEnabled = false
     
-    let indicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    let indicator = UIActivityIndicatorView(style: .whiteLarge)
     indicator.frame.origin = CGPoint(x: (frame.width/2) - indicator.frame.width/2,
                                      y: (frame.height/2) - indicator.frame.height/2)
     addSubview(indicator)
@@ -166,7 +166,7 @@ import UIKit
 
     if let text = self.attributedTitle(for: .normal) {
       var range = NSRange(location: 0, length: text.length)
-      let attributes = text.attributes(at: 0, effectiveRange: &range)
+      let attributes = convertFromNSAttributedStringKeyDictionary(text.attributes(at: 0, effectiveRange: &range))
       textAttributes.merge(attributes)
     }
 
@@ -179,12 +179,12 @@ import UIKit
     }
 
     if isUnderlined {
-      textAttributes[NSUnderlineStyleAttributeName] = NSUnderlineStyle.styleSingle.rawValue
+      textAttributes[convertFromNSAttributedStringKey(NSAttributedString.Key.underlineStyle)] = NSUnderlineStyle.single.rawValue
     }
-    textAttributes[NSForegroundColorAttributeName] = color
+    textAttributes[convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor)] = color
 
     let attributedTitle = NSAttributedString.init(string: title,
-                                                  attributes: textAttributes)
+                                                  attributes: convertToOptionalNSAttributedStringKeyDictionary(textAttributes))
 
     setAttributedTitle(attributedTitle, for: .normal)
 
@@ -192,4 +192,20 @@ import UIKit
     layer.borderWidth = borderWidth
     layer.borderColor = borderColor.cgColor
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKeyDictionary(_ input: [NSAttributedString.Key: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

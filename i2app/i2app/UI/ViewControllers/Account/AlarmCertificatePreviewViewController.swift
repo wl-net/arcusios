@@ -71,7 +71,7 @@ class AlarmCertificatePreviewViewController: UIViewController {
 extension AlarmCertificatePreviewViewController: UIWebViewDelegate {
   func webView(_ webView: UIWebView,
                shouldStartLoadWith request: URLRequest,
-               navigationType: UIWebViewNavigationType) -> Bool {
+               navigationType: UIWebView.NavigationType) -> Bool {
     return true
   }
 }

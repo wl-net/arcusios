@@ -73,11 +73,11 @@ class CamerasVideoStorageBasicViewController: UIViewController {
   }
   
   
-  func performDelete(_ sender: AnyObject) {
+  @objc func performDelete(_ sender: AnyObject) {
     presenter?.deleteAll()
   }
   
-  func closePopup(_ sender: AnyObject!) {}
+  @objc func closePopup(_ sender: AnyObject!) {}
   
   @IBAction func performDeleteTapped() {
     presenter?.confirmDelete()

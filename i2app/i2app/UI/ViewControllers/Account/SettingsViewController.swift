@@ -176,7 +176,7 @@ PlaceListPresenterDelegate {
       var newGuestList = [PlaceAndRoleModel]()
 
       let sortedPlaceList = placeList.sorted {
-        return $0.0.placeName.caseInsensitiveCompare($0.1.placeName) == .orderedAscending
+        return $0.placeName.caseInsensitiveCompare($1.placeName) == .orderedAscending
       }
       for placeAndRole in sortedPlaceList {
         if placeAndRole.role == PlaceAndRoleModel.ownerString {

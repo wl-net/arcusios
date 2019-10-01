@@ -109,7 +109,7 @@ PhoneNumberMasking {
    */
   func configurePersonImage() {
     personImage.layer.cornerRadius = personImage.frame.size.width / 2.0
-    personImage.contentMode = UIViewContentMode.scaleAspectFill
+    personImage.contentMode = UIView.ContentMode.scaleAspectFill
     personImage.clipsToBounds = true
   }
 
@@ -316,8 +316,11 @@ extension LetsGetAcquaintedViewController: UITextFieldDelegate {
  */
 extension LetsGetAcquaintedViewController: ImagePickerViewable {
   func imagePickerController(_ picker: UIImagePickerController,
-                             didFinishPickingMediaWithInfo info: [String : Any]) {
-    guard let newImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+    guard let newImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
       dismiss(animated: true, completion: nil)
       return
     }
@@ -340,4 +343,14 @@ extension LetsGetAcquaintedViewController: ImagePickerViewable {
     // Dismiss image selection modal.
     dismiss(animated: true, completion: nil)
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

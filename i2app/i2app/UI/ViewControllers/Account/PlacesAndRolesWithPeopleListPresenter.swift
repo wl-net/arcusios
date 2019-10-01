@@ -95,8 +95,8 @@ class ConcretePlacesAndRolesWithPeopleListPresenter: PlacesAndRolesWithPeopleLis
             if let personViewModels = personViewModels as? [PersonViewModel] {
               // Sort people
               placeRoleWithPeople.people = personViewModels.sorted {
-                if let name1 = $0.0.fullName,
-                  let name2 = $0.1.fullName {
+                if let name1 = $0.fullName,
+                  let name2 = $1.fullName {
                     return name1.caseInsensitiveCompare(name2) == .orderedAscending
                 }
                 return false
@@ -118,7 +118,7 @@ class ConcretePlacesAndRolesWithPeopleListPresenter: PlacesAndRolesWithPeopleLis
             if let personViewModels = personViewModels as? [PersonViewModel] {
               // Sort people
               placeRoleWithPeople.people = personViewModels.sorted {
-                return $0.0.fullName?.caseInsensitiveCompare($0.1.fullName ?? "") == .orderedAscending
+                return $0.fullName?.caseInsensitiveCompare($1.fullName ?? "") == .orderedAscending
               }
             }
             appendToGuestPlaces(placeRoleWithPeople)

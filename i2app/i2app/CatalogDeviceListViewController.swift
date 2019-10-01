@@ -105,7 +105,7 @@ class CatalogDeviceListViewController: UIViewController, HeaderScrollable, Devic
     
     // Configure Views
     addScleraStyleToNavigationTitle()
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 80
     tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 1))
     updateViews()

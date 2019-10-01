@@ -79,7 +79,7 @@ class AlarmTrackerViewController: UIViewController {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
 
-    if isMovingFromParentViewController == true {
+    if isMovingFromParent == true {
       incidentPresenter?.tearDown()
       incidentPresenter = nil
     }
@@ -182,7 +182,7 @@ class AlarmTrackerViewController: UIViewController {
   }
 
   func configureTableView() {
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 70
   }
 
@@ -394,7 +394,7 @@ extension AlarmTrackerViewController: IncidentTrackerDelegate {
 
   func updateTracker() {
     updateCollectionView({
-      _ in
+      
       self.collectionView.reloadSections(IndexSet(integer: 0))
       self.configureTrackerIndex(self.incidentPresenter!)
     })
@@ -408,7 +408,7 @@ extension AlarmTrackerViewController: IncidentTrackerDelegate {
 
   func updateCountdown() {
     updateCollectionView({
-      _ in
+      
       let reloadPath: IndexPath =
         IndexPath(row: self.incidentPresenter!.alarmEventActiveIndex, section: 0)
       if self.collectionView.numberOfItems(inSection: reloadPath.section) > reloadPath.row {

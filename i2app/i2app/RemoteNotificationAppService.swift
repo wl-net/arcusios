@@ -38,12 +38,12 @@ class RemoteNotificationAppService: ArcusApplicationServiceProtocol, DeviceToken
   }
 
   func serviceDidFinishLaunching(_ event: ArcusApplicationServiceEvent) {
-    let optionKey = UIApplicationLaunchOptionsKey.remoteNotification
+    let optionKey = UIApplication.LaunchOptionsKey.remoteNotification
     let application = UIApplication.shared
 
     RemoteNotificationHandler.shared.registerForRemoteNotifications(UIApplication.shared)
 
-    guard let launchOptions = event.payload as? [UIApplicationLaunchOptionsKey: Any],
+    guard let launchOptions = event.payload as? [UIApplication.LaunchOptionsKey: Any],
       let appDelegate = application.delegate as? AppDelegate,
       let userInfo = launchOptions[optionKey] as? [AnyHashable: Any],
       let rootViewController = appDelegate.window?.rootViewController else {

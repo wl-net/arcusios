@@ -55,7 +55,7 @@ protocol ArcusApplicationServiceEvent {
   /**
 
    */
-  var launchOptions: [UIApplicationLaunchOptionsKey: Any]? { get }
+  var launchOptions: [UIApplication.LaunchOptionsKey: Any]? { get }
 
   /**
 

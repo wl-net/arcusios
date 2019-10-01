@@ -71,7 +71,7 @@ class SlideMenuViewController: UIViewController, SlideMenuPresenterProtocol {
     view.frame.size.width = revealViewController().rearViewRevealWidth
   }
 
-  override func prefersHomeIndicatorAutoHidden() -> Bool {
+  override var prefersHomeIndicatorAutoHidden: Bool {
     return true
   }
 

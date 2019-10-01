@@ -43,12 +43,12 @@ extension AppDelegate: UIApplicationDelegate {
     return ApplicationServiceEventPublisher.shared.eventObservable
   }
   
-  func application(_ application: UIApplication, shouldAllowExtensionPointIdentifier extensionPointIdentifier: UIApplicationExtensionPointIdentifier) -> Bool {
+  func application(_ application: UIApplication, shouldAllowExtensionPointIdentifier extensionPointIdentifier: UIApplication.ExtensionPointIdentifier) -> Bool {
     return false
   }
 
   func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     -> Bool {
       // Create the initial window
       window = UIWindow(frame: UIScreen.main.bounds)
@@ -76,7 +76,7 @@ extension AppDelegate: UIApplicationDelegate {
       // Set up the application so that the audio emitted by a clip can be heard even if the device is in
       // silent mode.
       do {
-        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        try AVAudioSession.sharedInstance().setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback))
       } catch {
         DDLogError("Application could not set AVAudioSession category to AVAudioSessionCategoryPlayback")
       }
@@ -159,7 +159,7 @@ extension AppDelegate: UIApplicationDelegate {
 
   public func application(_ application: UIApplication,
                           continue userActivity: NSUserActivity,
-                          restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+                          restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
     let event = ApplicationEvent(application,
                                  type: .continueUserActivity,
                                  payload: userActivity)
@@ -193,4 +193,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                  payload: notification)
     eventObservable.onNext(event)
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

@@ -37,7 +37,7 @@ typealias BackgroundHandler = () -> Void
 class CorneaController: ArcusApplicationServiceProtocol, BiometricAuthenticationMixin {
 
   var disposeBag = DisposeBag()
-  var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+  var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
   var backgroundHandler: BackgroundHandler?
   var suspendRouting: Bool = false
   var suspendCacheLoadRouting: Bool = false
@@ -95,7 +95,7 @@ class CorneaController: ArcusApplicationServiceProtocol, BiometricAuthentication
 
     // If backgroundTask is not UIBackgroundTaskInvalid, then application has returned within
     // 30 seconds of backgrounding.
-    if backgroundTask != UIBackgroundTaskInvalid {
+    if backgroundTask != UIBackgroundTaskIdentifier.invalid {
       DDLogInfo("CorneaController resumed within 30 seconds.  Ending Backround Task.")
       endBackgroundTask()
     } else {
@@ -136,8 +136,8 @@ class CorneaController: ArcusApplicationServiceProtocol, BiometricAuthentication
     biometricAuthenticator = BiometricAuthenticator()
 
     // Ensure we are not locked out or unenrolled
-    evaluateBiometricSettings(lockoutHandler: { [weak self] _ in
-      self?.biometricAuthenticationLogout(.lockout)
+    evaluateBiometricSettings(lockoutHandler: { [weak self] 
+      self.biometricAuthenticationLogout(.lockout)
       }, notEnrolledHandler: { [weak self] in
         self?.biometricAuthenticationLogout(.notEnrolled)
     })
@@ -180,7 +180,7 @@ class CorneaController: ArcusApplicationServiceProtocol, BiometricAuthentication
   private func registerBackgroundTask() {
     DDLogInfo("CorneaController.registerBackgroundTask() called.")
 
-    guard backgroundTask == UIBackgroundTaskInvalid else {
+    guard backgroundTask == UIBackgroundTaskIdentifier.invalid else {
       DDLogError("CorneaController.registerBackgroundTask() aborted: BackgroundTask already exists.")
       return
     }
@@ -209,8 +209,8 @@ class CorneaController: ArcusApplicationServiceProtocol, BiometricAuthentication
   private func endBackgroundTask() {
     DDLogInfo("CorneaController.endBackgroundTask() executed.")
 
-    UIApplication.shared.endBackgroundTask(backgroundTask)
-    backgroundTask = UIBackgroundTaskInvalid
+    UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTask.rawValue))
+    backgroundTask = UIBackgroundTaskIdentifier.invalid
     backgroundHandler = nil
   }
 
@@ -307,4 +307,9 @@ class CorneaController: ArcusApplicationServiceProtocol, BiometricAuthentication
     biometricAuthenticator = BiometricAuthenticator()
     RxCornea.shared.session?.logout()
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIBackgroundTaskIdentifier(_ input: Int) -> UIBackgroundTaskIdentifier {
+	return UIBackgroundTaskIdentifier(rawValue: input)
 }

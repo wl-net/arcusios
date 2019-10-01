@@ -81,7 +81,7 @@ class C2CWebDelegate: NSObject, C2CWebViewDelegate, UIWebViewDelegate {
 
   public func webView(_ webView: UIWebView,
                       shouldStartLoadWith request: URLRequest,
-                      navigationType: UIWebViewNavigationType) -> Bool {
+                      navigationType: UIWebView.NavigationType) -> Bool {
     guard let url = request.url?.absoluteString else {
       return true
     }

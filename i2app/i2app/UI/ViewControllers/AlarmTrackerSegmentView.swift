@@ -167,7 +167,7 @@ class AlarmTrackerSegmentView: UIView {
 
     let mask = CAShapeLayer()
     mask.path = UIBezierPath(rect: rect).cgPath
-    mask.fillRule = kCAFillRuleEvenOdd
+    mask.fillRule = CAShapeLayerFillRule.evenOdd
 
     return mask
   }

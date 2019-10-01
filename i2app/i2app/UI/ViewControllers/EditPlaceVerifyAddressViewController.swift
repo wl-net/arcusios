@@ -72,7 +72,7 @@ SaveAddressDelegate {
     super.viewDidAppear(animated)
   }
 
-  func onIsPrivateResidenceTapped() {
+  @objc func onIsPrivateResidenceTapped() {
     residenceCheckbox.isHighlighted = !residenceCheckbox.isHighlighted
 
     saveButton.isEnabled = residenceCheckbox.isHighlighted
@@ -307,7 +307,7 @@ SaveAddressDelegate {
     let defaultSelection = IndexPath(item: 0, section: 0)
     suggestionsTable.selectRow(at: defaultSelection,
                                animated: false,
-                               scrollPosition: UITableViewScrollPosition.top)
+                               scrollPosition: UITableView.ScrollPosition.top)
     self.tableView(suggestionsTable, didSelectRowAt: defaultSelection)
   }
 

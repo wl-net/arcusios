@@ -50,7 +50,7 @@ class AlarmMoreViewController: UIViewController,
     presenter = AlarmMorePresenter(delegate: self)
     tableView.register(UINib.init(nibName: AlarmMoreTableViewSectionHeader.reuseIdentifier, bundle: nil),
                        forHeaderFooterViewReuseIdentifier: headerIdentifier)
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 70.0
     configureClearLayout()
 
@@ -107,7 +107,7 @@ class AlarmMoreViewController: UIViewController,
     }
   }
 
-  func didToggle(Switch toggle: UISwitch) {
+  @objc func didToggle(Switch toggle: UISwitch) {
     let cell = toggle.superTableViewCell!
     let indexPath = self.tableView.indexPath(for: cell)!
     presenter.toggleObject(toggle.isOn, atIndexPath: indexPath)

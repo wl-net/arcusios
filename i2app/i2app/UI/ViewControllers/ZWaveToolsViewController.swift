@@ -100,9 +100,9 @@ class ZWaveToolsViewController: UIViewController, UITableViewDataSource, UITable
       cell?.backgroundColor = UIColor.clear
       cell?.textLabel?.attributedText =
         NSAttributedString(string:  "REMOVE Z-WAVE DEVICES",
-                           attributes: [NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold",
+                           attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-DemiBold",
                                                                     size: 11.0)!,
-                                       NSKernAttributeName: 2.0])
+                                       convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 2.0]))
       cell?.accessoryView = UIImageView(image: UIImage(named: "ChevronWhite"))
 
       return cell!
@@ -118,18 +118,18 @@ class ZWaveToolsViewController: UIViewController, UITableViewDataSource, UITable
       cell?.backgroundColor = UIColor.clear
       cell?.textLabel?.attributedText =
         NSAttributedString(string:  "REBUILD Z-WAVE NETWORK",
-                           attributes: [NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold",
+                           attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-DemiBold",
                                                                     size: 11.0)!,
-                                        NSKernAttributeName: 2.0])
+                                        convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 2.0]))
 
       if let progress = rebuildProgress {
         cell?.detailTextLabel?.attributedText =
           NSAttributedString(string:  "Rebuild in progress... \(progress)%",
-            attributes: [ NSFontAttributeName: UIFont(name: "AvenirNext-MediumItalic", size: 10.0)!])
+            attributes: convertToOptionalNSAttributedStringKeyDictionary([ convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-MediumItalic", size: 10.0)!]))
       } else {
         cell?.detailTextLabel?.attributedText =
           NSAttributedString(string:  "Rebuild in progress... 0%",
-            attributes: [ NSFontAttributeName: UIFont(name: "AvenirNext-MediumItalic", size: 10.0)!])
+            attributes: convertToOptionalNSAttributedStringKeyDictionary([ convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "AvenirNext-MediumItalic", size: 10.0)!]))
 
       }
       cell?.accessoryView = UIImageView(image: UIImage(named: "ChevronWhite"))
@@ -167,7 +167,7 @@ class ZWaveToolsViewController: UIViewController, UITableViewDataSource, UITable
     self.navigationController?.pushViewController(nextViewController!, animated: true)
   }
 
-  open func onHealPercentChanged (_ notification: Notification) {
+  @objc open func onHealPercentChanged (_ notification: Notification) {
     DispatchQueue.main.async(execute: {
       self.tableView.reloadData()
     })
@@ -220,4 +220,15 @@ class ZWaveToolsViewController: UIViewController, UITableViewDataSource, UITable
 
     return false
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

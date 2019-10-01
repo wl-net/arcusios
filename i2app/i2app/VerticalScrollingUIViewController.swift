@@ -90,8 +90,8 @@ extension VerticalAutoScrollable {
       // Calculate preferred size
       let resized = contents.systemLayoutSizeFitting(
           CGSize(width: contents.bounds.width, height: 0),
-          withHorizontalFittingPriority: UILayoutPriorityRequired,
-          verticalFittingPriority: UILayoutPriorityDefaultLow)
+          withHorizontalFittingPriority: UILayoutPriority.required,
+          verticalFittingPriority: UILayoutPriority.defaultLow)
 
       // Don't do jack if expanded content height doesn't exceed bounds of existing view
       // (i.e., content doesn't need to scroll to fit screen)

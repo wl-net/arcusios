@@ -112,7 +112,7 @@ class HaloTestingViewController: UIViewController {
     }
   }
 
-  func remoteTestResultStateChanged(_ notification: Notification) {
+  @objc func remoteTestResultStateChanged(_ notification: Notification) {
     DispatchQueue.main.async(execute: {
       self.hideGif()
       self.updateLastTestingStatus()

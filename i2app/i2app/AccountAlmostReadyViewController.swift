@@ -78,8 +78,8 @@ ArcusLogoutPresenter {
 
 fileprivate extension NSMutableAttributedString {
   @discardableResult func addText(_ text: String, font: UIFont) -> NSMutableAttributedString {
-    let attrs: [String :AnyObject] = [NSFontAttributeName: font]
-    self.append(NSMutableAttributedString(string: text, attributes:attrs))
+    let attrs: [String :AnyObject] = [convertFromNSAttributedStringKey(NSAttributedString.Key.font): font]
+    self.append(NSMutableAttributedString(string: text, attributes:convertToOptionalNSAttributedStringKeyDictionary(attrs)))
     return self
   }
 
@@ -96,4 +96,15 @@ fileprivate extension NSMutableAttributedString {
     }
     return addText(text, font: font)
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

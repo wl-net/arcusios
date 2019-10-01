@@ -115,13 +115,13 @@ extension ActiveAlarmIncidentType {
 
   func navigationBarTextAttributes(_ state: IncidentAlertState) -> [String:AnyObject]? {
     if state == .prealert {
-      return [NSForegroundColorAttributeName: UIColor.black]
+      return [convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.black]
     } else {
       switch self {
       case .none:
-        return [NSForegroundColorAttributeName: UIColor.black]
+        return [convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.black]
       case .security, .panic, .smokeAndCO, .care, .water:
-        return [NSForegroundColorAttributeName: UIColor.white]
+        return [convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.white]
       }
     }
   }
@@ -151,7 +151,7 @@ class NavigationBarAppearanceManager: NSObject {
     UINavigationBar.appearance().barTintColor = type.barTintColor(state)
     UINavigationBar.appearance().barStyle = type.navigationBarBarStyle
     UINavigationBar.appearance().tintColor = type.navigationBarTintColor(state)
-    UINavigationBar.appearance().titleTextAttributes = type.navigationBarTextAttributes(state)
+    UINavigationBar.appearance().titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary(type.navigationBarTextAttributes(state))
 
     UIBarButtonItem
       .appearance(whenContainedInInstancesOf: [UINavigationBar.self])
@@ -257,4 +257,15 @@ extension NavigationBarAppearanceManager {
   @objc var navigationBarTextAttributes: [String:AnyObject]? {
     return self.currentColorScheme.navigationBarTextAttributes(currentIncidentState)
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

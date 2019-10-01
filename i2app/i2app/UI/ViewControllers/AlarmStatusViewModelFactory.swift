@@ -245,14 +245,14 @@ class AlarmStatusViewModelFactory {
 
   private static func formatTimerText(_ seconds: Int) -> NSAttributedString {
     let attributes: [String: AnyObject] = [
-      NSFontAttributeName: UIFont(name: "Avenir Next", size: 17)!,
-      NSForegroundColorAttributeName: UIColor(
+      convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "Avenir Next", size: 17)!,
+      convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor(
         red: 255, green: 255, blue: 255, alpha: 0.7),
-      NSBaselineOffsetAttributeName: 7.0 as AnyObject
+      convertFromNSAttributedStringKey(NSAttributedString.Key.baselineOffset): 7.0 as AnyObject
     ]
 
     let time = NSMutableAttributedString(string: "\(seconds)")
-    let s = NSAttributedString(string: " s", attributes:attributes)
+    let s = NSAttributedString(string: " s", attributes:convertToOptionalNSAttributedStringKeyDictionary(attributes))
 
     time.append(s)
     return time
@@ -260,18 +260,18 @@ class AlarmStatusViewModelFactory {
 
   private static func formatGrayedOutText(_ statusText: String) -> NSAttributedString {
     let attributes: [String: AnyObject] = [
-      NSForegroundColorAttributeName: UIColor.lightGray.withAlphaComponent(0.60)
+      convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.lightGray.withAlphaComponent(0.60)
     ]
 
-    return NSAttributedString(string: statusText, attributes: attributes)
+    return NSAttributedString(string: statusText, attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
   }
 
   private static func formatReadyText(_ text: String) -> NSAttributedString {
     let attributes: [String: AnyObject] = [
-      NSFontAttributeName: UIFont(name: "Avenir Next", size: 17)!
+      convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "Avenir Next", size: 17)!
     ]
 
-    let formattedText = NSAttributedString(string: text, attributes:attributes)
+    let formattedText = NSAttributedString(string: text, attributes:convertToOptionalNSAttributedStringKeyDictionary(attributes))
 
     return formattedText
   }
@@ -327,15 +327,15 @@ class AlarmStatusViewModelFactory {
 
     if stringComponents.count == 2 {
       let attributes: [String: AnyObject] = [
-        NSFontAttributeName: UIFont(name: "Avenir Next", size: 14)!,
-        NSForegroundColorAttributeName: UIColor(
+        convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "Avenir Next", size: 14)!,
+        convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor(
           red: 255, green: 255, blue: 255, alpha: 0.7),
-        NSBaselineOffsetAttributeName: 7.0 as AnyObject
+        convertFromNSAttributedStringKey(NSAttributedString.Key.baselineOffset): 7.0 as AnyObject
       ]
 
       let mainText = NSMutableAttributedString(string: stringComponents[0])
       let formattedText = NSAttributedString(string: "/\(stringComponents[1])",
-        attributes:attributes)
+        attributes:convertToOptionalNSAttributedStringKeyDictionary(attributes))
 
       mainText.append(formattedText)
       return mainText
@@ -343,4 +343,15 @@ class AlarmStatusViewModelFactory {
 
     return NSAttributedString(string: statusText)
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

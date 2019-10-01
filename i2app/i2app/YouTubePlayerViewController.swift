@@ -48,7 +48,7 @@ public class YouTubePlayerViewController: UIViewController {
 
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(self.onVideoDismissed),
-                                           name: NSNotification.Name.UIWindowDidBecomeKey,
+                                           name: UIWindow.didBecomeKeyNotification,
                                            object: self.view.window)
   }
 

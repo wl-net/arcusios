@@ -37,7 +37,7 @@ class AccountCreationCreateViewController: UIViewController {
     super.viewDidLoad()
     
     if let titleFont = UIFont(name: "AvenirNext-Regular", size: 18) {
-      UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: titleFont]
+      UINavigationBar.appearance().titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.font.rawValue: titleFont])
     }
   }
   
@@ -59,4 +59,10 @@ class AccountCreationCreateViewController: UIViewController {
       UIApplication.shared.openURL(url)
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

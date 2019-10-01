@@ -145,7 +145,7 @@ extension WSSPairingPresenter {
               }
               return
             }
-            single(.success())
+            single(.success(()))
         })
 
       return Disposables.create {
@@ -173,7 +173,7 @@ extension WSSPairingPresenter {
         let pairingSubsystem = ps {
         let mode = self.getPairingSubsystemPairingMode(pairingSubsystem)
         if mode == PairingSubsystemPairingMode.idle {
-          single(.success())
+          single(.success(()))
         }
       }
 
@@ -185,7 +185,7 @@ extension WSSPairingPresenter {
         })
         .subscribe(
           onNext: { _ in
-            single(.success())
+            single(.success(()))
         })
 
       // Call Stop Pairing and complete after a delay (to ensure we always will complete)
@@ -196,7 +196,7 @@ extension WSSPairingPresenter {
           onNext: { [unowned self] subsystem in
             let mode = self.getPairingSubsystemPairingMode(subsystem)
             if mode == PairingSubsystemPairingMode.idle {
-              single(.success())
+              single(.success(()))
             } else {
               // swiftlint:disable:next force_try
               _ = try! self.requestPairingSubsystemStopSearching(subsystem)

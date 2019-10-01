@@ -57,15 +57,15 @@ class GenericThermostatOperationPresenter: NSObject, GenericThermostatOperationP
       let formattedDate =  date.formatDateTimeStamp() {
 
       let attributes: [String: AnyObject] = [
-        NSForegroundColorAttributeName: UIColor(red: 255, green: 255, blue: 255, alpha: 0.7),
-        NSKernAttributeName: 2 as AnyObject
+        convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor(red: 255, green: 255, blue: 255, alpha: 0.7),
+        convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 2 as AnyObject
       ]
       let solid: [String: AnyObject] = [
-        NSForegroundColorAttributeName: UIColor(red: 255, green: 255, blue: 255, alpha: 1.0),
-        NSKernAttributeName: 2 as AnyObject
+        convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor(red: 255, green: 255, blue: 255, alpha: 1.0),
+        convertFromNSAttributedStringKey(NSAttributedString.Key.kern): 2 as AnyObject
       ]
-      let eventText = NSMutableAttributedString(string: "NEXT EVENT", attributes: attributes)
-      let eventInfo = NSAttributedString(string: " \(eventValue) AT \(formattedDate)", attributes: solid)
+      let eventText = NSMutableAttributedString(string: "NEXT EVENT", attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
+      let eventInfo = NSAttributedString(string: " \(eventValue) AT \(formattedDate)", attributes: convertToOptionalNSAttributedStringKeyDictionary(solid))
       eventText.append(eventInfo)
 
       return eventText
@@ -73,4 +73,15 @@ class GenericThermostatOperationPresenter: NSObject, GenericThermostatOperationP
       return nil
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

@@ -34,7 +34,7 @@ class DeviceDetailsSpaceHeater: DeviceDetailsBase {
   var minusButton: DeviceButtonBaseControl?
   var displayedSetpoint: Int?
 
-  func onOnButton() {
+  @objc func onOnButton() {
     DispatchQueue.global(qos: .background).async {
       SpaceHeaterCapability.setHeatstate(kEnumSpaceHeaterHeatstateON, on: self.deviceModel)
       self.deviceModel.commit()
@@ -42,7 +42,7 @@ class DeviceDetailsSpaceHeater: DeviceDetailsBase {
     }
   }
 
-  func onOffButton() {
+  @objc func onOffButton() {
     DispatchQueue.global(qos: .background).async {
       SpaceHeaterCapability.setHeatstate(kEnumSpaceHeaterHeatstateOFF, on: self.deviceModel)
       self.deviceModel.commit()
@@ -50,7 +50,7 @@ class DeviceDetailsSpaceHeater: DeviceDetailsBase {
     }
   }
 
-  func onPlusButton () {
+  @objc func onPlusButton () {
     let newTempInF = getDisplayedSetpoint() + 1
     if newTempInF <= DeviceController.getSpaceHeaterMaxSetpoint(for: deviceModel) {
       setDisplayedSetpoint(newTempInF)
@@ -62,7 +62,7 @@ class DeviceDetailsSpaceHeater: DeviceDetailsBase {
     }
   }
 
-  func onMinusButton () {
+  @objc func onMinusButton () {
     let newTempInF = getDisplayedSetpoint() - 1
     if newTempInF >= DeviceController.getSpaceHeaterMinSetpoint(for: deviceModel) {
       setDisplayedSetpoint(newTempInF)
@@ -74,7 +74,7 @@ class DeviceDetailsSpaceHeater: DeviceDetailsBase {
     }
   }
 
-  func onModeButton () {
+  @objc func onModeButton () {
     let on = PopupSelectionButtonModel.create("ON", event: #selector(onOnButton))
     let off = PopupSelectionButtonModel.create("OFF", event: #selector(onOffButton))
     let popup = PopupSelectionButtonsView.create(withTitle: "POWER", buttons:[on!, off!])

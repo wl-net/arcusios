@@ -94,7 +94,7 @@ class AlarmStatusViewController: UIViewController, ArcusTabBarComponent {
     alarmStatusPresenter = AlarmStatusPresenter(delegate: self)
     alarmStatusPresenter.fetchAlarmStatus()
 
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 200.0
   }
 
@@ -494,7 +494,7 @@ extension AlarmStatusViewController {
 
     UIView.transition(with: view,
                               duration: 0.3,
-                              options: UIViewAnimationOptions.transitionCrossDissolve,
+                              options: UIView.AnimationOptions.transitionCrossDissolve,
                               animations: {
                                 button.backgroundColor = colorFaded
                                 button.titleLabel?.textColor = colorTextFaded},
@@ -509,7 +509,7 @@ extension AlarmStatusViewController {
 
     UIView.transition(with: view,
                               duration: 0.5,
-                              options: UIViewAnimationOptions.transitionCrossDissolve,
+                              options: UIView.AnimationOptions.transitionCrossDissolve,
                               animations: {
                                 button.backgroundColor = colorFaded
                                 button.titleLabel?.textColor = colorTextFaded},
@@ -533,7 +533,7 @@ extension AlarmStatusViewController {
 
     UIView.transition(with: view,
                               duration: 0.5,
-                              options: UIViewAnimationOptions.transitionCrossDissolve,
+                              options: UIView.AnimationOptions.transitionCrossDissolve,
                               animations: {
                                 button.backgroundColor = useColor
                                 button.titleLabel?.textColor = useText},

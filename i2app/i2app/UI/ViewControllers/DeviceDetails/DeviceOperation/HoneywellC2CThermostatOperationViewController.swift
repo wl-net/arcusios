@@ -103,7 +103,7 @@ class HoneywellC2CThermostatOperationViewController: DeviceOperationBaseControll
 
   // MARK: Event Handlers
 
-  func handleModePressed(_ selectedValue: Any) {
+  @objc func handleModePressed(_ selectedValue: Any) {
     if let mode = selectedValue as? ThermostatMode {
       if mode != presenter.thermostatViewModel.mode {
         presenter.update(selectedMode: mode)

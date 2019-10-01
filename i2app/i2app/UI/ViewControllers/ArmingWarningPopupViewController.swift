@@ -39,7 +39,7 @@ class ArmingWarningPopupViewController: PopupSelectionBaseContainer, UITextViewD
     return descriptionTextHeight.constant - 141.0 + 265.0
   }
 
-  private var closeHandler: () -> Void = { _ in }
+  private var closeHandler: () -> Void = {  }
 
   static func create() -> ArmingWarningPopupViewController? {
     let storyboard = UIStoryboard(name: storyboardName, bundle: nil)

@@ -37,7 +37,7 @@ class ManageDevicesViewController: UIViewController, UITableViewDataSource, UITa
     didSet {
       self.tableView.backgroundColor = UIColor.clear
       self.tableView.estimatedRowHeight = 80
-      self.tableView.rowHeight = UITableViewAutomaticDimension
+      self.tableView.rowHeight = UITableView.automaticDimension
       self.tableView.alwaysBounceVertical = false
     }
   }
@@ -177,15 +177,15 @@ class ManageDevicesViewController: UIViewController, UITableViewDataSource, UITa
     let mobileDevice = self.mobileDevicesArray?[indexPath.row]
     cell?.titleLabel.text = self.getMobilePhoneOsType(mobileDevice!)
     cell?.descriptionLabel.text = self.getMobilePhoneType(mobileDevice!)
-    cell?.selectionStyle = UITableViewCellSelectionStyle.none
+    cell?.selectionStyle = UITableViewCell.SelectionStyle.none
 
     return cell!
   }
 
   func tableView(_ tableView: UITableView,
-                 commit editingStyle: UITableViewCellEditingStyle,
+                 commit editingStyle: UITableViewCell.EditingStyle,
                  forRowAt indexPath: IndexPath) {
-    if editingStyle == UITableViewCellEditingStyle.delete {
+    if editingStyle == UITableViewCell.EditingStyle.delete {
       //numbers.removeAtIndex(indexPath.row)
       DispatchQueue.global(qos: .background).async {
         let mobileDevice = self.mobileDevicesArray![indexPath.row]
@@ -199,7 +199,7 @@ class ManageDevicesViewController: UIViewController, UITableViewDataSource, UITa
                                     self.tableView.beginUpdates()
                                     if self.tableView.numberOfRows(inSection: indexPath.section) > 1 {
                                       self.tableView!.deleteRows(at: [indexPath],
-                                                                 with: UITableViewRowAnimation.automatic)
+                                                                 with: UITableView.RowAnimation.automatic)
                                     } else {
                                       self.tableView.deleteSections(IndexSet(integer: indexPath.section),
                                                                     with: .automatic)

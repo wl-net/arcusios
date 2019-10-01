@@ -59,13 +59,13 @@ class AlarmsLearnMoreViewController: UIViewController, AlarmsLearnMorePresenterD
     viewTitle.text = viewModel.title
     subtitle.text = viewModel.subtitle
     deviceInfo.text = viewModel.deviceInfo
-    shopButton.setTitle(viewModel.buttonTitle, for: UIControlState())
+    shopButton.setTitle(viewModel.buttonTitle, for: UIControl.State())
     deviceList.text = viewModel.deviceList
 
     if  viewModel.deviceList.isEmpty {
-      deviceListCollapse.priority = 999
+      deviceListCollapse.priority = UILayoutPriority(rawValue: 999)
     } else {
-      deviceListCollapse.priority = 200
+      deviceListCollapse.priority = UILayoutPriority(rawValue: 200)
     }
   }
 }

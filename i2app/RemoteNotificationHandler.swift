@@ -228,7 +228,7 @@ extension RemoteNotificationHandlerProtocol {
     if #available(iOS 10, *) {
       let options: UNAuthorizationOptions = [.badge, .alert, .sound]
 
-      UNUserNotificationCenter.current().requestAuthorization(options: options) { _ in }
+      UNUserNotificationCenter.current().requestAuthorization(options: options) { _,_  in }
       application.registerForRemoteNotifications()
     } else {
       let types: UIUserNotificationType = [.badge, .alert, .sound]

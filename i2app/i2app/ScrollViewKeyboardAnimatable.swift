@@ -95,14 +95,14 @@ extension ScrollViewKeyboardAnimatable where Self: UIViewController {
   
   func addKeyboardScrolling() {
     keyboardAnimatableShowObserver = NotificationCenter.default.addObserver(
-      forName: NSNotification.Name.UIKeyboardDidShow,
+      forName: UIResponder.keyboardDidShowNotification,
       object: nil,
       queue: nil) { (notification) in
         self.keyboardWillShow(notification)
     }
 
     keyboardAnimatableHideObserver = NotificationCenter.default.addObserver(
-      forName: NSNotification.Name.UIKeyboardWillHide,
+      forName: UIResponder.keyboardWillHideNotification,
       object: nil,
       queue: nil) { (notification) in
         self.keyboardWillHide(notification)
@@ -121,7 +121,7 @@ extension ScrollViewKeyboardAnimatable where Self: UIViewController {
 
   fileprivate func keyboardWillShow(_ notification: Notification) {
     guard let info = notification.userInfo,
-      let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+      let keyboardFrame = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
         return
     }
 

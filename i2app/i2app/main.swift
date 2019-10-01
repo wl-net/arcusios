@@ -30,4 +30,4 @@ if let testClass = NSClassFromString("i2appTests.TestingAppDelegate") {
 let args = UnsafeMutableRawPointer(CommandLine.unsafeArgv)
   .bindMemory(to: UnsafeMutablePointer<Int8>.self, capacity: Int(CommandLine.argc))
 
-_ = UIApplicationMain(CommandLine.argc, args, nil, NSStringFromClass(appDelegateClass))
+_ = UIApplicationMain(CommandLine.argc, CommandLine.unsafeArgv, nil, NSStringFromClass(appDelegateClass))

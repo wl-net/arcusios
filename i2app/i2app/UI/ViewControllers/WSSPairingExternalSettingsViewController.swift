@@ -84,7 +84,7 @@ IPCDServiceDelegate {
     NotificationCenter.default
       .addObserver(self,
                    selector: #selector(applicationEnteredBackgroundNotificationReceived(_:)),
-                   name: Notification.Name.UIApplicationDidEnterBackground,
+                   name: UIApplication.didEnterBackgroundNotification,
                    object: nil)
 
     NotificationCenter.default
@@ -127,17 +127,17 @@ IPCDServiceDelegate {
   func configureHelpButton() {
     let title = "Need Help?"
     let font = needHelpButton.titleLabel!.font
-    let attributes = [NSFontAttributeName: font!,
-                      NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue] as [String : Any]
+    let attributes = [convertFromNSAttributedStringKey(NSAttributedString.Key.font): font!,
+                      convertFromNSAttributedStringKey(NSAttributedString.Key.underlineStyle): NSUnderlineStyle.single.rawValue] as [String : Any]
 
     let attributedString: NSMutableAttributedString =
       NSMutableAttributedString(string: title,
-                                attributes: attributes)
-    needHelpButton.setAttributedTitle(attributedString, for: UIControlState())
+                                attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
+    needHelpButton.setAttributedTitle(attributedString, for: UIControl.State())
   }
 
   // MARK: Notification Handling
-  func deviceAddedEventReceived(_ notification: Notification) {
+  @objc func deviceAddedEventReceived(_ notification: Notification) {
     DispatchQueue.main.async(execute: {
       if let addedDevice = notification.object as? DeviceModel {
         let addedProductId = DeviceCapability.getProductId(from: addedDevice)
@@ -161,7 +161,7 @@ IPCDServiceDelegate {
     })
   }
 
-  func applicationEnteredBackgroundNotificationReceived(_ notification: Notification) {
+  @objc func applicationEnteredBackgroundNotificationReceived(_ notification: Notification) {
     if attemptPairing == false {
       beginPairingAttempt()
     }
@@ -286,7 +286,7 @@ IPCDServiceDelegate {
     }
   }
 
-  func closePopup(_ sender: AnyObject!) {
+  @objc func closePopup(_ sender: AnyObject!) {
     ipcdServicerController?.stopPairing()
     ipcdServicerController = nil
     attemptPairing = false
@@ -294,7 +294,7 @@ IPCDServiceDelegate {
     hideGif()
   }
 
-  func closeErrorPopUp(_ sender: AnyObject!) {
+  @objc func closeErrorPopUp(_ sender: AnyObject!) {
     closePopup(sender)
     var chooseViewController: ChooseDeviceViewController? = nil
 
@@ -317,7 +317,7 @@ IPCDServiceDelegate {
     }
   }
 
-  func contactSupport(_ sender: AnyObject!) {
+  @objc func contactSupport(_ sender: AnyObject!) {
     let phoneNo: String = "telprompt:+18554694747"
     if let phoneUrl = URL(string: phoneNo) {
       if UIApplication.shared.canOpenURL(phoneUrl) == true {
@@ -455,4 +455,15 @@ IPCDServiceDelegate {
       }
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

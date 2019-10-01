@@ -42,7 +42,7 @@ extension UIButton {
     self.setOrTriggerClosure()
   }
   //func setActionTo(closure: (UIButton) -> Void, forEvents: UIControlEvents) {
-  func setActionTo(_ forEvents: UIControlEvents, closure: @escaping (_ button: UIButton) -> Void) {
+  func setActionTo(_ forEvents: UIControl.Event, closure: @escaping (_ button: UIButton) -> Void) {
     self.setOrTriggerClosure(closure)
     self.addTarget(self, action:
       #selector(UIButton.triggerActionClosure),

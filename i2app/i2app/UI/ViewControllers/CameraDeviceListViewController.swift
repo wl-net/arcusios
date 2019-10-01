@@ -59,7 +59,7 @@ class CameraDeviceListViewController: UIViewController, CameraPlaybackViewContro
     super.viewDidLoad()
     navBar(withTitle: navigationItem.title, enableBackButton: true)
     tableView.tableFooterView = UIView()
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 210.0
     presenter = CameraDeviceListPresenter(delegate: self)
     NotificationCenter.default

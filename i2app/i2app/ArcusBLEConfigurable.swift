@@ -223,7 +223,7 @@ extension ArcusBLEConfigurable where Self: ArcusBLEConnectable {
             single(.error(error!))
             return
           }
-          single(.success())
+          single(.success(()))
         })
       writeDisposable.disposed(by: self.disposeBag)
 

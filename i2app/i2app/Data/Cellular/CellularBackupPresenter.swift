@@ -73,25 +73,25 @@ class CellularBackupPresenter: NSObject {
     self.notificationCenter.removeObserver(self)
   }
 
-  func update(_ note: Notification?) {
-    DispatchQueue.main.async { [weak self] _ in
+  @objc func update(_ note: Notification?) {
+    DispatchQueue.main.async { [weak self] 
 
-      if let state = self?.subsystemController.cellBackupSubsystemController?.state() {
+      if let state = self.subsystemController.cellBackupSubsystemController?.state() {
         switch state {
         case .cellular:
-          self?.callback?.showOnCellularBackup?()
+          self.callback?.showOnCellularBackup?()
           break
         case .broadband:
-          self?.callback?.showOnBroadband?()
+          self.callback?.showOnBroadband?()
           break
         case .suspended: // Banned
-          self?.callback?.showNeedsActivation?()
+          self.callback?.showNeedsActivation?()
           break
         case .notReady: // Needs Sub
-          self?.callback?.showNeedsServicePlan?()
+          self.callback?.showNeedsServicePlan?()
           break
         case .configuration: // Needs Config
-          self?.callback?.showNeedsConfiguration?()
+          self.callback?.showNeedsConfiguration?()
           break
         }
       }

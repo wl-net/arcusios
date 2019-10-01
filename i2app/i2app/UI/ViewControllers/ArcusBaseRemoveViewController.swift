@@ -146,7 +146,7 @@ class ArcusBaseRemoveViewController: UIViewController, UITextFieldDelegate, Remo
   }
 
   // MARK: Keyboard Toolbar Selectors
-  func keyboardDoneTapped() {
+  @objc func keyboardDoneTapped() {
     view.endEditing(true)
   }
 

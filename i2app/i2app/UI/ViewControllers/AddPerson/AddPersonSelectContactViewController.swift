@@ -73,7 +73,7 @@ UITableViewDelegate, UITextFieldDelegate {
 
     let range: NSRange = NSRange(location: 0, length: text.characters.count)
 
-    attributedString.addAttribute(NSKernAttributeName, value: 2.0, range: range)
+    attributedString.addAttribute(NSAttributedString.Key.kern, value: 2.0, range: range)
     textField.attributedText = attributedString
   }
 

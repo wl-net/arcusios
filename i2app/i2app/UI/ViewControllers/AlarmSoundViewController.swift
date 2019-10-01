@@ -43,7 +43,7 @@ class AlarmSoundViewController: UIViewController,
     presenter.fetch()
   }
 
-  func didToggle(Switch toggle: UISwitch) {
+  @objc func didToggle(Switch toggle: UISwitch) {
     let cell = toggle.superTableViewCell!
     let indexPath = self.tableView.indexPath(for: cell)!
     presenter.toggleObject(toggle.isOn, atIndex:indexPath.row)

@@ -97,11 +97,11 @@ let arcusKerningValue: Float = 2
 
     //Remove border and highlighting for cells
     setDividerImage(blank,
-                    forLeftSegmentState: UIControlState(),
-                    rightSegmentState: UIControlState(),
+                    forLeftSegmentState: UIControl.State(),
+                    rightSegmentState: UIControl.State(),
                     barMetrics: .default)
     setBackgroundImage(blank,
-                       for: UIControlState(),
+                       for: UIControl.State(),
                        barMetrics: .default)
 
     updateAllCaps()
@@ -123,14 +123,14 @@ let arcusKerningValue: Float = 2
                        bold: boldFont,
                        kerning: kern,
                        color: textColor)
-    setTitleTextAttributes(attributes, for: UIControlState())
+    setTitleTextAttributes(attributes as! [NSAttributedString.Key : Any], for: UIControl.State())
 
     let selectedAttributes: [AnyHashable : Any]? = FontData
       .getFontWithSize(fontSize,
                        bold: boldFont,
                        kerning: kern,
                        color: selectedColor)
-    setTitleTextAttributes(selectedAttributes, for: .selected)
+    setTitleTextAttributes(selectedAttributes as! [NSAttributedString.Key : Any], for: .selected)
 
     setNeedsLayout()
   }

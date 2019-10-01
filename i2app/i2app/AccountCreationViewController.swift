@@ -125,27 +125,27 @@ ScrollViewKeyboardAnimatable {
     paragraph.alignment = .center
 
     // Underline attributes for tos and privacy range.
-    let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+    let underlineAttribute = [convertFromNSAttributedStringKey(NSAttributedString.Key.underlineStyle): NSUnderlineStyle.single.rawValue]
     let font = infoTextView.font
 
     // Create attributed string
     let attributedString: NSMutableAttributedString =
       NSMutableAttributedString(string: infoTextView.text,
-                                attributes: [NSFontAttributeName: font!,
-                                             NSParagraphStyleAttributeName: paragraph])
+                                attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): font!,
+                                             convertFromNSAttributedStringKey(NSAttributedString.Key.paragraphStyle): paragraph]))
 
     // Add tos link attributes.
-    attributedString.addAttribute(NSLinkAttributeName,
+    attributedString.addAttribute(NSAttributedString.Key.link,
                                   value: Constants.termsOfServiceLinkKey,
                                   range: tosRange)
 
     // Add privacy link attributes.
-    attributedString.addAttribute(NSLinkAttributeName,
+    attributedString.addAttribute(NSAttributedString.Key.link,
                                   value: Constants.privacyStatementLinkKey,
                                   range: privacyRange)
 
     // Set link attributes.
-    infoTextView.linkTextAttributes = underlineAttribute
+    infoTextView.linkTextAttributes = convertToOptionalNSAttributedStringKeyDictionary(underlineAttribute)
 
     // Set attributed text.
     infoTextView.attributedText = attributedString
@@ -400,4 +400,15 @@ extension AccountCreationViewController: UITextViewDelegate {
     }
     return true
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

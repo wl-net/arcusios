@@ -91,7 +91,7 @@ public class AlarmAddMonitoringStationContact: UIViewController, AlarmAddContact
                                              style: PopupWindowStyleCautionWindow)
   }
 
-  func closePopup(_: AnyObject) {
+  @objc func closePopup(_: AnyObject) {
     self.navigationController?.popViewController(animated: true)
   }
 

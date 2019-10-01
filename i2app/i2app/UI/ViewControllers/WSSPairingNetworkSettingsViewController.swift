@@ -37,8 +37,8 @@ ArcusInputAccessoryProtocol {
     didSet {
       textFieldInputAccessoryView.inputDelegate = self
       textFieldInputAccessoryView.doneButton
-        .setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white],
-                                for: UIControlState())
+        .setTitleTextAttributes(convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.white]),
+                                for: UIControl.State())
     }
   }
   @IBOutlet var tableViewBottomSpacingConstraint: NSLayoutConstraint!
@@ -137,7 +137,7 @@ ArcusInputAccessoryProtocol {
   func configureTableView() {
     tableView.backgroundColor = UIColor.clear
     tableView.backgroundView = nil
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 70
   }
 
@@ -294,4 +294,15 @@ ArcusInputAccessoryProtocol {
       }
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

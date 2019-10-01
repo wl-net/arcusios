@@ -80,7 +80,7 @@ class WSSPairingSuccessViewController: BaseDeviceStepViewController, UITableView
     func configureTableView() {
         self.tableView.backgroundColor = UIColor.clear
         self.tableView.backgroundView = nil
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 70
     }
 

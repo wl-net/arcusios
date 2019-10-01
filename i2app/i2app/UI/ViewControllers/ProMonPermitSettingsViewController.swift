@@ -76,7 +76,7 @@ UITextFieldDelegate {
     return true
   }
 
-  func onHideKeyboard() {
+  @objc func onHideKeyboard() {
     permitField.resignFirstResponder()
   }
 

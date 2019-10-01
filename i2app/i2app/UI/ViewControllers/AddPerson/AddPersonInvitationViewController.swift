@@ -32,8 +32,8 @@ ArcusInputAccessoryProtocol {
     didSet {
       self.invitationTextViewInputAccessoryView.inputDelegate = self
       self.invitationTextViewInputAccessoryView.doneButton
-        .setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white],
-                                for: UIControlState())
+        .setTitleTextAttributes(convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.white]),
+                                for: UIControl.State())
     }
   }
   @IBOutlet var invitationTextView: UITextView! {
@@ -79,11 +79,11 @@ ArcusInputAccessoryProtocol {
 
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(self.keyboardWillShow(_:)),
-                                           name: Notification.Name.UIKeyboardWillShow,
+                                           name: UIResponder.keyboardWillShowNotification,
                                            object: nil)
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(self.keyboardWillHide(_:)),
-                                           name: Notification.Name.UIKeyboardWillHide,
+                                           name: UIResponder.keyboardWillHideNotification,
                                            object: nil)
 
   }
@@ -138,10 +138,10 @@ ArcusInputAccessoryProtocol {
   }
 
   // MARK: Keyboard Handling
-  func keyboardWillShow(_ notification: Notification) {
+  @objc func keyboardWillShow(_ notification: Notification) {
     let userInfo: NSDictionary = notification.userInfo! as NSDictionary
     let keyboardFrame: NSValue? =
-      userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue
+      userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue
     let keyboardRectangle = keyboardFrame?.cgRectValue
     let keyboardHeight = keyboardRectangle?.height
 
@@ -150,7 +150,7 @@ ArcusInputAccessoryProtocol {
     self.view.layoutIfNeeded()
   }
 
-  func keyboardWillHide(_ notification: Notification) {
+  @objc func keyboardWillHide(_ notification: Notification) {
     self.bottomLayoutConstraint.constant = 0
     self.scrollView.layoutIfNeeded()
     self.view.layoutIfNeeded()
@@ -208,4 +208,15 @@ ArcusInputAccessoryProtocol {
       successViewController?.addPersonModel = self.addPersonModel
     }
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

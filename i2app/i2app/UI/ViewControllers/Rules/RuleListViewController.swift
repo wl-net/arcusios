@@ -69,7 +69,7 @@ RuleListPresenterDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    if !isMovingToParentViewController {
+    if !isMovingToParent {
       createGif()
       ruleListPresenter?.fetchRuleList()
     }
@@ -108,7 +108,7 @@ RuleListPresenterDelegate {
 
   func configureTableView() {
     tableView.backgroundColor = UIColor.clear
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 120.0
 
     let nib: UINib = UINib(nibName: String(describing: ArcusTwoLabelTableViewSectionHeader.self),
@@ -169,7 +169,7 @@ RuleListPresenterDelegate {
 
   func tableView(_ tableView: UITableView,
                  heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableViewAutomaticDimension
+    return UITableView.automaticDimension
   }
 
   func tableView(_ tableView: UITableView,
@@ -241,7 +241,7 @@ RuleListPresenterDelegate {
 
   // MARK: UITableViewDelegate
   func tableView(_ tableView: UITableView,
-                 commit editingStyle: UITableViewCellEditingStyle,
+                 commit editingStyle: UITableViewCell.EditingStyle,
                  forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       if let group: RuleListGroup? = ruleListPresenter?.ruleGroupsList[indexPath.section] {

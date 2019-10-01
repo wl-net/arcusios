@@ -78,7 +78,7 @@ class WhatsNewInVersionTwo: UIViewController {
 extension WhatsNewInVersionTwo: UIWebViewDelegate {
   func webView(_ webView: UIWebView,
                shouldStartLoadWith request: URLRequest,
-               navigationType: UIWebViewNavigationType) -> Bool {
+               navigationType: UIWebView.NavigationType) -> Bool {
     guard let url = request.url else {
       // Don't know what is happening, loading without a URL? But this does the default behavior
       return true

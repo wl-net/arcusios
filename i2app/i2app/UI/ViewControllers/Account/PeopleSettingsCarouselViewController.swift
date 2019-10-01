@@ -161,7 +161,7 @@ PeopleSettingsCarouselViewCellDelegate {
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
 
-    self.carouselView.decelerationRate = UIScrollViewDecelerationRateFast
+    self.carouselView.decelerationRate = UIScrollView.DecelerationRate.fast
     self.carouselView.contentInset = UIEdgeInsets(top: 0,
                                                   left: (self.carouselView.frame.size.width - 230) / 2,
                                                   bottom: 0,
@@ -189,7 +189,7 @@ PeopleSettingsCarouselViewCellDelegate {
                              forImageView imageView: ArcusBorderedImageView) {
     UIView.animate(withDuration: 0.5,
                    delay: 0.0,
-                   options: UIViewAnimationOptions.transitionCrossDissolve,
+                   options: UIView.AnimationOptions.transitionCrossDissolve,
                    animations: {
                     self.view.renderLogoAndBackground(withImageNamed: imageName, forLogoControl: imageView)
                     self.navigationController?.view.backgroundColor = self.view.backgroundColor
@@ -206,11 +206,11 @@ PeopleSettingsCarouselViewCellDelegate {
       fallthrough
     case .hobbit:
       removeButton.isHidden = false
-      removeButton.setTitle(NSLocalizedString("Remove Person", comment: ""), for: UIControlState())
+      removeButton.setTitle(NSLocalizedString("Remove Person", comment: ""), for: UIControl.State())
       break
     case .pending:
       removeButton.isHidden = false
-      removeButton.setTitle(NSLocalizedString("Cancel Invitation", comment: ""), for: UIControlState())
+      removeButton.setTitle(NSLocalizedString("Cancel Invitation", comment: ""), for: UIControl.State())
       break
     default:
       removeButton.isHidden = true
@@ -429,7 +429,7 @@ PeopleSettingsCarouselViewCellDelegate {
     self.personPresenter?.deleteInvitation(person!)
   }
 
-  func removePersonAccess() {
+  @objc func removePersonAccess() {
     slideOutTwoButtonAlert()
     if let person = personPresenter?.currentPerson,
       let place = personPresenter?.currentPlace,

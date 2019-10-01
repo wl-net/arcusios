@@ -35,7 +35,7 @@ ClearTableConfigurator {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 70.0
     presenter = AlarmRequirementsPresenter(delegate: self)
     configureClearLayout()

@@ -34,8 +34,8 @@ class AlarmTrackerCollectionViewFlowLayout: UICollectionViewFlowLayout {
     super.prepare()
 
     if collectionView != nil {
-      scrollDirection = UICollectionViewScrollDirection.horizontal
-      collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
+      scrollDirection = UICollectionView.ScrollDirection.horizontal
+      collectionView!.decelerationRate = UIScrollView.DecelerationRate.fast
 
       let visibleCells: [UICollectionViewCell]? =
         collectionView!.visibleCells as [UICollectionViewCell]
@@ -71,7 +71,7 @@ class AlarmTrackerCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
       var newAttributes: UICollectionViewLayoutAttributes?
       for attributes in visibleCellAttributes
-        where attributes.representedElementCategory == UICollectionElementCategory.cell {
+        where attributes.representedElementCategory == UICollectionView.ElementCategory.cell {
         if newAttributes != nil {
           let attrCenter: CGFloat = attributes.center.x - proposedContentOffsetCenterX
           let newAttrCenter: CGFloat = newAttributes!.center.x - proposedContentOffsetCenterX

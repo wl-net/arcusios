@@ -35,7 +35,7 @@ ClearTableConfigurator {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 90.0
     presenter = AlarmGracePeriodsPresenter(delegate: self)
     configureClearLayout()
@@ -46,7 +46,7 @@ ClearTableConfigurator {
     ArcusAnalytics.tag(named: AnalyticsTags.AlarmsMoreGrace)
   }
 
-  func didToggle(Switch toggle: UISwitch) {
+  @objc func didToggle(Switch toggle: UISwitch) {
     presenter.toggleShouldSound(toggle.isOn)
   }
 }

@@ -146,7 +146,7 @@ internal enum DashboardCardIdentifier {
     tableView.tableFooterView = UIView()
 
     // Configure table so the History Card can grow dynamically
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = DashboardConstants.cardSizeStandard
 
     let titleChangeSelector = #selector(DashboardTwoViewController.shouldUpdateNavigationBar(_:))
@@ -273,7 +273,7 @@ internal enum DashboardCardIdentifier {
     dashboardPresenter?.updatePlaceForId(placeId as String)
   }
 
-  func fetchHistory() {
+  @objc func fetchHistory() {
     guard let presenter = dashboardPresenter as? DashboardPresenter else { return }
 
     presenter.fetchDashboardHistory()
@@ -324,7 +324,7 @@ internal enum DashboardCardIdentifier {
     return accountCreated && missingHub
   }
 
-  func shouldUpdateNavigationBar(_ note: Notification) {
+  @objc func shouldUpdateNavigationBar(_ note: Notification) {
     DispatchQueue.main.async {
       self.updateNavigationBarWithLogoImage()
     }
@@ -532,7 +532,7 @@ extension DashboardTwoViewController: DashboardPresenterDelegate {
       } else {
         self?.configurePlaceChangeButton()
         self?.currentPlaceButton.isHidden = false
-        self?.currentPlaceButton.setTitle(presenter.currentPlaceName, for: UIControlState())
+        self?.currentPlaceButton.setTitle(presenter.currentPlaceName, for: UIControl.State())
       }
     }
   }
@@ -745,7 +745,7 @@ extension DashboardTwoViewController: UITableViewDataSource {
     case .Favorites:
       return DashboardConstants.cardSizeFavorite
     case .History where presenter.numberOfHistoryItems() > 0:
-      return UITableViewAutomaticDimension
+      return UITableView.automaticDimension
     default:
       return DashboardConstants.cardSizeStandard
     }
@@ -770,7 +770,7 @@ extension DashboardTwoViewController: UITableViewDataSource {
     if height != nil {
       return height!
     } else {
-      return UITableViewAutomaticDimension
+      return UITableView.automaticDimension
     }
   }
 

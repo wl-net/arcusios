@@ -263,9 +263,9 @@ enum ArcusIconButtonIconSide: String {
     if wideSpacing {
       kern = kKerningValue
     }
-    let attributes: [String : AnyObject] = [NSFontAttributeName: font,
-                                            NSKernAttributeName: kern as AnyObject,
-                                            NSForegroundColorAttributeName: buttonTextColor.cgColor]
+    let attributes: [String : AnyObject] = [convertFromNSAttributedStringKey(NSAttributedString.Key.font): font,
+                                            convertFromNSAttributedStringKey(NSAttributedString.Key.kern): kern as AnyObject,
+                                            convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): buttonTextColor.cgColor]
 
     var title: String = titleText
     if allCaps {
@@ -273,7 +273,7 @@ enum ArcusIconButtonIconSide: String {
     }
 
     attributedTitle = NSAttributedString.init(string: title,
-                                              attributes: attributes)
+                                              attributes: convertToOptionalNSAttributedStringKeyDictionary(attributes))
   }
 
   fileprivate func updateCurrentColor() {
@@ -332,7 +332,7 @@ enum ArcusIconButtonIconSide: String {
     let imageMask = CAShapeLayer()
     imageMask.bounds = AVMakeRect(aspectRatio: size, insideRect: containingRect)
     imageMask.contents = image.cgImage
-    imageMask.fillMode = kCAFillRuleEvenOdd
+    imageMask.fillMode = CAShapeLayerFillRule.evenOdd
     imageMask.position = CGPoint(x: containingRect.midX,
                                  y: containingRect.midY)
 
@@ -341,7 +341,7 @@ enum ArcusIconButtonIconSide: String {
 
   fileprivate func textMask(_ padding: CGFloat, iconSide: String) -> ArcusVerticallyCenteredTextLayer {
     let textMask = ArcusVerticallyCenteredTextLayer()
-    textMask.alignmentMode = kCAAlignmentCenter
+    textMask.alignmentMode = CATextLayerAlignmentMode.center
     textMask.bounds = bounds
     textMask.contentsScale = UIScreen.main.scale
     textMask.foregroundColor = UIColor.black.cgColor
@@ -351,7 +351,7 @@ enum ArcusIconButtonIconSide: String {
                                      padding: padding,
                                      side: iconSide)
     textMask.string = attributedTitle
-    textMask.truncationMode = kCATruncationNone
+    textMask.truncationMode = CATextLayerTruncationMode.none
     textMask.isWrapped = false
 
     return textMask
@@ -361,7 +361,7 @@ enum ArcusIconButtonIconSide: String {
     let mask = CAShapeLayer()
     mask.bounds = bounds
     mask.fillColor = UIColor.clear.cgColor
-    mask.fillMode = kCAFillRuleEvenOdd
+    mask.fillMode = CAShapeLayerFillRule.evenOdd
     mask.position = CGPoint(x: bounds.midX,
                             y: bounds.midY)
 
@@ -430,4 +430,15 @@ enum ArcusIconButtonIconSide: String {
     return CGSize(width: ceil(rect.size.width),
                   height: ceil(rect.size.height))
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

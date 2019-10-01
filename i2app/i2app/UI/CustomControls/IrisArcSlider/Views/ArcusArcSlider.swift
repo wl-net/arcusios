@@ -488,7 +488,7 @@ import UIKit
             self.activeAngle = newAngle
             self.currentValue = currentValue
 
-            sendActions(for: UIControlEvents.valueChanged)
+            sendActions(for: UIControl.Event.valueChanged)
         }
     }
 }

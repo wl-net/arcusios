@@ -173,9 +173,9 @@ ProMonitoringSettingsController {
 
     if let currentPlaceAndRole = currentPlaceAndRole,
       currentPlaceAndRole.role == PlaceAndRoleModel.ownerString {
-      removeButton.setTitle(NSLocalizedString("Remove Place", comment: ""), for: UIControlState())
+      removeButton.setTitle(NSLocalizedString("Remove Place", comment: ""), for: UIControl.State())
     } else {
-      removeButton.setTitle(NSLocalizedString("Remove Access", comment: ""), for: UIControlState())
+      removeButton.setTitle(NSLocalizedString("Remove Access", comment: ""), for: UIControl.State())
       placeInfoSeparator.isHidden = true
     }
   }

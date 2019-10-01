@@ -194,7 +194,7 @@ SaveAddressDelegate {
       cityTextField.text = PlaceCapability.getCityFrom(currentPlace)
       zipTextField.text = PlaceCapability.getZipCode(from: currentPlace)
       if let state: String = PlaceCapability.getStateFrom(currentPlace) {
-        stateButton.setTitle(state.uppercased(), for: UIControlState())
+        stateButton.setTitle(state.uppercased(), for: UIControl.State())
       }
     }
   }
@@ -396,7 +396,7 @@ SaveAddressDelegate {
   func picker(_ pickerViewController: CustomPickerController,
               didPressCloseButtonWithSelection selection: String) {
     pickerViewController.pickerButton.setTitle(selection,
-                                               for: UIControlState())
+                                               for: UIControl.State())
     dismiss(animated: true, completion: nil)
   }
   

@@ -108,7 +108,7 @@ class CameraClipsViewController: UIViewController {
   
   func configureTableView() {
     tableView.estimatedRowHeight = 268.0
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.register(UINib.init(nibName: "ArcusTwoLabelTableViewSectionHeader", bundle: nil),
                        forHeaderFooterViewReuseIdentifier: headerIdentifier)
     refreshControl = UIRefreshControl()
@@ -235,7 +235,7 @@ class CameraClipsViewController: UIViewController {
     handleAVPlayersDidClose(withLogging: true)
   }
 
-  func refresh(_ sender: Any?) {
+  @objc func refresh(_ sender: Any?) {
     self.presenter?.fetchTopData()
     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
       self.refreshControl.endRefreshing()
@@ -618,9 +618,9 @@ extension CameraClipsViewController: CameraClipTableViewCellDelegate {
 
   }
 
-  func closePopup(_ sender: AnyObject!) {}
+  @objc func closePopup(_ sender: AnyObject!) {}
 
-  func performDownload(_ sender: AnyObject!) {
+  @objc func performDownload(_ sender: AnyObject!) {
     completeDownload()
   }
 

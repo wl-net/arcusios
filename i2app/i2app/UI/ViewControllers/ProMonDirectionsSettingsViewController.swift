@@ -104,7 +104,7 @@ ProMonDirectionsSettingsDelegate {
     displayGenericErrorMessage()
   }
 
-  func onHideKeyboard() {
+  @objc func onHideKeyboard() {
     self.directionsField.resignFirstResponder()
   }
 
