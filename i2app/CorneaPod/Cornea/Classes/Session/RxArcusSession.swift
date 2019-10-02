@@ -440,7 +440,8 @@ public class RxArcusSession: ArcusSession, RxSwiftSession, UrlBuilder, ArcusSess
         onNext: { status in
           guard self.state != .suspended else { return }
           
-          if status == .notReachable {
+          // XXX: This is wrong, but apparently it can't be used as an enum anymore?
+          if status.description == "No Connection" {
             self.state = .unreachable
             self.client.disconnect(true)
           } else {
