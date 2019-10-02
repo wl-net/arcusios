@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
   s.dependency  'CocoaLumberjack/Swift', '~> 3.0'
   s.dependency  'Locksmith', '4.0'
   s.dependency  'Starscream', '3.0.6'
-  s.dependency  'RxSwift'
-  s.dependency  'RxSwiftExt', '2.5.1'
-  s.dependency  'RxReachability'
+  s.dependency  'RxSwift', '4.5.0'
+  s.dependency  'RxSwiftExt', '3.4.0'
+  s.dependency  'RxReachability', '0.1.8'
 end

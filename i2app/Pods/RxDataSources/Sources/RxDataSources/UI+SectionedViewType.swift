@@ -11,6 +11,10 @@ import Foundation
 import UIKit
 import Differentiator
 
+#if swift(>=4.2)
+public typealias UITableViewRowAnimation = UITableView.RowAnimation
+#endif
+
 func indexSet(_ values: [Int]) -> IndexSet {
     let indexSet = NSMutableIndexSet()
     for i in values {
@@ -53,7 +57,7 @@ extension UITableView : SectionedViewType {
         self.reloadSections(indexSet(sections), with: animationStyle)
     }
 
-  public func performBatchUpdates<S: SectionModelType>(_ changes: Changeset<S>, animationConfiguration: AnimationConfiguration) {
+  public func performBatchUpdates<S>(_ changes: Changeset<S>, animationConfiguration: AnimationConfiguration) {
         self.beginUpdates()
         _performBatchUpdates(self, changes: changes, animationConfiguration: animationConfiguration)
         self.endUpdates()
@@ -93,7 +97,7 @@ extension UICollectionView : SectionedViewType {
         self.reloadSections(indexSet(sections))
     }
     
-  public func performBatchUpdates<S: SectionModelType>(_ changes: Changeset<S>, animationConfiguration: AnimationConfiguration) {
+  public func performBatchUpdates<S>(_ changes: Changeset<S>, animationConfiguration: AnimationConfiguration) {
         self.performBatchUpdates({ () -> Void in
             _performBatchUpdates(self, changes: changes, animationConfiguration: animationConfiguration)
         }, completion: { (completed: Bool) -> Void in
@@ -115,7 +119,7 @@ public protocol SectionedViewType {
     func performBatchUpdates<S>(_ changes: Changeset<S>, animationConfiguration: AnimationConfiguration)
 }
 
-func _performBatchUpdates<V: SectionedViewType, S: SectionModelType>(_ view: V, changes: Changeset<S>, animationConfiguration:AnimationConfiguration) {
+func _performBatchUpdates<V: SectionedViewType, S>(_ view: V, changes: Changeset<S>, animationConfiguration:AnimationConfiguration) {
     typealias I = S.Item
   
     view.deleteSections(changes.deletedSections, animationStyle: animationConfiguration.deleteAnimation)

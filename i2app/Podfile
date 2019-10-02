@@ -24,8 +24,8 @@ def shared_pods
   # Pods for RxArcusClient
   pod 'RxSwift' # Mit
   pod 'RxCocoa' # Mit
-  pod 'RxSwiftExt', '2.5.1'
-  pod 'RxDataSources', '2.0.2'
+  pod 'RxSwiftExt', '3.4.0'
+  pod 'RxDataSources', '3.1.0'
 
   pod 'Cornea', :path => './CorneaPod'
 end
