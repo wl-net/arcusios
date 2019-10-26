@@ -186,7 +186,7 @@ class BillingOptionsViewController: UIViewController, UITableViewDataSource, UIT
     if hasCellularBackup {
       cellBackupText = "Backup Cellular"
     }
-    if address.characters.count > 0 {
+    if address.count > 0 {
       cell?.descriptionLabel.text = address
         + "\n"
         + servicePlan
@@ -215,7 +215,7 @@ class BillingOptionsViewController: UIViewController, UITableViewDataSource, UIT
   // MARK: IBActions
   @IBAction func shopButtonTapped(_ sender: AnyObject) {
     if let shopURL = URL(string:"") {
-      UIApplication.shared.openURL(shopURL)
+      UIApplication.shared.open(shopURL)
     }
   }
 }
