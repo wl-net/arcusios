@@ -2,3 +2,5 @@ osx_image: xcode10.1
 language: objective-c
 before_script:
 - cd i2app
+xcode_project: i2app.xcodeproj
+xcode_scheme: i2app-CI
